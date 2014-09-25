@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <!-- Jobs -->
-        <record id="hr_job_period_rule_form" model="ir.ui.view">
-            <field name="name">hr.job.period.rule.form</field>
-            <field name="model">hr.job</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="hr.view_hr_job_form"/>
-            <field name="arch" type="xml">
-                <data>                
-                    <field name = "department_id" position = "after">
-                        <field name="code" />
-                    </field>
-                </data>
-            </field>
-        </record>
-        <!-- End Jobs -->        
-        
         <!-- Payroll_run-->
          <record id="inherit_hr_payslip_run_form" model="ir.ui.view">
             <field name="name">hr.payslip.run.form</field>
@@ -26,50 +10,41 @@
             <field name="arch" type="xml">
                 <data>
                     <field name="credit_note" position="after">
-                        <field name="period_id" domain="[('state', '=', 'draft'),('special', '=', False)]" widget="selection"/>
                         <field name="schedule_pay" required = "True" string = "Schedule pay"/>
                     </field>
-                    <button string = "Generate Payslips" position = "replace"> 
-                        <button name="%(hr_payroll.action_hr_payslip_by_employees)d" context="{'schedule_pay': schedule_pay}" type="action" states="draft" icon="gtk-execute" string="Generate Payslips" />
-                    </button>
-                    <button string = "Generate Payslips" position = "after"> 
-                        <button name="confirm_payslips" type="object" states="draft" icon="STOCK_GOTO_BOTTOM" string="Confirm Payslips" />
-                    </button>
                 </data>
             </field>
         </record>        
-        <!--End Payroll_run -->
+        <!--End Payroll_run -->     
         
-       <!-- Employee wizard -->
-        <record id="inherit_view_hr_payslip_by_employees" model="ir.ui.view">
-            <field name="name">hr_payroll_payslip_employees</field>
-            <field name="model">hr.payslip.employees</field>
+        <!--Employee - Spouse-->
+        <record id="view_employee_form_inherit" model="ir.ui.view">
+            <field name="name">view.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
             <field name="type">form</field>
-            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_by_employees"/>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
                 <data>
-                    <field name = "employee_ids" position = "replace">
-                        <field name="employee_ids" domain="[('contract_ids.schedule_pay', '=', schedule_pay )]" nolabel="1"/>                        
-                    </field>                
-                </data>            
-            </field> 
-        </record>       
-        <!-- End Employee wizard-->
+                    <xpath expr="//page[@string='Personal Information']/group/group[@string='Status']/field[@name='marital']" position="after">
+                        <field name="report_spouse" attrs="{'invisible': [('marital', 'not in', ('married'))]}"/>
+                    </xpath>                    
+                </data>
+            </field>
+        </record>
         
-        <!-- forced period Payslip  -->
-        <record id="view_hr_payslip_form_inherit" model="ir.ui.view">
-            <field name="name">view.hr.payslip.form.inherit</field>
-            <field name="model">hr.payslip</field>
+        <!--Employee Children-->
+        <record id="hr_hr_employee_view_form2_inherit" model="ir.ui.view">
+            <field name="name">hr.hr.employee.view.form2.inherit</field>
+            <field name="model">hr.employee</field>
             <field name="type">form</field>
-            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
             <field name="arch" type="xml">
                 <data>
-                    <field name="credit_note" position="after">
-                        <field name="forced_period_id"/>                        
-                    </field>                
-                </data>            
-            </field> 
-        </record> 
-        <!-- End forced period Payslip -->
+                    <field name="children" position="after">
+                        <field name="report_number_child"/>
+                    </field>                    
+                </data>
+            </field>
+        </record>
     </data>
 </openerp>

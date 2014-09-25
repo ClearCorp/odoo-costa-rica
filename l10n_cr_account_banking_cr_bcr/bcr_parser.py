@@ -319,7 +319,8 @@ class BCRParser( object ):
                 cad = parser.extract_float (credit)
                 mapping['transferred_amount'] =  float(cad)
             
-            lines.append(copy(mapping))
+            if not mapping['transferred_amount'] == 0.0:
+                lines.append(copy(mapping))
                             
         return lines
     
@@ -358,7 +359,8 @@ class BCRParser( object ):
                 cad = parser.extract_float (credit)
                 mapping['transferred_amount'] =  float(cad)
             
-            lines.append(copy(mapping))
+            if not mapping['transferred_amount'] == 0.0:
+                lines.append(copy(mapping))
                             
         return lines    
     
@@ -397,7 +399,8 @@ class BCRParser( object ):
                 cad = parser.extract_float(credit)
                 mapping['transferred_amount'] =  float(cad)
             
-            lines.append(copy(mapping))
+            if not mapping['transferred_amount'] == 0.0:
+                lines.append(copy(mapping))
         
         return lines
         

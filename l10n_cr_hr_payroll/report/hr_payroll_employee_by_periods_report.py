@@ -176,9 +176,9 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
         return res
 
 report_sxw.report_sxw(
-    'report.l10n_cr_hr_payroll.account.report_employee_by_periods',
-    'account.account',
-    'addons/l10n_cr_hr_payroll/report/report_employee_by_periods.mako',
+    'report.hr_payroll_employee_by_periods_report',
+    'hr.payslip',
+    'addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako',
     parser=ReportEmployeeByPeriods)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -21,12 +21,13 @@
 ##############################################################################
 
 import netsvc
-from osv import fields, osv
 import tools
 from datetime import datetime
-from tools.translate import _
+from datetime import date, timedelta
+from openerp.tools.translate import _
+from openerp.osv import fields,osv, orm
 
-class hr_contract(osv.osv):
+class hrContract(orm.Model):
     """
     Employee contract based on the visa, work permits
     allows to configure different Salary structure
@@ -50,19 +51,8 @@ class hr_contract(osv.osv):
     _defaults = {
         'schedule_pay': 'monthly',
     }
-    
-hr_contract()
 
-class hr_job(osv.osv):
-    _inherit = 'hr.job'
-    _columns = {
-        'code': fields.char('Code', size=128, required=False),
-    }
-
-hr_job()
-
-
-class hr_payslip_run(osv.osv):
+class hrPaysliprun(orm.Model):
     _inherit = 'hr.payslip.run'
     _columns = {
         'schedule_pay': fields.selection([
@@ -74,103 +64,107 @@ class hr_payslip_run(osv.osv):
             ('weekly', 'Weekly'),
             ('bi-weekly', 'Bi-weekly'),
             ('bi-monthly', 'Bi-monthly'),
-            ], 'Scheduled Pay', select=True, readonly=True, states={'draft': [('readonly', False)]}),
-                
-        'period_id': fields.many2one('account.period', 'Force Period', readonly=True, states={'draft': [('readonly', False)]}),
-      
+            ], 'Scheduled Pay', select=True, readonly=True, states={'draft': [('readonly', False)]}),      
     }
     
-    def close_payslip_run(self, cr, uid, ids, context=None):
-        result = self.write(cr, uid, ids, {'state': 'close'}, context=context)
-        payslip_obj = self.pool.get('hr.payslip')
-        for batches in self.browse(cr, uid, ids, context=context):
-            payslip_ids = map(lambda x: x.id, batches.slip_ids)
-            for payslip in payslip_obj.browse(cr, uid, payslip_ids):
-                    if payslip.state == 'draft':
-                        raise osv.except_osv(_('Warning !'), _('You did not confirm some of the payroll'))
-                        break
-        return result
-
-    def confirm_payslips(self, cr, uid, ids, context=None):
-        payslip_obj = self.pool.get('hr.payslip')
-        for batches in self.browse(cr, uid, ids, context=context):
-            payslip_ids = map(lambda x: x.id, batches.slip_ids)
-            for payslip in payslip_obj.browse(cr, uid, payslip_ids):
-                    if payslip.state == 'draft':
-                        payslip_obj.compute_sheet(cr, uid, [payslip.id], context=context)
-                        payslip_obj.process_sheet(cr, uid, [payslip.id], context=context)
+class hr_employee(osv.osv):
+    _name = "hr.employee"
+    _description = "Employee"
+    _inherit = "hr.employee"
+    
+    def _check_report_number_child(self, cr, uid, ids, context=None):
+        for employee in self.browse(cr, uid, ids, context=context):
+            if employee.report_number_child < 0:
+                return False
         return True
-
-hr_payslip_run()
-
-class HrPayslip(osv.osv):
-    _inherit = 'hr.payslip'
-
-    _columns = {
-        'name': fields.char('Description', size=256, required=False, readonly=True, states={'draft': [('readonly', False)]}),
-        'forced_period_id':fields.related('payslip_run_id', 'period_id', type="many2one", relation="account.period", string="Force period", store=True,readonly=True),
-    }
-
-    def onchange_employee_id(self, cr, uid, ids, date_from, date_to, employee_id=False, contract_id=False, context=None):
-        res = super(HrPayslip, self).onchange_employee_id(cr, uid, ids, date_from, date_to, employee_id=employee_id, contract_id=contract_id, context=context)
-        contract = []
-        
-        if (not employee_id) or (not date_from) or (not date_to):
-            return res
-        
-        employee_obj = self.pool.get('hr.employee')
-        contract_obj = self.pool.get('hr.contract')
-        
-        employee = employee_obj.browse(cr, uid, employee_id, context=context)
-        
-        if (not contract_id):
-            contract_id = contract_obj.search(cr, uid, [('employee_id', '=', employee_id)], context=context)
-        else:
-            contract_id = [contract_id]
-        
-        contracts = contract_obj.browse(cr, uid, contract_id, context=context)
-        if len(contracts) > 0 and len(contracts) >= 2:
-            contract = contracts[0]
-        schedule_pay = ''
-        if contract and contract.schedule_pay:
-            #This is to translate the terms 
-            if contract.schedule_pay == 'weekly':
-                schedule_pay = _('weekly')
-            elif contract.schedule_pay == 'monthly':
-                schedule_pay = _('monthly')
-        
-        #Format dates
-        date_from_payslip = datetime.strptime(date_from, "%Y-%m-%d")
-        date_from_payslip = date_from_payslip.strftime('%d-%m-%Y')
-        date_to_payslip = datetime.strptime(date_to, "%Y-%m-%d")
-        date_to_payslip = date_to_payslip.strftime('%d-%m-%Y')
-        
-        name = _('%s payroll of %s from %s to %s') % (schedule_pay, employee.name, date_from_payslip, date_to_payslip)
-        name = name.upper()
-        worked_days_line_list = []
-        if res['value']['worked_days_line_ids']:
-            worked_days_line = res['value']['worked_days_line_ids'][0]
-            worked_days_line['code'] = 'HN'
-            worked_days_line['name'] = name
-            worked_days_line_list = [worked_days_line]
-        
-        res['value'].update({
-                    'name': name,
-                    'worked_days_line_ids' : worked_days_line_list,
-        })
-
-        return res
     
-    def process_sheet(self, cr, uid, ids, context=None):
-        res =  super(HrPayslip, self).process_sheet(cr, uid, ids, context=context)
-        account_move_obj = self.pool.get('account.move')
-        account_move_line_obj = self.pool.get('account.move.line')
-        for payslip in self.browse(cr, uid, ids, context=context):
-            if payslip.forced_period_id:
-                self.write(cr, uid, [payslip.id], {'period_id': payslip.forced_period_id.id}, context=context)
-                account_move_obj.write(cr, uid, [payslip.move_id.id], {'period_id': payslip.forced_period_id.id}, context=context)
-                for line in payslip.move_id.line_id:
-                    account_move_line_obj.write(cr, uid, line.id, {'period_id': payslip.forced_period_id.id}, context=context)
-        return res
+    _columns = {
+        'report_spouse': fields.boolean('Report Spouse', help="If this employee reports his spouse for rent payment"),
+        'report_number_child': fields.integer('Number of children to report', help="Number of children to report for rent payment"),        
+    }
+    
+    _defaults = {
+        'report_number_child': 0,
+    }
+    
+    _constraints = [
+        (_check_report_number_child, 'Error! The number of child to report must be greater or equal to zero.', ['report_number_child'])
+    ]
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+class hrPayslipinherit(osv.osv_memory):
+    
+    _inherit = 'hr.payslip'
+    
+    #Get total payment per month
+    def get_qty_previous_payment(self, cr, uid, employee, actual_payslip, context=None):
+        payslip_ids = []
+        date_to = datetime.strptime(actual_payslip.date_to, '%Y-%m-%d')
+        if date_to.month < 10:
+            first = str(date_to.year) + "-" + "0"+str(date_to.month) + "-" + "01"
+        else:
+             first = str(date_to.year) + "-" +str(date_to.month) + "-" + "01"
+        first_date = datetime.strptime(first, '%Y-%m-%d')
+        payslip_ids = self.pool.get('hr.payslip').search(cr, uid, [('employee_id','=', employee.id), ('date_to', '>=', first_date), ('date_to','<', actual_payslip.date_from)], context=context)
+        return len(payslip_ids)
+        
+    #Get the previous payslip for an employee. Return all payslip that are in
+    #the same month than current payslip
+    def get_previous_payslips(self, cr, uid, employee, actual_payslip, context=None):
+        payslip_list = []
+        date_to = datetime.strptime(actual_payslip.date_to, '%Y-%m-%d')
+        month_date_to = date_to.month
+        year_date_to = date_to.year
+        payslip_ids = self.pool.get('hr.payslip').search(cr, uid, [('employee_id','=', employee.id), ('date_to','<', actual_payslip.date_to)], context=context)
+        
+        for empl_payslip in self.pool.get('hr.payslip').browse(cr, uid, payslip_ids, context=context):
+            temp_date = datetime.strptime(empl_payslip.date_to, '%Y-%m-%d')
+            if (temp_date.month == month_date_to) and (temp_date.year == year_date_to):
+                payslip_list.append(empl_payslip)
+        
+        return payslip_list
+    
+    #get SBA for employee (Gross salary for an employee)
+    def get_SBA(self, cr, uid, employee, actual_payslip, context=None):
+        SBA = 0.0
+        payslip_list = self.get_previous_payslips(cr, uid, employee, actual_payslip, context=context) #list of previous payslips
+        
+        for payslip in payslip_list:
+            for line in payslip.line_ids:
+                 if line.code == 'BRUTO':
+                     SBA += line.total        
+        return SBA
+    
+    #get previous rent
+    def get_previous_rent(self, cr, uid, employee, actual_payslip, context=None):
+        rent = 0.0
+        payslip_list = self.get_previous_payslips(cr, uid, employee, actual_payslip, context=context) #list of previous payslips
+        
+        for payslip in payslip_list:
+            for line in payslip.line_ids:
+                 if line.code == 'RENTA':
+                     rent += line.total        
+        return rent
+    
+    #Get quantity of days between two dates
+    def days_between_days(self, cr, uid, date_from, date_to, context=None):
+        return abs((date_to - date_from).days)
+    
+    #Get number of payments per month
+    def qty_future_payments(self, cr, uid, payslip, context=None):
+        payments = 0
+        
+        date_from = datetime.strptime(payslip.date_from, '%Y-%m-%d')
+        date_to = datetime.strptime(payslip.date_to, '%Y-%m-%d')
+        
+        dbtw = (self.days_between_days(cr, uid, date_from, date_to, context=context)) + 1 #take in account previous date for start date
+        next_date = date_to + timedelta(days=dbtw)
+        
+        month_date_to = date_to.month
+        month_date_next = next_date.month
+        
+        while(month_date_to == month_date_next):            
+            next_date = next_date + timedelta(days=dbtw)
+            month_date_next = next_date.month
+            payments += 1
+        
+        return payments

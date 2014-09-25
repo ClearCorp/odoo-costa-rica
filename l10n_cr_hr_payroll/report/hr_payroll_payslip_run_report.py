@@ -25,9 +25,9 @@ import pooler
 from report import report_sxw
 import locale
 
-class hr_payslip_run_report(report_sxw.rml_parse):
+class hrPaysliprunReport(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
-        super(hr_payslip_run_report, self).__init__(cr, uid, name, context=context)
+        super(hrPaysliprunReport, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
             'cr' : cr,
@@ -60,8 +60,6 @@ class hr_payslip_run_report(report_sxw.rml_parse):
         if name_currency == None:
             name_currency = company_id.currency_id.currency_name
             res = company_id.currency_id.symbol_prefix
-        
-        
         return res
         
     def get_hn(self,line_ids):
@@ -69,8 +67,7 @@ class hr_payslip_run_report(report_sxw.rml_parse):
         res = 0
         for line in line_ids:
             if line.code == code:
-                res += line.number_of_hours
-                
+                res += line.number_of_hours                
         return res
         
     def get_he(self,line_ids):
@@ -79,8 +76,7 @@ class hr_payslip_run_report(report_sxw.rml_parse):
         for line in line_ids:
             if line.code == code:
                 res += line.number_of_hours
-        return res
-        
+        return res        
         
     def get_fe(self,line_ids):
         code = 'FE'
@@ -88,7 +84,6 @@ class hr_payslip_run_report(report_sxw.rml_parse):
         for line in line_ids:
             if line.code == code:
                 res += line.number_of_hours        
-        
         return res
     
     def get_basic(self,line_ids):
@@ -96,8 +91,7 @@ class hr_payslip_run_report(report_sxw.rml_parse):
         res = 0
         for line in line_ids:
             if line.code == code:
-                res += line.total
-        
+                res += line.total        
         return res
         
     def get_ext(self,line_ids):
@@ -119,9 +113,7 @@ class hr_payslip_run_report(report_sxw.rml_parse):
         res = 0
         for line in line_ids:
             if line.code == code:
-                res += line.total
-        
-        
+                res += line.total        
         return res
         
         
@@ -130,9 +122,7 @@ class hr_payslip_run_report(report_sxw.rml_parse):
         res = 0
         for line in line_ids:
             if line.code == code:
-                res += line.total
-        
-        
+                res += line.total        
         return res
     
     def get_ccss(self,line_ids):
@@ -152,10 +142,8 @@ class hr_payslip_run_report(report_sxw.rml_parse):
             elif line.code == code4:
                 res += line.total
             elif line.code == code5:
-                res += line.total
-        
-        return res
-    
+                res += line.total        
+        return res    
     
     def get_net(self,line_ids):
         code = 'NETO'
@@ -163,10 +151,7 @@ class hr_payslip_run_report(report_sxw.rml_parse):
         for line in line_ids:
             if line.code == code:
                 res += line.total
-            
-        
         return res
-
 
     def get_rent(self,line_ids):
         code = 'RENTA'
@@ -174,9 +159,7 @@ class hr_payslip_run_report(report_sxw.rml_parse):
         for line in line_ids:
             if line.code == code:
                 res += line.total
-        
-        
-        return res
+        return res        
         
     def get_RETM(self,line_ids):
         code = 'RET-MENS'
@@ -208,34 +191,32 @@ class hr_payslip_run_report(report_sxw.rml_parse):
         return res
 
     def get_obj_by_dep(self,run):
-	obj_by_dep = []
-	dep_list = []
-	emp_by_dep = []
-
-	for payslip in run.slip_ids:
-	    dep_name = payslip.employee_id.department_id.name
-	    if dep_name not in dep_list:
-		dep_list.append(dep_name)
-
-	for dep in dep_list:
-	    dep_emp = []
-	    for payslip in run.slip_ids:
-		if payslip.employee_id.department_id.name == dep:
-		    dep_emp.append(payslip)
-	    obj_by_dep.append(dep_emp)
-		
-	i = 0
-	for dep in dep_list:
-	    tup_temp = (dep, obj_by_dep[i])
-	    emp_by_dep.append(tup_temp)
-	    i += 1
-	    
+        obj_by_dep = []
+        dep_list = []
+        emp_by_dep = []
+    
+        for payslip in run.slip_ids:
+            dep_name = payslip.employee_id.department_id.name
+            if dep_name not in dep_list:
+                dep_list.append(dep_name)
+    
+        for dep in dep_list:
+            dep_emp = []
+            for payslip in run.slip_ids:
+                if payslip.employee_id.department_id.name == dep:
+                    dep_emp.append(payslip)
+                obj_by_dep.append(dep_emp)
+        i = 0
+        for dep in dep_list:
+            tup_temp = (dep, obj_by_dep[i])
+            emp_by_dep.append(tup_temp)
+            i += 1
 
         return emp_by_dep
     
         
 report_sxw.report_sxw(
-    'report.hr.payslip.run.layout_ccorp',
+    'report.hr_payroll_payslip_run_report',
     'hr.payslip.run',
-    'addons/cr_hr_report/report/payroll_report.mako',
-    parser=hr_payslip_run_report)
+    'addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako',
+    parser=hrPaysliprunReport)

@@ -252,9 +252,9 @@ class PayrollReportForMonth(report_sxw.rml_parse):
         return res
 
 report_sxw.report_sxw(
-    'report.l10n_cr_hr_payroll.account.payroll_report_for_month',
-    'account.account',
-    'addons/l10n_cr_hr_payroll/report/payroll_report_for_month.mako',
+    'report.hr_payroll_report_for_month',
+    'hr.payslip',
+    'addons/l10n_cr_hr_payroll/report/hr_payroll_report_for_month.mako',
     parser=PayrollReportForMonth)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

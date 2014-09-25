@@ -20,34 +20,39 @@
 #
 ##############################################################################
 {
-    'name': 'l10n_cr_hr_payroll',
+    'name': 'Hr Payroll Localization - Costa Rica',
     'version': '1.0',
-    'category': 'Human Resources',
+    'category': 'Localization',
     "sequence": 38,
     'complexity': "normal",
     'description': """
-l10n_cr_hr_payroll.
-=======================
-    * Employee Contracts
-    * Fortnightly Payroll Register
-    * Payroll Report
-    * Report Employee by Periods
+Hr Payroll Localization - Costa Rica.
+======================================
+Description
+------------
+This is the Costa Rica OpenERP localization and consists of:
+    - Salary Rule Structure
+    - Salary Rule Category
+    - Withholding tax structure
+    - Rent (Applied to Costa Rican's Law)
     """,
     'author': 'CLEARCORP S.A.',
     'website': 'http://www.clearcorp.co.cr',
     'depends': [
-        'account',
-        'report_webkit_lib',
-        'hr_payroll_account',
+        'hr_payroll_extended',
     ],
     'data': [
-                    'security/ir.model.access.csv',
-                    'l10n_cr_hr_payroll_view.xml',
-                    'report/report.xml',
-                    'wizard/payroll_report_for_month_wizard_view.xml',
-                    'wizard/report_employee_by_periods_wizard_view.xml',
-                    'report_menus.xml',
-                    ],
+             ''
+             'data/l10n_cr_hr_payroll_salary_rule_category.xml',
+             'data/l10n_cr_hr_payroll_salary_rule.xml',
+             'wizard/hr_payroll_report_for_month_wizard_view.xml',
+             'wizard/hr_payroll_report_employee_by_periods_wizard_view.xml',
+             'hr_config_settings.xml',
+             'l10n_cr_hr_payroll_view.xml',
+             'report/report.xml',
+             'report/report_menus.xml',
+             'security/ir.model.access.csv',
+            ],
     'installable': True,
     'auto_install': False,
     'application': True,

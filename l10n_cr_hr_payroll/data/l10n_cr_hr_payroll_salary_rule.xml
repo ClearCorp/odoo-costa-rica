@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+    <data noupdate="1">
+        <!-- HR SALARY RULES-->
+
+        <record id="hr_payroll_rules_base" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_base_salary"/> 
+            <field name="name">Salario Base</field>
+            <field name="code">BASE</field>
+            <field name="sequence">100</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.CONTRATO + categories.SOP - categories.DPA</field>
+        </record>
+        
+        <record id="hr_payroll_rules_gross" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_gross_salary"/> 
+            <field name="name">Salario Bruto</field>
+            <field name="code">BRUTO</field>
+            <field name="sequence">200</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.BASE + categories.SOP - categories.DPA</field>
+        </record>
+        
+        <record id="hr_payroll_rules_net" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_net_salary"/> 
+            <field name="name">Salario Neto</field>
+            <field name="code">NETO</field>
+            <field name="sequence">300</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.BRUTO - categories.DED + categories.BON</field>
+        </record>
+        
+        <record id="hr_payroll_rules_illness_and_maternity" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_deduction_salary"/> 
+            <field name="name">Enfermedad y Maternidad</field>
+            <field name="code">CCSS-SEM</field>
+            <field name="sequence">201</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">5.5000</field>
+        </record>
+        
+        <record id="hr_payroll_rules_IVM" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_deduction_salary"/> 
+            <field name="name">Invalidez, vejez y muerte</field>
+            <field name="code">CCSS-IVM</field>
+            <field name="sequence">202</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">2.6700</field>
+        </record>
+        
+        <record id="hr_payroll_rules_EMP" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_head_salary"/> 
+            <field name="name">Fondo obligatorio de pensiones</field>
+            <field name="code">Fondo Pensiones-EMP</field>
+            <field name="sequence">203</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">1.0000</field>
+        </record>
+        
+        <record id="hr_payroll_rules_IVM_head" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_head_salary"/> 
+            <field name="name">Invalidez, vejez y muerte Patronal</field>
+            <field name="code">IVM Patronal</field>
+            <field name="sequence">205</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">1.0000</field>
+        </record>
+        
+        <record id="hr_payroll_rules_SEM_head" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_head_salary"/> 
+            <field name="name">Enfermedad y maternidad Patronal</field>
+            <field name="code">SEM Patronal</field>
+            <field name="sequence">204</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">9.2500</field>
+        </record>
+        
+        <record id="hr_payroll_rules_AF_familiar_admin" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_head_salary"/> 
+            <field name="name">Asignaciones Familiares</field>
+            <field name="code">AF</field>
+            <field name="sequence">206</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">5.0000</field>
+        </record>
+        
+        <record id="hr_payroll_rules_BP_LPT" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_head_salary"/> 
+            <field name="name">Cuota Patronal Banco Popular</field>
+            <field name="code">BP-LPT</field>
+            <field name="sequence">207</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">0.2500</field>
+        </record>
+        
+        <record id="hr_payroll_rules_IMAS_admin" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_head_salary"/> 
+            <field name="name">IMAS</field>
+            <field name="code">IMAS</field>
+            <field name="sequence">208</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">0.5000</field>
+        </record>
+        
+        <record id="hr_payroll_rules_INA_agrobusiness" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_head_salary"/> 
+            <field name="name">INA Act Agricola</field>
+            <field name="code">INA</field>
+            <field name="sequence">209</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">0.5000</field>
+        </record>
+        
+        <record id="hr_payroll_rules_BP" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_head_salary"/> 
+            <field name="name">Aporte Patrono Banco Popular</field>
+            <field name="code">BP</field>
+            <field name="sequence">210</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">0.2500</field>
+        </record>
+        
+        <record id="hr_payroll_rules_FCP_LPT" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_head_salary"/> 
+            <field name="name">Fondo de Capitalización Laboral</field>
+            <field name="code">FCL-LPT</field>
+            <field name="sequence">211</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">3.0000</field>
+        </record>
+        
+        <record id="hr_payroll_rules_FPC_LPT" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_head_salary"/> 
+            <field name="name">Fondo de Pensiones Complementarias</field>
+            <field name="code">FPC-LPT</field>
+            <field name="sequence">212</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">0.5000</field>
+        </record>
+        
+        <record id="hr_payroll_rules_BP_EMP" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_deduction_salary"/> 
+            <field name="name">Aporte Trabajador Banco Popular</field>
+            <field name="code">Banco Popular-EMP</field>
+            <field name="sequence">213</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">1.0000</field>
+        </record>
+        
+        <record id="hr_payroll_rules_INA_LPT" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_head_salary"/> 
+            <field name="name">INA</field>
+            <field name="code">INA-LPT</field>
+            <field name="sequence">214</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">1.0000</field>
+        </record>
+        
+        <record id="hr_payroll_rules_provisions_thirteenth_monthly_payment" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_provisions_salary"/> 
+            <field name="name">Provisión para Aguinaldo</field>
+            <field name="code">Aguinaldo</field>
+            <field name="sequence">215</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">8.3300</field>
+        </record>
+        
+        <record id="hr_payroll_rules_provisions_layoff" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_provisions_salary"/> 
+            <field name="name">Provisión para Cesantía</field>
+            <field name="code">Cesantia</field>
+            <field name="sequence">216</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">5.3300</field>
+        </record>
+        
+        <record id="hr_payroll_rules_provisions_vacations" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_provisions_salary"/> 
+            <field name="name">Provisión para Vacaciones</field>
+            <field name="code">Vacaciones</field>
+            <field name="sequence">217</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">BRUTO</field>
+            <field name="quantity">1</field>            
+            <field name="amount_percentage">4.1600</field>
+        </record> 
+          
+        <record id="hr_payroll_rules_rent" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_deduction_salary"/>
+            <field name="name">Renta</field>
+            <field name="code">RENTA</field>
+            <field name="sequence">216</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = hr_salary_rule.python_expresion_rent(cr, uid, hr_conf, inputs, employee, categories, payslip)
+            </field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result= hr_salary_rule.compute_total_rent(cr, uid, hr_conf, inputs, employee, categories, payslip)
+            </field>
+        </record>
+                
+        <record id="hr_payroll_rules_extra_hour_1_5" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Hora Extra-1.5 - Bisemanal</field>
+            <field name="code">EXT</field>
+            <field name="sequence">50</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.HE
+            </field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_hour = ((contract.wage * 2 / 30) / 8) * 1.5
+result = worked_days.HE.number_of_hours * wage_hour
+           </field>
+        </record>
+        
+        <record id="hr_payroll_rules_holiday" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Pago por Feriado-1.0 - Bisemanal</field>
+            <field name="code">FE</field>
+            <field name="sequence">51</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.FE
+            </field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_day = contract.wage / 13.846153846
+wage_hour = contract.wage / 110.769230769
+result = worked_days.FE.number_of_hours * wage_hour + worked_days.FE.number_of_days * wage_day
+           </field>
+        </record>
+        
+        <record id="hr_payroll_rules_extra_hour_holiday" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Extras en Feriado-2.0 - Bisemanal</field>
+            <field name="code">EXT-FE</field>
+            <field name="sequence">52</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.HEF</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_hour = ((contract.wage * 2 / 30) / 8) * 2
+result = worked_days.HEF.number_of_hours * wage_hour
+           </field>
+        </record>
+        
+        <record id="hr_payroll_rules_absence_deduction" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_absence_salary"/>
+            <field name="name">Rebajo por Ausencias-1.0 - Bisemanal</field>
+            <field name="code">Ausencias</field>
+            <field name="sequence">53</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.AUS
+            </field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_day = contract.wage / 13.846153846
+wage_hour = contract.wage / 110.769230769
+result = worked_days.AUS.number_of_hours * wage_hour + worked_days.AUS.number_of_days * wage_day
+           </field>
+        </record>
+        
+        <record id="hr_payroll_rules_extra_hour_1_5_weekly" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Hora Extra-1.5 - Semanal</field>
+            <field name="code">EXT</field>
+            <field name="sequence">50</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.HE</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_hour = ((contract.wage * 4 / 30) / 8) * 1.5
+result = worked_days.HE.number_of_hours * wage_hour
+           </field>
+        </record>
+        
+        <record id="hr_payroll_rules_holiday_weekly" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Pago por Feriado-1.0 - Semanal</field>
+            <field name="code">FE</field>
+            <field name="sequence">51</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.FE</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_day = contract.wage / 6.923076923
+wage_hour = contract.wage / 55.384615385
+result = worked_days.FE.number_of_hours * wage_hour + worked_days.FE.number_of_days * wage_day
+           </field>
+        </record>
+        
+        <record id="hr_payroll_rules_extra_hour_holiday_weekly" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Extras en Feriado-2.0 - Semanal</field>
+            <field name="code">EXT-FE</field>
+            <field name="sequence">52</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.HEF</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_hour = ((contract.wage * 4 / 30) / 8) * 2
+result = worked_days.HEF.number_of_hours * wage_hour
+           </field>
+        </record>
+        
+        <record id="hr_payroll_rules_absence_deduction_weekly" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_absence_salary"/>
+            <field name="name">Rebajo por Ausencias-1.0 - Semanal</field>
+            <field name="code">Ausencias</field>
+            <field name="sequence">53</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.AUS</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_day = contract.wage / 6.923076923
+wage_hour = contract.wage / 55.384615385
+result = worked_days.AUS.number_of_hours * wage_hour + worked_days.AUS.number_of_days * wage_day
+           </field>
+        </record>
+        
+        <record id="hr_payroll_rules_bonification" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_bon_salary"/>
+            <field name="name">Bonificación</field>
+            <field name="code">BON</field>
+            <field name="sequence">219</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.BON</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.BON.amount</field>
+        </record>
+        
+        <record id="hr_payroll_rules_aditional_pay" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Pagos Adicionales</field>
+            <field name="code">SOP</field>
+            <field name="sequence">54</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.SOP</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.SOP.amount</field>
+        </record>
+        
+        <record id="hr_payroll_rules_contractual_pay" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_contract_salary"/>
+            <field name="name">Salario Contractual</field>
+            <field name="code">CONTRATO</field>
+            <field name="sequence">1</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.wage</field>
+        </record>
+        
+        <record id="hr_payroll_rules_accrued_pay" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_accrued_salary"/>
+            <field name="name">Salario Devengado</field>
+            <field name="code">DEVENGADO</field>
+            <field name="sequence">400</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.NETO + categories.OPAG - categories.AYP - categories.ORET</field>
+        </record>
+
+        <record id="hr_payroll_rules_retroactive_pay_weekly" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Pago Retoractivo - Semanal</field>
+            <field name="code">RET</field>
+            <field name="sequence">55</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.RETB</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_day = contract.wage / 6.923076923
+wage_hour = contract.wage / 55.384615385
+result = worked_days.RETS.number_of_hours * wage_hour + worked_days.RETS.number_of_days * wage_day
+            </field>
+        </record>
+        
+        <!-- JORNALES -->
+         <record id="hr_payroll_rules_base_per_hour" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_base_salary"/> 
+            <field name="name">Salario Base - Jornales</field>
+            <field name="code">BASE</field>
+            <field name="sequence">1</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+                wage_hour = contract.wage 
+                if worked_days.HN:
+                    result = worked_days.HN.number_of_hours * wage_hour
+                else:
+                    result = 0
+           </field>
+        </record>
+        
+        <record id="hr_payroll_rules_extra_hour_per_hour" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Hora Extra - Jornal</field>
+            <field name="code">EXT</field>
+            <field name="sequence">60</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.HE</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_hour = contract.wage * 1.5 
+result = worked_days.HE.number_of_hours * wage_hour
+           </field>
+        </record>
+        
+        <record id="hr_payroll_rules_holiday_per_hour" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Pago por Feriado - Jornal</field>
+            <field name="code">FE</field>
+            <field name="sequence">61</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.FE</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_hour = contract.wage 
+result = worked_days.FE.number_of_hours * wage_hour
+           </field>
+        </record>
+        
+        <record id="hr_payroll_rules_extra_hour_holiday_per_hour" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Extras en Feriado - Jornal</field>
+            <field name="code">EXT-FE</field>
+            <field name="sequence">62</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.HEF</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_hour = contract.wage * 2 
+result = worked_days.HE.number_of_hours * wage_hour
+           </field>
+        </record>
+        
+        <record id="hr_payroll_rules_absence_deduction_per_hour" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_absence_salary"/>
+            <field name="name">Rebajo por Ausencias - Jornal</field>
+            <field name="code">Ausencias</field>
+            <field name="sequence">63</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = worked_days.AUS</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# hr_conf: object of hr.config.settings. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = 0.00</field>
+        </record>        
+    </data>   
+</openerp>        
+      

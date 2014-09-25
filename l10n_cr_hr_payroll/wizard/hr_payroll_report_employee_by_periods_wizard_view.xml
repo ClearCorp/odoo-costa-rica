@@ -6,19 +6,18 @@
             <field name="name">Report Employee by Periods</field>
             <field name="model">report.employee.by.periods</field>
             <field name="arch" type="xml">
-                <form string="Report Options" version="7.0">
-                    <label string="This wizard allows to print, in a pdf, your Payroll Report by periods"/>
-                    <group col="4" string="General Options">
-                        <field name="company_id" attrs="{'required': True}"/>
+                <form string="Report employee by periods" version="7.0">
+                    <group string="General Options">
+                        <field name="company_id" attrs="{'required':True}" />
                     </group>
-                     <group string="Filters">
-                        <group colspan="4" name="Periods">
-                            <field name="period_from" domain="[('company_id', '=', company_id)]" attrs="{'required': True}"/>
-                            <field name="period_to" domain="[('company_id', '=', company_id)]" attrs="{'required': True}"/>
+                    <group string="Filters">                       
+                       <group colspan="4" name="Periods">
+                            <field name="period_from" attrs="{'required':True}" domain="[('company_id', '=', company_id)]" />
+                            <field name="period_to" attrs="{'required':True}" domain="[('company_id', '=', company_id)]"/>
                         </group>
                     </group>
                     <footer>
-                        <button name="action_validate" string="Validate" type="object" class="oe_highlight"/>
+                        <button name="action_validate" string="Print" type="object"/>
                         or 
                         <button string="Cancel" class="oe_link" special="cancel" />
                     </footer>

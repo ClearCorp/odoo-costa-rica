@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-05 16:02+0000\n"
-"PO-Revision-Date: 2014-08-05 16:02+0000\n"
+"POT-Creation-Date: 2014-09-19 17:35+0000\n"
+"PO-Revision-Date: 2014-09-19 17:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,9 +21,10 @@ msgid "Bi-monthly"
 msgstr "Bimensual"
 
 #. module: l10n_cr_hr_payroll
-#: selection:hr.payslip.run,schedule_pay:0
-msgid "Monthly"
-msgstr "Mensual"
+#: field:hr.config.settings,first_limit:0
+#: field:res.company,first_limit:0
+msgid "First Limit"
+msgstr "Primer Límite"
 
 #. module: l10n_cr_hr_payroll
 #: field:hr.payslip,forced_period_id:0
@@ -31,14 +32,35 @@ msgid "Force period"
 msgstr "Forzar periodo"
 
 #. module: l10n_cr_hr_payroll
+#: view:report.employee.by.periods:0
+msgid "Report employee by periods"
+msgstr "Informe de empleado por períodos"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_config_settings
+msgid "hr.config.settings"
+msgstr "Parámetros de configuración de RRHH"
+
+#. module: l10n_cr_hr_payroll
 #: model:ir.model,name:l10n_cr_hr_payroll.model_hr_job
 msgid "Job Description"
 msgstr "Descripción del trabajo"
 
 #. module: l10n_cr_hr_payroll
-#: selection:hr.payslip.run,schedule_pay:0
-msgid "Quarterly"
-msgstr "Trimestral"
+#: view:payroll.report.for.month:0
+#: view:report.employee.by.periods:0
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: l10n_cr_hr_payroll
+#: help:hr.employee,report_number_child:0
+msgid "Number of children to report for rent payment"
+msgstr "Número de hijos a reportar por el pago de la renta"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_employee
+msgid "Employee"
+msgstr "Empleado"
 
 #. module: l10n_cr_hr_payroll
 #: selection:hr.payslip.run,schedule_pay:0
@@ -46,22 +68,28 @@ msgid "Semi-annually"
 msgstr "Semestral"
 
 #. module: l10n_cr_hr_payroll
-#: view:hr.payslip.run:0
-msgid "Confirm Payslips"
-msgstr "Confirmar Nóminas"
+#: field:hr.config.settings,amount_per_spouse:0
+#: field:res.company,amount_per_spouse:0
+msgid "Amount per spouse"
+msgstr "Monto por cónyugue"
 
 #. module: l10n_cr_hr_payroll
+#: view:hr.config.settings:0
+msgid "Rent Configuration"
+msgstr "Configuración de Renta"
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,rent_company_id:0
 #: field:payroll.report.for.month,company_id:0
 #: field:report.employee.by.periods,company_id:0
 msgid "Company"
 msgstr "Compañía"
 
+
 #. module: l10n_cr_hr_payroll
-#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.payroll_report_for_month
-#: model:ir.model,name:l10n_cr_hr_payroll.model_payroll_report_for_month
-#: model:ir.ui.menu,name:l10n_cr_hr_payroll.menu_payroll_report_for_month
-msgid "Payroll Report for Month"
-msgstr "Informe de Nómina para el mes"
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Monthly"
+msgstr "Mensual"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model,name:l10n_cr_hr_payroll.model_hr_payslip_run
@@ -74,26 +102,14 @@ msgid "Schedule pay"
 msgstr "Plan de pago"
 
 #. module: l10n_cr_hr_payroll
-#: view:payroll.report.for.month:0
-#: view:report.employee.by.periods:0
-msgid "Validate"
-msgstr "Validar"
-
-#. module: l10n_cr_hr_payroll
 #: model:ir.model,name:l10n_cr_hr_payroll.model_hr_payslip
 msgid "Pay Slip"
 msgstr "Nómina"
 
 #. module: l10n_cr_hr_payroll
-#: view:payroll.report.for.month:0
-#: view:report.employee.by.periods:0
-msgid "Report Options"
-msgstr "Opciones de reporte"
-
-#. module: l10n_cr_hr_payroll
 #: model:ir.actions.act_window,name:l10n_cr_hr_payroll.action_report_employee_by_periods_menu
 msgid "Action Report Employee by Periods"
-msgstr "Informe de Empleado por períodos"
+msgstr "Acción Informe de Empleado por períodos"
 
 #. module: l10n_cr_hr_payroll
 #: selection:hr.payslip.run,schedule_pay:0
@@ -108,6 +124,23 @@ msgstr "Periodo de inicio"
 
 #. module: l10n_cr_hr_payroll
 #: view:payroll.report.for.month:0
+msgid "Payroll report for month"
+msgstr "Informe de nómina para el mes"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.l10n_cr_hr_payroll_for_month
+#: model:ir.model,name:l10n_cr_hr_payroll.model_payroll_report_for_month
+#: model:ir.ui.menu,name:l10n_cr_hr_payroll.menu_payroll_report_for_month
+msgid "Payroll Report for Month"
+msgstr "Informe de Nómina para el mes"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_cr_hr_payroll
+#: view:payroll.report.for.month:0
 #: view:report.employee.by.periods:0
 msgid "General Options"
 msgstr "Opciones Generales"
@@ -118,20 +151,19 @@ msgid "Contract"
 msgstr "Contrato"
 
 #. module: l10n_cr_hr_payroll
-#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.report_employee_by_periods
+#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.hr_payroll_employee_by_periods_report
 #: model:ir.model,name:l10n_cr_hr_payroll.model_report_employee_by_periods
 #: model:ir.ui.menu,name:l10n_cr_hr_payroll.menu_report_employee_by_periods
 msgid "Report Employee by Periods"
 msgstr "Informe de Empleado por períodos"
 
 #. module: l10n_cr_hr_payroll
-#: field:payroll.report.for.month,period_to:0
-#: field:report.employee.by.periods,period_to:0
-msgid "End Period"
-msgstr "Periodo de fin"
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Annually"
+msgstr "Anualmente"
 
 #. module: l10n_cr_hr_payroll
-#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.hr_payslip_run_ccorp
+#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.hr_payroll_payslip_run_report
 msgid "Payroll Report"
 msgstr "Reporte de planilla"
 
@@ -141,14 +173,20 @@ msgid "Scheduled Pay"
 msgstr "Frecuencia de pago"
 
 #. module: l10n_cr_hr_payroll
-#: view:report.employee.by.periods:0
-msgid "This wizard allows to print, in a pdf, your Payroll Report by periods"
-msgstr "Este asistente le permite imprimir, en formato pdf, su reporte de nómina por períodos"
+#: constraint:hr.employee:0
+msgid "Error! The number of child to report must be greater or equal to zero."
+msgstr "Error! El número de hijos a reportar debe ser mayor o igual a cero"
 
 #. module: l10n_cr_hr_payroll
-#: selection:hr.payslip.run,schedule_pay:0
-msgid "Annually"
-msgstr "Anualmente"
+#: field:hr.employee,report_number_child:0
+msgid "Number of children to report"
+msgstr "Número de hijos a reportar"
+
+#. module: l10n_cr_hr_payroll
+#: field:payroll.report.for.month,period_to:0
+#: field:report.employee.by.periods,period_to:0
+msgid "End Period"
+msgstr "Periodo de fin"
 
 #. module: l10n_cr_hr_payroll
 #: field:hr.job,code:0
@@ -156,14 +194,31 @@ msgid "Code"
 msgstr "Código"
 
 #. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,second_limit:0
+#: field:res.company,second_limit:0
+msgid "Second Limit"
+msgstr "Segundo Límite"
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,amount_per_child:0
+#: field:res.company,amount_per_child:0
+msgid "Amount per Child"
+msgstr "Monto por hijos"
+
+#. module: l10n_cr_hr_payroll
 #: field:hr.payslip.run,period_id:0
 msgid "Force Period"
 msgstr "Forzar período"
 
 #. module: l10n_cr_hr_payroll
-#: view:hr.payslip.run:0
-msgid "Generate Payslips"
-msgstr "Generar nómina"
+#: field:hr.employee,report_spouse:0
+msgid "Report Spouse"
+msgstr "Reportar cónyugue"
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Quarterly"
+msgstr "Trimestral"
 
 #. module: l10n_cr_hr_payroll
 #: selection:hr.payslip.run,schedule_pay:0
@@ -171,20 +226,20 @@ msgid "Bi-weekly"
 msgstr "Bisemanal"
 
 #. module: l10n_cr_hr_payroll
-#: view:payroll.report.for.month:0
-msgid "This wizard allows to print, in a pdf, your Payroll Report for month"
-msgstr "Este asistente le permite imprimir, en formato pdf, su reporte de nómina por meses"
-
-#. module: l10n_cr_hr_payroll
 #: model:ir.actions.act_window,name:l10n_cr_hr_payroll.action_payroll_report_for_month_menu_webkit
 msgid "Action Payroll Report for Month"
-msgstr "Informe de nómina para el mes"
+msgstr "Generar Informe de nómina para el mes"
 
 #. module: l10n_cr_hr_payroll
 #: view:payroll.report.for.month:0
 #: view:report.employee.by.periods:0
 msgid "Filters"
 msgstr "Filtros"
+
+#. module: l10n_cr_hr_payroll
+#: help:hr.employee,report_spouse:0
+msgid "If this employee reports his spouse for rent payment"
+msgstr "Si este empleado reporta su cónyuge para el pago de la renta"
 
 #. module: l10n_cr_hr_payroll
 #: view:payroll.report.for.month:0
@@ -203,3 +258,93 @@ msgstr "o"
 msgid "Weekly"
 msgstr "Semanal"
 
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:104
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:104
+msgid "Category"
+msgstr "Categoría"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:80
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:80
+msgid "DONT EXIST EXTRA HOURS REGISTRED"
+msgstr "NO EXISTEN HORAS EXTRA REGISTRADAS"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:56
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:56
+msgid "Quantity of hours"
+msgstr "Cantidad de horas"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:24
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:24
+msgid "ID card"
+msgstr "Cédula"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:62
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:62
+
+msgid "Number of days"
+msgstr "Número de días"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:88
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:88
+
+msgid "DONT EXIST NORMAL HOURS REGISTRED"
+msgstr "No existen horas normales registradas"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:48
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:48
+msgid "Salary structure"
+msgstr "Estructura de salario"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:28
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:28
+
+msgid "Bank account"
+msgstr "Cuenta en la que se deposita el salario"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:63
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:63
+msgid "Number of hours"
+msgstr "Número de horas"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:44
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:44
+msgid "Date to"
+msgstr "Desde"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:32
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:32
+msgid "Job"
+msgstr "Puesto"
+
+#. module: hr_payroll_report
+#: report:addons/hr_payroll_report/report/hr_payroll_details_report.mako:105
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:105
+msgid "Base"
+msgstr "Base"
+
+#. module: hr_payroll_report
+#: report:addons/hr_payroll_report/report/hr_payroll_details_report.mako:131
+#: report:addons/hr_payroll_report/report/hr_payroll_payslip_report.mako:131
+msgid "Received and accepted: "
+msgstr "Recibido y conforme: "
+
+#. module: hr_payroll_report
+#: model:ir.actions.report.xml,name:hr_payroll.payslip_report
+msgid "Employee PaySlip"
+msgstr "Nómina del empleado"
+
+#. module: hr_payroll
+#: model:ir.actions.report.xml,name:hr_payroll.payslip_details_report
+msgid "PaySlip Details"
+msgstr "Detalles de nómina"

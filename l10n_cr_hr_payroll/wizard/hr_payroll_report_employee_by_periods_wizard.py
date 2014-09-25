@@ -20,7 +20,8 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+import time
+from openerp.osv import fields,osv, orm
         
 class ReportEmployeeByPeriodsWizard(osv.osv):
 
@@ -28,9 +29,9 @@ class ReportEmployeeByPeriodsWizard(osv.osv):
     _description = "Report Employee by Periods"
     
     _columns = {
-        'company_id': fields.many2one('res.company', string="Company"),
-        'period_from': fields.many2one('account.period', string="Start Period"),
-        'period_to': fields.many2one('account.period', string="End Period"),
+        'company_id': fields.many2one('res.company', 'Company',),
+        'period_from': fields.many2one('account.period', 'Start Period',),
+        'period_to': fields.many2one('account.period', 'End Period',),
     }
     
     _defaults = {
@@ -42,7 +43,7 @@ class ReportEmployeeByPeriodsWizard(osv.osv):
     def _print_report(self, cursor, uid, ids, datas, context={}):
         return {
             'type': 'ir.actions.report.xml',
-            'report_name': 'l10n_cr_hr_payroll.account.report_employee_by_periods',
+            'report_name': 'hr_payroll_employee_by_periods_report',
             'datas': datas}
 
     def action_validate(self, cr, uid, ids, context={}):
