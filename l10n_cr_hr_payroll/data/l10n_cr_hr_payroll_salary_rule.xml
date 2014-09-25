@@ -261,13 +261,13 @@
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
 
 # Note: returned value have to be set in the variable 'result'
-result = hr_salary_rule.python_expresion_rent(cr, uid, hr_conf, inputs, employee, categories, payslip)
+result = hr_salary_rule.python_expresion_rent(cr, uid, company, inputs, employee, categories, payslip)
             </field>
             <field name="amount_select">code</field>
             <field name="amount_python_compute">
@@ -280,13 +280,13 @@ result = hr_salary_rule.python_expresion_rent(cr, uid, hr_conf, inputs, employee
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
 
 # Note: returned value have to be set in the variable 'result'
-result= hr_salary_rule.compute_total_rent(cr, uid, hr_conf, inputs, employee, categories, payslip)
+result= hr_salary_rule.compute_total_rent(cr, uid, company, inputs, employee, categories, payslip)
             </field>
         </record>
                 
@@ -307,7 +307,7 @@ result= hr_salary_rule.compute_total_rent(cr, uid, hr_conf, inputs, employee, ca
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -326,7 +326,7 @@ result = worked_days.HE
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -354,7 +354,7 @@ result = worked_days.HE.number_of_hours * wage_hour
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -373,7 +373,7 @@ result = worked_days.FE
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -402,7 +402,7 @@ result = worked_days.FE.number_of_hours * wage_hour + worked_days.FE.number_of_d
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -420,7 +420,7 @@ result = worked_days.HEF</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -448,7 +448,7 @@ result = worked_days.HEF.number_of_hours * wage_hour
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -467,7 +467,7 @@ result = worked_days.AUS
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -496,7 +496,7 @@ result = worked_days.AUS.number_of_hours * wage_hour + worked_days.AUS.number_of
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -514,7 +514,7 @@ result = worked_days.HE</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -542,7 +542,7 @@ result = worked_days.HE.number_of_hours * wage_hour
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -560,7 +560,7 @@ result = worked_days.FE</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -589,7 +589,7 @@ result = worked_days.FE.number_of_hours * wage_hour + worked_days.FE.number_of_d
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -607,7 +607,7 @@ result = worked_days.HEF</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -635,7 +635,7 @@ result = worked_days.HEF.number_of_hours * wage_hour
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -653,7 +653,7 @@ result = worked_days.AUS</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -682,7 +682,7 @@ result = worked_days.AUS.number_of_hours * wage_hour + worked_days.AUS.number_of
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -700,7 +700,7 @@ result = inputs.BON</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -726,7 +726,7 @@ result = inputs.BON.amount</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -744,7 +744,7 @@ result = inputs.SOP</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -792,7 +792,7 @@ result = inputs.SOP.amount</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -810,7 +810,7 @@ result = worked_days.RETB</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -857,7 +857,7 @@ result = worked_days.RETS.number_of_hours * wage_hour + worked_days.RETS.number_
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -875,7 +875,7 @@ result = worked_days.HE</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -903,7 +903,7 @@ result = worked_days.HE.number_of_hours * wage_hour
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -921,7 +921,7 @@ result = worked_days.FE</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -949,7 +949,7 @@ result = worked_days.FE.number_of_hours * wage_hour
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -967,7 +967,7 @@ result = worked_days.HEF</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -995,7 +995,7 @@ result = worked_days.HE.number_of_hours * wage_hour
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -1013,7 +1013,7 @@ result = worked_days.AUS</field>
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res.company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid

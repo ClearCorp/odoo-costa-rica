@@ -141,9 +141,9 @@ class parser_promerica(models.parser):
         worksheet = workbook.get_active_sheet() # Get the first sheet
         
         # General Information
-        account_number = worksheet.cell('B7').value # TODO: setup configuration for account number cell
-        starting_balance = worksheet.cell('G13').value
-        date_fields = worksheet.cell('A5').value
+        account_number = worksheet.cell('B5').value # TODO: setup configuration for account number cell
+        starting_balance = worksheet.cell('G11').value
+        date_fields = worksheet.cell('A3').value
         
         try:
             # TODO: gather format from configuration
@@ -159,7 +159,7 @@ class parser_promerica(models.parser):
             date_from_str = False
             date_to_str = False
         
-        data_rows = worksheet.rows[13:]
+        data_rows = worksheet.rows[11:]
         data = []
         for row in data_rows:
             if reduce(lambda result, value: result and (value is None or value == ''),

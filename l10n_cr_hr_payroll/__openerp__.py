@@ -39,6 +39,7 @@ This is the Costa Rica OpenERP localization and consists of:
     'author': 'CLEARCORP S.A.',
     'website': 'http://www.clearcorp.co.cr',
     'depends': [
+        'report_webkit_lib',
         'hr_payroll_extended',
     ],
     'data': [
