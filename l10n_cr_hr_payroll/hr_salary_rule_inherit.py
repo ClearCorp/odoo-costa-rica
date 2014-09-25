@@ -39,7 +39,7 @@ class hrRulesalary(osv.osv):
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days.
 # inputs: object containing the computed inputs.
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res_company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -58,7 +58,7 @@ result = contract.wage * 0.10''',
 # categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
 # worked_days: object containing the computed worked days
 # inputs: object containing the computed inputs
-# hr_conf: object of hr.config.settings. It is a browse record
+# company: object of res_company. It is a browse record
 # hr_salary_rule: object for call hr_salary_rule functions
 # cr: cursor 
 # uid: uid
@@ -76,16 +76,10 @@ result = rules.NET > categories.NET * 0.10''',
     def satisfy_condition(self, cr, uid, rule_id, localdict, context=None):
        
         #Get user's company and hr.config.settings associated to the company
-        user_company = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id
-        hr_conf_id = self.pool.get('hr.config.settings').search(cr, uid, [('rent_company_id', '=', user_company.id)], context=context)
+        company_obj = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id
         
-        if not hr_conf_id:
-            raise osv.except_osv(_('Error!'), _('There not exist a configuration for rent. Check company configuration in human resources section'))
-        
-        hr_conf_obj = self.pool.get('hr.config.settings').browse(cr, uid, hr_conf_id, context=context)[0]
-
         #Update localdict with new variable
-        localdict.update({'hr_conf':hr_conf_obj})
+        localdict.update({'company':company_obj})
         
         hr_salary_rule_obj = self.pool.get('hr.salary.rule') #object from hr salary rule to use in python code
         localdict.update({'hr_salary_rule':hr_salary_rule_obj})
@@ -104,31 +98,31 @@ result = rules.NET > categories.NET * 0.10''',
        
        This function compute rent for a employee
     """
-    def compute_rent_employee(self, hr_conf, employee, SBT):
+    def compute_rent_employee(self, company, employee, SBT):
         subtotal = 0.0
         exceed_2 = 0.0
         exceed_1 = 0.0
         total = 0.0
         
-        limit1 = hr_conf.first_limit #From hr.conf.settings, it's in company
-        limit2 = hr_conf.second_limit
+        limit1 = company.first_limit #From hr.conf.settings, it's in company
+        limit2 = company.second_limit
 
-        spouse_amount = hr_conf.amount_per_spouse
-        child_amount = hr_conf.amount_per_child
+        spouse_amount = company.amount_per_spouse
+        child_amount = company.amount_per_child
 
         children_numbers = employee.report_number_child
                 
         #exceed second limit
-        if SBT >= limit2: #(1.128.000)
+        if SBT >= limit2:
             exceed_2 = SBT - limit2
             subtotal += exceed_2 * 0.15 #15% of limit2
             limit_temp = (limit2 - limit1) * 0.10 #10% of difference between limits
             subtotal += limit_temp
    
         #exceed first limit
-        elif SBT >= limit1: #(752.000)
+        elif SBT >= limit1:
             exceed_1 = SBT - limit1
-            subtotal += exceed_1 * 0.10 
+            subtotal += exceed_1 * 0.10 #10% of limit1
         
         if employee.report_spouse:
             total = subtotal - spouse_amount - (child_amount * num_hijos)
@@ -142,10 +136,10 @@ result = rules.NET > categories.NET * 0.10''',
         It receive as parameters the variables that can be used by default in 
         python code on salary rule.
         
-        It receive hr_conf, a parameter and it is a hr.conf.settings object, but also,
+        It receive company, a parameter and it is a res.company object, but also,
         it can be declare inside in function
     """
-    def compute_total_rent(self, cr, uid, hr_conf, inputs, employee, categories, payslip):
+    def compute_total_rent(self, cr, uid, company, inputs, employee, categories, payslip):
         """
             This function computes, based on previous gross salary and future 
             base salary, the rent amount for current payslip. This is a "dynamic"
@@ -180,7 +174,7 @@ result = rules.NET > categories.NET * 0.10''',
         SBT = SBA + SBP + SBF
             
         """Compute rent"""
-        rent_empl_total = self.compute_rent_employee(hr_conf, employee, SBT) #Rent for a complete month
+        rent_empl_total = self.compute_rent_employee(company, employee, SBT) #Rent for a complete month
         total_paid_rent = payslip_obj.get_previous_rent(cr,uid,employee,payslip) #Rent already paid
         total_curr_rent = (rent_empl_total - total_paid_rent) / (future_payments + actual_payment) 
             
@@ -189,8 +183,8 @@ result = rules.NET > categories.NET * 0.10''',
     """
         Function that evaluated if compute rent applies to salary rule 
     """
-    def python_expresion_rent(self, cr, uid, hr_conf, inputs, employee, categories, payslip):        
-        total = self.compute_total_rent(cr, uid, hr_conf, inputs, employee, categories, payslip)
+    def python_expresion_rent(self, cr, uid, company, inputs, employee, categories, payslip):        
+        total = self.compute_total_rent(cr, uid, company, inputs, employee, categories, payslip)
         if total != 0.0:
             return True
         else:
