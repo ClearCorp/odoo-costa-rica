@@ -24,11 +24,11 @@
     'name': 'BCR Account Banking',
     'version': '0.1',
     'license': 'AGPL-3',
-    'author': 'CLEARCORP S.A.',
+    'author': 'ClearCorp',
     'website': 'http://www.clearcorp.co.cr',
     'category': 'Accounting & Finance',
     'depends': [
-                'account_banking_ccorp',
+                'account_banking_ccorp_dg',
                 ],
     'init_xml': [],
     'update_xml': [],

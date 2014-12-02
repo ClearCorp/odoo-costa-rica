@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from account_banking_ccorp.parsers import models
+from openerp.addons.account_banking_ccorp_dg.parsers import models
 from openerp.tools.translate import _
 from bcr_parser import BCRParser
 import re
