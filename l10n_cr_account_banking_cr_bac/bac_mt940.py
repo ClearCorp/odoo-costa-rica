@@ -21,7 +21,7 @@
 # Import of BAC data in Swift MT940 format
 #
 
-from account_banking_ccorp.parsers import models
+from openerp.addons.account_banking_ccorp.parsers import models
 from mt940_parser import BACParser
 import re
 from openerp.osv import osv, fields
