@@ -21,18 +21,19 @@
 ##############################################################################
 
 import time
-from openerp.osv import fields,osv, orm
+from openerp import models, fields, api, _
+
         
-class ReportEmployeeByPeriodsWizard(osv.osv):
+class ReportEmployeeByPeriodsWizard(models.TransientModel):
 
     _name = "report.employee.by.periods"
     _description = "Report Employee by Periods"
     
-    _columns = {
-        'company_id': fields.many2one('res.company', 'Company',),
-        'period_from': fields.many2one('account.period', 'Start Period',),
-        'period_to': fields.many2one('account.period', 'End Period',),
-    }
+    
+    company_id= fields.Many2one('res.company', 'Company',)
+    period_from= fields.Many2one('account.period', 'Start Period',)
+    period_to= fields.Many2one('account.period', 'End Period',)
+    
     
     _defaults = {
         'company_id': lambda self, cr, uid, context: \
@@ -40,17 +41,27 @@ class ReportEmployeeByPeriodsWizard(osv.osv):
                     context=context).company_id.id,
     }
             
-    def _print_report(self, cursor, uid, ids, datas, context={}):
-        return {
-            'type': 'ir.actions.report.xml',
-            'report_name': 'hr_payroll_employee_by_periods_report',
-            'datas': datas}
-
-    def action_validate(self, cr, uid, ids, context={}):
+    @api.multi
+    def _print_report(self):
+        #if not self.company_id:
+         #   self.company_id = self.env['res.partner'].search([('customer','=',True)])
+        data = {
+            'form': {
+                'period_from': self.period_from.id,
+                'period_to': self.period_to.id,
+            }
+        }
+        res = self.env['report'].get_action(self.company_id,
+            'l10n_cr_hr_payroll.report_employee_by_periods', data=data)
+        return res
+    
+    
+    
+"""    def action_validate(self, cr, uid, ids, context={}):
         datas = {}
         datas['ids'] = context.get('active_ids', [])
         datas['model'] = context.get('active_model', 'ir.ui.menu')
         datas['form'] = self.read(cr, uid, ids, ['company_id',  'period_from', 'period_to'], context=context)[0]
-        return self._print_report(cr, uid, ids, datas, context=context)
+        return self._print_report(cr, uid, ids, datas, context=context)"""
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
