@@ -12,8 +12,8 @@
                     </group>
                     <group string="Filters">                       
                        <group colspan="4" name="Periods">
-                            <field name="date_from" attrs="{'required':True}" domain="[('company_id', '=', company_id)]" />
-                            <field name="date_to" attrs="{'required':True}" domain="[('company_id', '=', company_id)]"/>
+                            <field name="period_from" attrs="{'required':True}" domain="[('company_id', '=', company_id)]" />
+                            <field name="period_to" attrs="{'required':True}" domain="[('company_id', '=', company_id)]"/>
                         </group>
                     </group>
                     <footer>

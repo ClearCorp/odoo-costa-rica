@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-import hr_payroll_details_report
+#import hr_payroll_details_report
 import hr_payroll_employee_by_periods_report
 import hr_payroll_for_month_report
-import hr_payroll_payslip_report
-import hr_payroll_payslip_run_report
+#import hr_payroll_payslip_report
+#import hr_payroll_payslip_run_report
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
