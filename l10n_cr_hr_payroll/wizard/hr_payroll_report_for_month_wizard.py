@@ -34,9 +34,10 @@ class PayrollReportForMonthWizard(models.TransientModel):
       
     _defaults = {
         'company_id': lambda self, cr, uid, context: \
-                self.env('res.users').browse(cr, uid, uid,
+                self.pool.get('res.users').browse(cr, uid, uid,
                     context=context).company_id.id,
     }
+    
     @api.multi
     def _print_report(self):
         #if not self.company_id:
@@ -48,7 +49,7 @@ class PayrollReportForMonthWizard(models.TransientModel):
             }
         }
         res = self.env['report'].get_action(self.company_id,
-            'l10n_cr_hr_payroll.report_employee_by_periods', data=data)
+            'l10n_cr_hr_payroll.resport_for_mounth', data=data)
         return res
     ##########################################################################
 """        return {

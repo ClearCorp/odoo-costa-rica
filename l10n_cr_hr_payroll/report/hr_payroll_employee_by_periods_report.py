@@ -20,19 +20,24 @@
 #
 ##############################################################################
 
-import pooler
+import time
 from openerp.report import report_sxw
+from openerp import models
 from openerp.tools.translate import _
 
 class ReportEmployeeByPeriods(report_sxw.rml_parse):
+    
+   # _rec_name = 'ReportEmployeeByPeriods'
+    
     def __init__(self, cr, uid, name, context):
         super(ReportEmployeeByPeriods, self).__init__(cr, uid, name, context=context)
-        self.pool = pooler.get_pool(self.cr.dbname)
-        self.cursor = self.cr
+        #self.pool = get_pool(self.cr.dbname)
+        #self.cursor = self.cr
         self.localcontext.update({
-            'cr' : cr,
-            'uid': uid,
-            'get_period_by_id': self.get_period_by_id,
+            'time': time,
+            #'cr' : cr,
+            #'uid': uid,
+            #'get_period_by_id': self.get_period_by_id,
             'get_payslips_by_employee': self.get_payslips_by_employee,
             'get_hn': self.get_hn,
             'get_he': self.get_he,
@@ -48,10 +53,10 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
             'get_retroactive':self.get_retroactive,
         })
     
-    def get_period_by_id(self, cr, uid, period_id):
-        account_period_obj = self.pool.get('account.period')
-        period = account_period_obj.browse(cr, uid, [period_id])[0]
-        return period
+#    def get_period_by_id(self, cr, uid, period_id):
+#        account_period_obj = self.pool.get('account.period')
+#        period = account_period_obj.browse(cr, uid, [period_id])[0]
+#        return period
         
     def get_payslips_by_employee(self, cr, uid, start_period, stop_period):
         hr_payslip_object = self.pool.get('hr.payslip')
@@ -174,11 +179,17 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
         res = 0
         res = self.get_RETS(payslip) + self.get_RETM(payslip)
         return res
+    
+class report_payroll_employee(models.AbstractModel):
+   _name = 'l10n_cr_hr_payroll.report_employee_by_periods'
+   _inherit = 'report.abstract_report'
+   _template = 'l10n_cr_hr_payroll.report_employee_by_periods'
+   _wrapped_report_class = ReportEmployeeByPeriods
 
-report_sxw.report_sxw(
-    'report.hr_payroll_employee_by_periods_report',
-    'hr.payslip',
-    'addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako',
-    parser=ReportEmployeeByPeriods)
+#report_sxw.report_sxw(
+ #   'report.hr_payroll_employee_by_periods_report',
+#    'hr.payslip',
+#    'addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako',
+#    parser=ReportEmployeeByPeriods)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-    <data>
-        <template id="report_employee_by_periods">
-            <t t-call="report.html_container">
-                <t t-call="report.internal_layout">
-                    <div class="page">
-                        <h1>Report employee by periods</h1>
-                        
-                        </div>
-                        </t>
-                        </t>
-                        
-        </template>
-    </data>
+	<data>
+		<template id="report_employee_by_periods">
+			<t t-call="report.html_container">
+				<t t-call="report.internal_layout">
+					<div class="page">
+					<div align="center">
+						<h3>REPORT EMPLOYEE BY PERIODS</h3>
+						<h3>In the next range of dates</h3>
+						<span t-esc="data['form']['period_from']"/> <th>-</th> <span t-esc="data['form']['period_to']"/>
+					</div>
+						
+					</div>
+				</t>
+			</t>
+			
+		</template>
+	</data>
 </openerp>

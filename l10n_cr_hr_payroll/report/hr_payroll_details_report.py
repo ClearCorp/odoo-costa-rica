@@ -21,7 +21,7 @@
 ##############################################################################
 
 import time
-import pooler
+from openerp import pooler
 from openerp.report import report_sxw
 import locale
 

@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-import pooler
+from openerp import pooler
 from openerp.report import report_sxw
 from openerp.tools.translate import _
 
