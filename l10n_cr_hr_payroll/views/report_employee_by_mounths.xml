@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="report_employee_by_mounths">
+            <t t-call="report.html_container">
+                <t t-call="report.internal_layout">
+                    <div class="page">
+                        <h1>Report for mounths</h1>
+                        
+                        </div>
+                        </t>
+                        </t>
+                        
+        </template>
+    </data>
+</openerp>

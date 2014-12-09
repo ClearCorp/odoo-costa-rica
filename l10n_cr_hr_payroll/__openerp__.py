@@ -54,7 +54,7 @@ TODO:
              'l10n_cr_hr_payroll_view.xml',
              'views/report_employee_by_periods.xml',
              'views/resport_for_mounth.xml',
-             'hr_payroll_employee_by_periods_report.xml',
+             'employee_by_periods_report.xml',
              #'report/report.xml',
              'report/report_menus.xml',
              #'security/ir.model.access.csv',

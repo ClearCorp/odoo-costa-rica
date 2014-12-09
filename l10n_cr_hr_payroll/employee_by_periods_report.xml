@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <report 
+            id="action_report_hr_payroll_employee_by_periods"
+            model="hr.payslip"
+            string="report employee by periods"
+            report_type="qweb-pdf"
+            name="l10n_cr_hr_payroll.report_employee_by_periods"
+            file="l10n_cr_hr_payroll.report_employee_by_periods"
+            menu="False"/>
+    </data>
+</openerp>

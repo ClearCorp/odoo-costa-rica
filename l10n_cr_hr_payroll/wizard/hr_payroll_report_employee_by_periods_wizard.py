@@ -35,11 +35,11 @@ class ReportEmployeeByPeriodsWizard(models.TransientModel):
     period_to= fields.Many2one('account.period', 'End Period',)
     
     
-#    _defaults = {
- #       'company_id': lambda self, cr, uid, context: \
-#                self.pool.get('res.users').browse(cr, uid, uid,
-#                    context=context).company_id.id,
-#    }
+    _defaults = {
+        'company_id': lambda self, cr, uid, context: \
+                self.pool.get('res.users').browse(cr, uid, uid,
+                     context=context).company_id.id,
+    }
 
     @api.multi
     def print_report(self):
