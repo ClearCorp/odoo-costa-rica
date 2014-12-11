@@ -9,5 +9,9 @@
             name="l10n_cr_hr_payroll.report_employee_by_periods"
             file="l10n_cr_hr_payroll.report_employee_by_periods"
             menu="False"/>
+            
+            <record id="action_report_hr_payroll_employee_by_periods" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_us_landscape"/>
+        </record>
     </data>
 </openerp>

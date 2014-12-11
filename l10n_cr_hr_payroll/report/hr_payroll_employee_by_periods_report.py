@@ -47,16 +47,16 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
             'get_retroactive':self.get_retroactive,
         })
     
-    def get_period_by_id(self, cr, uid, period_id):
+    def get_period_by_id(self, period_id):
         account_period_obj = self.pool.get('account.period')
-        period = account_period_obj.browse(cr, uid, [period_id])[0]
+        period = account_period_obj.browse(self.cr, self.uid, [period_id])[0]
         return period
 
     def get_payslips_by_employee(self,start_period, stop_period):
         hr_payslip_object = self.pool.get('hr.payslip')
         payslips_ids = []
         payslips = []
-        payslips_ids=hr_payslip_object.search(self.cr,self.uid,[('date_from', '>=' ,start_period),('date_to', '<=' , stop_period)])
+        payslips_ids=hr_payslip_object.search(self.cr,self.uid,[('date_from', '>=' ,start_period),('date_to', '<=' , stop_period),('employee_id.user_id', '<=' , self.uid)])
         payslips = hr_payslip_object.browse(self.cr,self.uid,payslips_ids)
         return payslips
         

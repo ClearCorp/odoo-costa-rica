@@ -27,3 +27,4 @@ import hr_salary_rule_inherit
 import hr_employee
 import wizard
 import report
+

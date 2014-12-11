@@ -17,7 +17,7 @@
                         </group>
                     </group>
                     <footer>
-                        <button name="action_validate" string="Print" type="object"/>
+                        <button name="print_report" string="Print" type="object"/>
                         or 
                         <button string="Cancel" class="oe_link" special="cancel" />
                     </footer>

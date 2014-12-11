@@ -2,12 +2,16 @@
 <openerp>
     <data>
         <report 
-            id="action_report_hr_payroll_employee_by_periods"
+            id="action_report_hr_payroll_employee_by_mounths"
             model="hr.payslip"
-            string="report employee by periods"
+            string="report employee by mounths"
             report_type="qweb-pdf"
             name="l10n_cr_hr_payroll.report_employee_by_mounths"
             file="l10n_cr_hr_payroll.report_employee_by_mounths"
             menu="False"/>
+            
+            <record id="action_report_hr_payroll_employee_by_mounths" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_us_landscape"/>
+        </record>
     </data>
 </openerp>

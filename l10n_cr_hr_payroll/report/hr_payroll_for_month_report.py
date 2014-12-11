@@ -52,25 +52,25 @@ class PayrollReportForMonth(report_sxw.rml_parse):
             'get_RETS':self.get_RETS,
             'get_retroactive':self.get_retroactive,
         })
-    def get_period_by_id(self, cr, uid, period_id):
+    def get_period_by_id(self, period_id):
         account_period_obj = self.pool.get('account.period')
-        period = account_period_obj.browse(cr, uid, [period_id])[0]
+        period = account_period_obj.browse(self.cr, self.uid, [period_id])[0]
         return period
 
-    def get_payslips_by_period(self, cr, uid, start_period, stop_period):
+    def get_payslips_by_period(self, start_period, stop_period):
         hr_payslip_object = self.pool.get('hr.payslip')
         payslips_ids = []
         payslips = []
             
-        payslips_ids = hr_payslip_object.search(cr, uid, [('period_id.date_start', '>=' , start_period.date_start), ('period_id.date_stop', '<=' , stop_period.date_stop)])
+        payslips_ids=hr_payslip_object.search(self.cr,self.uid,[('date_from', '>=' ,start_period),('date_to', '<=' , stop_period)])      
         
         if len(payslips_ids) > 0:    
-            payslips = hr_payslip_object.browse(cr, uid, payslips_ids)
+            payslips = hr_payslip_object.browse(self.cr, self.uid, payslips_ids)
         
         return payslips
         
-    def get_payslips_by_struct(self, cr, uid, start_period, stop_period):
-        all_payslips = self.get_payslips_by_period(cr, uid, start_period, stop_period)
+    def get_payslips_by_struct(self,start_period, stop_period):
+        all_payslips = self.get_payslips_by_period(start_period, stop_period)
         obj_by_struct = []
         struct_list = []
         payslip_by_struct = []
@@ -96,7 +96,7 @@ class PayrollReportForMonth(report_sxw.rml_parse):
 
         return payslip_by_struct
         
-    def get_payslips_by_employee(self, cr, uid, all_payslips):
+    def get_payslips_by_employee(self, all_payslips):
         obj_by_employee = []
         payslip_by_employee = []
         employee_list = []
@@ -120,19 +120,19 @@ class PayrollReportForMonth(report_sxw.rml_parse):
                 
         return payslip_by_employee
         
-    def get_identification(self, cr, uid, payslips):
+    def get_identification(self, payslips):
         res = ' '
         for payslip in payslips:
             res = payslip.employee_id.identification_id
             return res
             
-    def get_bank_account(self, cr, uid, payslips):
+    def get_bank_account(self, payslips):
         res = ' '
         for payslip in payslips:
             res = payslip.employee_id.bank_account_id.acc_number
             return res
         
-    def get_hn(self, cr, uid, payslips):
+    def get_hn(self, payslips):
         code = 'HN'
         res = 0.00
         for payslip in payslips:
@@ -141,7 +141,7 @@ class PayrollReportForMonth(report_sxw.rml_parse):
                     res += line.number_of_hours
         return res
         
-    def get_he(self, cr, uid, payslips):
+    def get_he(self, payslips):
         code = 'HE'
         res = 0.00
         for payslip in payslips:
@@ -150,7 +150,7 @@ class PayrollReportForMonth(report_sxw.rml_parse):
                     res += line.number_of_hours        
         return res
     
-    def get_basic(self, cr, uid, payslips):
+    def get_basic(self,payslips):
         code = 'BASE'
         res = 0.00
         for payslip in payslips:
@@ -159,7 +159,7 @@ class PayrollReportForMonth(report_sxw.rml_parse):
                     res += line.total
         return res
         
-    def get_ext(self, cr, uid, payslips):
+    def get_ext(self,payslips):
         code = 'EXT'
         code2 = 'EXT-FE'
         res = 0.00
@@ -173,7 +173,7 @@ class PayrollReportForMonth(report_sxw.rml_parse):
             res = res + self.get_retroactive(payslip.line_ids)
         return res
         
-    def get_gross(self, cr, uid, payslips):
+    def get_gross(self,payslips):
         code = 'BRUTO'
         res = 0.00
         for payslip in payslips:
@@ -182,7 +182,7 @@ class PayrollReportForMonth(report_sxw.rml_parse):
                     res += line.total
         return res
     
-    def get_ccss(self, cr, uid, payslips):
+    def get_ccss(self, payslips):
         code = 'CCSS-EMP'
         code2 = 'CCSS-EMP-PEN'
         code3 = 'Banco Popular-EMP'
@@ -203,7 +203,7 @@ class PayrollReportForMonth(report_sxw.rml_parse):
                     res += line.total
         return res
     
-    def get_bon(self, cr, uid, payslips):
+    def get_bon(self, payslips):
         code = 'BON'
         res = 0.00
         for payslip in payslips:
@@ -212,7 +212,7 @@ class PayrollReportForMonth(report_sxw.rml_parse):
                     res += line.total
         return res
     
-    def get_net(self, cr, uid, payslips):
+    def get_net(self, payslips):
         code = 'NETO'
         res = 0.00
         for payslip in payslips:
@@ -222,7 +222,7 @@ class PayrollReportForMonth(report_sxw.rml_parse):
         return res
 
 
-    def get_rent(self, cr, uid, payslips):
+    def get_rent(self, payslips):
         code = 'RENTA'
         res = 0.00
         for payslip in payslips:

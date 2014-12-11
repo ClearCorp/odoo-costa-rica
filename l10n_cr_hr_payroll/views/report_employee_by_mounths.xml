@@ -5,12 +5,114 @@
             <t t-call="report.html_container">
                 <t t-call="report.internal_layout">
                     <div class="page">
-                        <h1>Report for mounths</h1>
-                        
+                        <div align="center">
+                            <h3>REPORT EMPLOYEE BY PERIODS</h3>
+                            <h4>
+                                Payslips from:
+                                <span t-esc="data['form']['period_from']" />
+                                <th> to </th>
+                                <span t-esc="data['form']['period_to']" />
+                            </h4>
                         </div>
+                        <br />
+                        <br />
+                        <t
+                            t-foreach="get_payslips_by_struct(data['form']['period_from'], data['form']['period_to'])"
+                            t-as="structSlip">
+                            <br/>
+                            <br/>
+                            <h5>
+                                Estructura:
+                                <span t-esc="structSlip[0]" />
+                            </h5>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>ID card</th>
+                                        <th>Name</th>
+                                        <th>Bank account</th>
+                                        <th>Hrs.Nor</th>
+                                        <th>Hrs.Ext</th>
+                                        <th>Ingr.Normal</th>
+                                        <th>Ingr.Extra</th>
+                                        <th>Salary Gross</th>
+                                        <th>Deducc.CCSS/BP</th>
+                                        <th>Bonuses</th>
+                                        <th>Tax Rent</th>
+                                        <th>Salary Net</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t
+                                        t-foreach="get_payslips_by_employee(structSlip[1])"
+                                        t-as="payslips">
+                                        <tr>
+                                            <td>
+                                                <span t-esc="payslips[0]" />
+                                            </td>
+                                            <t t-set="id"
+                                                t-value="get_identification(payslips[1])" />
+                                            <td>
+                                                <span t-esc="id" />
+                                            </td>
+                                            <t t-set="acc"
+                                                t-value="get_bank_account(payslips[1])" />
+                                            <td>
+                                                <span t-esc="acc" />
+                                            </td>
+                                            <t t-set="hn"
+                                                t-value="get_hn(payslips[1])" />
+                                            <td>
+                                                <span t-esc="hn" />
+                                            </td>
+                                            <t t-set="he"
+                                                t-value="get_he(payslips[1])" />
+                                            <td>
+                                                <span t-esc="he" />
+                                            </td>
+                                            <t t-set="basic"
+                                                t-value="get_basic(payslips[1])" />
+                                            <td>
+                                                <span t-esc="basic" />
+                                            </td>
+                                            <t t-set="ext"
+                                                t-value="get_ext(payslips[1])" />
+                                            <td>
+                                                <span t-esc="ext" />
+                                            </td>
+                                            <t t-set="gross"
+                                                t-value="get_gross(payslips[1])" />
+                                            <td>
+                                                <span t-esc="gross" />
+                                            </td>
+                                            <t t-set="ccss"
+                                                t-value="get_ccss(payslips[1])" />
+                                            <td>
+                                                <span t-esc="ccss" />
+                                            </td>
+                                            <t t-set="bonus"
+                                                t-value="get_bon(payslips[1])" />
+                                            <td>
+                                                <span t-esc="bonus" />
+                                            </td>
+                                            <t t-set="rent"
+                                                t-value="get_rent(payslips[1])" />
+                                            <td>
+                                                <span t-esc="rent" />
+                                            </td>
+                                            <t t-set="neto"
+                                                t-value="get_net(payslips[1])" />
+                                            <td>
+                                                <span t-esc="neto" />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
                         </t>
-                        </t>
-                        
+                    </div>
+                </t>
+            </t>
         </template>
     </data>
 </openerp>

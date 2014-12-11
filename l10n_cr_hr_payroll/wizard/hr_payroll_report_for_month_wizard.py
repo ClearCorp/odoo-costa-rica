@@ -39,17 +39,20 @@ class PayrollReportForMonthWizard(models.TransientModel):
     }
     
     @api.multi
-    def _print_report(self):
+    def print_report(self):
         #if not self.company_id:
          #   self.company_id = self.env['res.partner'].search([('customer','=',True)])
+        p_from= self.env['account.period'].search([('id','=',self.period_from.id)])[0].date_start
+        p_to= self.env['account.period'].search([('id','=',self.period_to.id)])[0].date_stop
+        #company_id = [empleado.id for partner in wizard.company_id]
         data = {
             'form': {
-                'period_from': self.period_from.id,
-                'period_to': self.period_to.id,
+                'period_from':p_from,
+                'period_to': p_to,
             }
         }
         res = self.env['report'].get_action(self.company_id,
-            'l10n_cr_hr_payroll.resport_for_mounth', data=data)
+            'l10n_cr_hr_payroll.report_employee_by_mounths', data=data)
         return res
     ##########################################################################
 """        return {
