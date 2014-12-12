@@ -21,33 +21,33 @@
 ##############################################################################
 
 import time
-from openerp import pooler
 from openerp.report import report_sxw
-import locale
+from openerp import models
+from openerp.tools.translate import _
 
 class hrPayrolldetailsReport(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
         super(hrPayrolldetailsReport, self).__init__(cr, uid, name, context=context)
-        self.pool = pooler.get_pool(self.cr.dbname)
-        self.cursor = self.cr
+        #self.pool = pooler.get_pool(self.cr.dbname)
+        #self.cursor = self.cr
         self.localcontext.update({
             'time': time,
-            'cr' : cr,
-            'uid': uid,
+            #'cr' : cr,
+            #'uid': uid,
             'get_worked_lines': self.get_worked_lines,
             'get_payslip_lines':self.get_payslip_lines,
             'not_HE':self.not_HE,
             'not_HN':self.not_HN,
         })
        
-    def get_worked_lines(self,cr,uid, payslip_id,contract_structure,context=None):
+    def get_worked_lines(self, payslip_id,contract_structure):
         worked_line = self.pool.get('hr.payslip.worked_days')
-        worked_lines_ids = worked_line.search(cr,uid,[('payslip_id','=',payslip_id)],context)
-        worked_lines_object = worked_line.browse(cr,uid,worked_lines_ids,context=context)
+        worked_lines_ids = worked_line.search(self.cr,self.uid,[('payslip_id','=',payslip_id)])
+        worked_lines_object = worked_line.browse(self.cr,self.uid,worked_lines_ids)
             
         return worked_lines_object
     
-    def not_HE(self,cr,uid,worked_lines_list):
+    def not_HE(self,worked_lines_list):
         flag = False
         
         for line in worked_lines_list:
@@ -55,7 +55,7 @@ class hrPayrolldetailsReport(report_sxw.rml_parse):
                 flag = True
         return flag
     
-    def not_HN(self,cr,uid,worked_lines_list):
+    def not_HN(self,worked_lines_list):
         flag = False
         
         for line in worked_lines_list:
@@ -63,10 +63,10 @@ class hrPayrolldetailsReport(report_sxw.rml_parse):
                 flag = True
         return flag
     
-    def get_payslip_lines (self,cr,uid,payslip_id,context=None):
+    def get_payslip_lines (self,payslip_id):
         payslip_line = self.pool.get('hr.payslip.line')
-        payslip_lines_ids = payslip_line.search(cr,uid,[('slip_id','=',payslip_id)],context)
-        payslip_lines_object = payslip_line.browse(cr,uid,payslip_lines_ids,context=context)
+        payslip_lines_ids = payslip_line.search(self.cr,self.uid,[('slip_id','=',payslip_id)])
+        payslip_lines_object = payslip_line.browse(self.cr,self.uid,payslip_lines_ids)
         payslip_lines_list = []
         base = 0
         
@@ -82,11 +82,17 @@ class hrPayrolldetailsReport(report_sxw.rml_parse):
                 payslip_lines_list.append(line)
         
         return payslip_lines_list
+    
+class hrPayroll_details_Report(models.AbstractModel):
+   _name = 'report.l10n_cr_hr_payroll.report_payroll_details'
+   _inherit = 'report.abstract_report'
+   _template = 'l10n_cr_hr_payroll.report_payroll_details'
+   _wrapped_report_class = hrPayrolldetailsReport
 
-#the parameters are the report name and module name 
+"""#the parameters are the report name and module name 
 report_sxw.report_sxw( 'report.hr_payroll_payslip_details_report', 
                        'hr.payslip',
                        'addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako', 
                         parser = hrPayrolldetailsReport)
     
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:"""

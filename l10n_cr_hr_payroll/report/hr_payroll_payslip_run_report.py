@@ -21,17 +21,17 @@
 ##############################################################################
 
 import time
-from openerp import pooler
 from openerp.report import report_sxw
-import locale
+from openerp import models
+from openerp.tools.translate import _
 
 class hrPaysliprunReport(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
         super(hrPaysliprunReport, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
-            'cr' : cr,
-            'uid': uid,
+            #'cr' : cr,
+            #'uid': uid,
             'get_hn':self.get_hn,
             'get_he':self.get_he,
             'get_fe':self.get_fe,
@@ -213,10 +213,15 @@ class hrPaysliprunReport(report_sxw.rml_parse):
             i += 1
 
         return emp_by_dep
-    
-        
+
+class hrPayslip_run_Report(models.AbstractModel):
+   _name = 'report.l10n_cr_hr_payroll.report_payslip_run'
+   _inherit = 'report.abstract_report'
+   _template = 'l10n_cr_hr_payroll.report_payslip_run'
+   _wrapped_report_class = hrPaysliprunReport
+"""        
 report_sxw.report_sxw(
     'report.hr_payroll_payslip_run_report',
     'hr.payslip.run',
     'addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako',
-    parser=hrPaysliprunReport)
+    parser=hrPaysliprunReport)"""

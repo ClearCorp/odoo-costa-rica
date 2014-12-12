@@ -1,56 +1,74 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
-        
-      <report auto="False"
-            id="hr_payroll.action_report_payslip"
+    
+            <report 
+            id="action_report_hr_payroll_employee_by_mounths"
             model="hr.payslip"
-            name="hr_payroll_payslip_report"
-            file="l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako"
-            string="Employee PaySlip"
-            report_type="webkit"
-            webkit_header="report_webkit_lib.webkit_header_clearcorp_official_portrait" />
-        
-        <report auto="False"
+            string="report employee by mounths"
+            report_type="qweb-pdf"
+            name="l10n_cr_hr_payroll.report_employee_by_mounths"
+            file="l10n_cr_hr_payroll.report_employee_by_mounths"
+            menu="False"/>
+            
+            <record id="action_report_hr_payroll_employee_by_mounths" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_us_landscape"/>
+            </record>
+            
+            <report 
+            id="action_report_hr_payroll_employee_by_periods"
+            model="hr.payslip"
+            string="report employee by periods"
+            report_type="qweb-pdf"
+            name="l10n_cr_hr_payroll.report_employee_by_periods"
+            file="l10n_cr_hr_payroll.report_employee_by_periods"
+            menu="False"/>
+            
+            <record id="action_report_hr_payroll_employee_by_periods" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_us_landscape"/>
+            </record>
+            
+            <report 
             id="hr_payroll.payslip_details_report"
             model="hr.payslip"
-            name="hr_payroll_payslip_details_report"
-            file="l10n_cr_hr_payroll/report/hr_payroll_details_report.mako"
-            string="PaySlip Details"
-            report_type="webkit" 
-            webkit_header="report_webkit_lib.webkit_header_clearcorp_official_portrait" />
-        
-        <record id="hr_payroll_report_for_month" model="ir.actions.report.xml">
-            <field name="report_type">webkit</field>             
-            <field name="report_name">hr_payroll_report_for_month</field>
-            <field name="model">hr.payslip</field>
-            <field name="type">ir.actions.report.xml</field>
-            <field name="name">Payroll Report for Month</field>
-            <field name="report_rml">l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako</field>
-            <field name="report_file">l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako</field>
-            <field name="webkit_header" ref="report_webkit_lib.webkit_header_clearcorp_official_landscape"/>              
-        </record>
-        
-        <record id="hr_payroll_employee_by_periods_report" model="ir.actions.report.xml">
-            <field name="report_type">webkit</field>             
-            <field name="report_name">hr_payroll_employee_by_periods_report</field>
-            <field name="model">hr.payslip</field>
-            <field name="type">ir.actions.report.xml</field>
-            <field name="name">Report Employee by Periods</field>
-            <field name="report_rml">l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako</field>
-            <field name="report_file">l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako</field>
-            <field name="webkit_header" ref="report_webkit_lib.webkit_header_clearcorp_official_landscape"/>
-        </record>
-        
-        <report 
-            auto="False" 
+            string="report payroll details"
+            report_type="qweb-pdf"
+            name="l10n_cr_hr_payroll.report_payroll_details"
+            file="l10n_cr_hr_payroll.report_payroll_details"
+            menu="False"/>
+            
+            <record id="hr_payroll.payslip_details_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_us_landscape"/>
+            </record>
+            
+            <report 
+            id="hr_payroll.action_report_payslip"
+            model="hr.payslip"
+            string="report payslip"
+            report_type="qweb-pdf"
+            name="l10n_cr_hr_payroll.report_payslip"
+            file="l10n_cr_hr_payroll.report_payslip"
+            menu="False"/>
+            
+            <record id="hr_payroll.action_report_payslip" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_us_landscape"/>
+            </record>
+            
+            <report 
             id="hr_payroll_payslip_run_report"
-            model="hr.payslip.run" 
-            name="hr_payroll_payslip_run_report"
-            file="l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako" 
-            string="Payroll Report" report_type="webkit" 
-            webkit_header="report_webkit_lib.webkit_header_clearcorp_official_landscape"/>
-             
+            model="hr.payslip"
+            string="report payslip run"
+            report_type="qweb-pdf"
+            name="l10n_cr_hr_payroll.report_payslip_run"
+            file="l10n_cr_hr_payroll.report_payslip_run"
+            menu="False"/>
+            
+            <record id="hr_payroll_payslip_run_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_us_landscape"/>
+            </record>
+    
+    
+    
     </data>
 </openerp>
 

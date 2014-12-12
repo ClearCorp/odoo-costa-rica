@@ -10,6 +10,8 @@
                             <h4>Payslips of periods:
                             <span t-esc="data['form']['period_from']" /><th>  to </th> <span t-esc="data['form']['period_to']"/> 
                             </h4>
+                            <br/>
+                            <br/>
                              <table class="table table-condensed">
                                 <thead>
                                     <tr>
