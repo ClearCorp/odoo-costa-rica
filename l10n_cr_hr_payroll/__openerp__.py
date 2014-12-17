@@ -41,7 +41,6 @@ TODO:
     'author': 'ClearCorp',
     'website': 'http://www.clearcorp.co.cr',
     'depends': [
-        #'report_webkit_lib',
         'hr_payroll_extended',
     ],
     'data': [
@@ -55,7 +54,7 @@ TODO:
              'l10n_cr_hr_payroll_view.xml',
              'views/report_employee_by_periods.xml',
              'views/report_employee_by_mounths.xml',
-             'views/report_payroll_details.xml',
+             'views/report_payslipdetails.xml',
              'views/report_payslip_run.xml',
              'views/report_payslip.xml',
              'report/report.xml',

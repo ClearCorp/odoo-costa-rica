@@ -6,7 +6,111 @@
                 <t t-call="report.internal_layout">
                     <div class="page">
                         <div align="center">
-                            <h3>REPORT PAYSLIP RUN</h3>
+                          <t t-foreach="docs" t-as="r"> 
+                                <h3>
+                                <span t-field="r.period_id.company_id.name" />
+                                </h3>
+                                <h3>REPORTE DE PLANILLA </h3>
+                                <h3>
+                                    <span t-field="r.name" /><br/>
+                                    Periodo del
+                                    <span t-field="r.date_start" />
+                                    al
+                                    <span t-field="r.date_end" />
+                                </h3>
+                                <br />
+                           <t t-foreach="get_obj_by_dep(docs)" t-as="run">
+                             <h4 align="left">
+                                Departamento:
+                                <span t-esc="run[0]" />
+                            </h4>
+                            <br/>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>ID card</th>
+                                        <th>Name</th>
+                                        <th>Bank account</th>
+                                        <th>Hrs.Nor</th>
+                                        <th>Hrs.Ext</th>
+                                        <th>Ingr.Normal</th>
+                                        <th>Ingr.Extra</th>
+                                        <th>Salary Gross</th>
+                                        <th>Deducc.CCSS/BP</th>
+                                        <th>Bonuses</th>
+                                        <th>Tax Rent</th>
+                                        <th>Salary Net</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                        <tr>
+                                         <t t-set="name_related"
+                                                t-value="get_name(run[1])" />
+                                            <td>
+                                                <span t-esc="name_related"/>
+                                            </td>
+                                            <t t-set="idcard"
+                                                t-value="get_identification(run[1])" />
+                                            <td>
+                                                <span t-esc="idcard" />
+                                            </td>
+                                            <t t-set="acc"
+                                                t-value="get_bank_account(run[1])" />
+                                            <td>
+                                                <span t-esc="acc" />
+                                            </td>
+                                            <t t-set="hn"
+                                                t-value="get_hn(run[1])" />
+                                            <td>
+                                                <span t-esc="hn" />
+                                            </td>
+                                            <t t-set="he"
+                                                t-value="get_he(run[1])" />
+                                            <td>
+                                                <span t-esc="he" />
+                                            </td>
+                                            <t t-set="basic"
+                                                t-value="get_basic(run[1])" />
+                                            <td>
+                                                <span t-esc="basic" />
+                                            </td>
+                                            <t t-set="ext"
+                                                t-value="get_ext(run[1])" />
+                                            <td>
+                                                <span t-esc="ext" />
+                                            </td>
+                                            <t t-set="gross"
+                                                t-value="get_gross(run[1])" />
+                                            <td>
+                                                <span t-esc="gross" />
+                                            </td>
+                                            <t t-set="ccss"
+                                                t-value="get_ccss(run[1])" />
+                                            <td>
+                                                <span t-esc="ccss" />
+                                            </td>
+                                            <t t-set="bonus"
+                                                t-value="get_bon(run[1])" />
+                                            <td>
+                                                <span t-esc="bonus" />
+                                            </td>
+                                            <t t-set="rent"
+                                                t-value="get_rent(run[1])" />
+                                            <td>
+                                                <span t-esc="rent" />
+                                            </td>
+                                            <t t-set="neto"
+                                                t-value="get_net(run[1])" />
+                                            <td>
+                                                <span t-esc="neto" />
+                                            </td> 
+                                        </tr>
+                                </tbody>
+                            </table>
+                          
+                           </t>
+                                </t>
                         </div>
                      </div>
                   </t>

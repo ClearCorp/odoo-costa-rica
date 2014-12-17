@@ -33,12 +33,12 @@
             model="hr.payslip"
             string="report payroll details"
             report_type="qweb-pdf"
-            name="l10n_cr_hr_payroll.report_payroll_details"
-            file="l10n_cr_hr_payroll.report_payroll_details"
+            name="l10n_cr_hr_payroll.report_payslipdetails"
+            file="l10n_cr_hr_payroll.report_payslipdetails"
             menu="False"/>
             
             <record id="hr_payroll.payslip_details_report" model="ir.actions.report.xml">
-            <field name="paperformat_id" ref="paperformat_us_landscape"/>
+            <field name="paperformat_id" ref="paperformat_us_vertical"/>
             </record>
             
             <report 
@@ -50,18 +50,18 @@
             file="l10n_cr_hr_payroll.report_payslip"
             menu="False"/>
             
-            <record id="hr_payroll.action_report_payslip" model="ir.actions.report.xml">
-            <field name="paperformat_id" ref="paperformat_us_landscape"/>
+             <record id="hr_payroll.action_report_payslip" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_us_vertical"/>
             </record>
             
             <report 
             id="hr_payroll_payslip_run_report"
-            model="hr.payslip"
+            model="hr.payslip.run"
             string="report payslip run"
             report_type="qweb-pdf"
             name="l10n_cr_hr_payroll.report_payslip_run"
             file="l10n_cr_hr_payroll.report_payslip_run"
-            menu="False"/>
+            menu="True"/>
             
             <record id="hr_payroll_payslip_run_report" model="ir.actions.report.xml">
             <field name="paperformat_id" ref="paperformat_us_landscape"/>

@@ -176,10 +176,3 @@ class report_payroll_employee(models.AbstractModel):
    _template = 'l10n_cr_hr_payroll.report_employee_by_periods'
    _wrapped_report_class = ReportEmployeeByPeriods
 
-#report_sxw.report_sxw(
- #   'report.hr_payroll_employee_by_periods_report',
-#    'hr.payslip',
-#    'addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako',
-#    parser=ReportEmployeeByPeriods)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

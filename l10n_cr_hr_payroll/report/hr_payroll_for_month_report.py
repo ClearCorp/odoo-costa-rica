@@ -28,11 +28,7 @@ from openerp.tools.translate import _
 class PayrollReportForMonth(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
         super(PayrollReportForMonth, self).__init__(cr, uid, name, context=context)
-        #self.pool = pooler.get_pool(self.cr.dbname)
-        #self.cursor = self.cr
         self.localcontext.update({
-            #'cr' : cr,
-            #'uid': uid,
             'get_period_by_id': self.get_period_by_id,
             'get_payslips_by_period': self.get_payslips_by_period,
             'get_payslips_by_struct': self.get_payslips_by_struct,
@@ -257,11 +253,6 @@ class report_payroll_employeeM(models.AbstractModel):
    _inherit = 'report.abstract_report'
    _template = 'l10n_cr_hr_payroll.report_employee_by_mounths'
    _wrapped_report_class = PayrollReportForMonth
-   
-"""report_sxw.report_sxw(
-    'report.hr_payroll_report_for_month',
-    'hr.payslip',
-    'addons/l10n_cr_hr_payroll/report/hr_payroll_report_for_month.mako',
-    parser=PayrollReportForMonth)"""
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

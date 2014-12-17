@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <template id="report_payslip">
+        <template id="report_payslipdetails">
             <t t-call="report.html_container">
                 <t t-call="report.internal_layout">
                     <div class="page">

@@ -40,11 +40,8 @@ class PayrollReportForMonthWizard(models.TransientModel):
     
     @api.multi
     def print_report(self):
-        #if not self.company_id:
-         #   self.company_id = self.env['res.partner'].search([('customer','=',True)])
         p_from= self.env['account.period'].search([('id','=',self.period_from.id)])[0].date_start
         p_to= self.env['account.period'].search([('id','=',self.period_to.id)])[0].date_stop
-        #company_id = [empleado.id for partner in wizard.company_id]
         data = {
             'form': {
                 'period_from':p_from,
@@ -54,17 +51,4 @@ class PayrollReportForMonthWizard(models.TransientModel):
         res = self.env['report'].get_action(self.company_id,
             'l10n_cr_hr_payroll.report_employee_by_mounths', data=data)
         return res
-    ##########################################################################
-"""        return {
-            'type': 'ir.actions.report.xml',
-            'report_name': 'hr_payroll_report_for_month',
-            'datas': datas}
-
-    def action_validate(self, cr, uid, ids, context={}):
-        datas = {}
-        datas['ids'] = context.get('active_ids', [])
-        datas['model'] = context.get('active_model', 'ir.ui.menu')
-        datas['form'] = self.read(cr, uid, ids, ['company_id',  'period_from', 'period_to'], context=context)[0]
-        return self._print_report(cr, uid, ids, datas, context=context)"""
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+ 

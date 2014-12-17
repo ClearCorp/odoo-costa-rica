@@ -28,19 +28,15 @@ from openerp.tools.translate import _
 class hrPayrolldetailsReport(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
         super(hrPayrolldetailsReport, self).__init__(cr, uid, name, context=context)
-        #self.pool = pooler.get_pool(self.cr.dbname)
-        #self.cursor = self.cr
         self.localcontext.update({
             'time': time,
-            #'cr' : cr,
-            #'uid': uid,
             'get_worked_lines': self.get_worked_lines,
             'get_payslip_lines':self.get_payslip_lines,
             'not_HE':self.not_HE,
             'not_HN':self.not_HN,
         })
        
-    def get_worked_lines(self, payslip_id,contract_structure):
+    def get_worked_lines(self, payslip_id):
         worked_line = self.pool.get('hr.payslip.worked_days')
         worked_lines_ids = worked_line.search(self.cr,self.uid,[('payslip_id','=',payslip_id)])
         worked_lines_object = worked_line.browse(self.cr,self.uid,worked_lines_ids)
@@ -84,15 +80,8 @@ class hrPayrolldetailsReport(report_sxw.rml_parse):
         return payslip_lines_list
     
 class hrPayroll_details_Report(models.AbstractModel):
-   _name = 'report.l10n_cr_hr_payroll.report_payroll_details'
+   _name = 'report.l10n_cr_hr_payroll.report_payslipdetails'
    _inherit = 'report.abstract_report'
-   _template = 'l10n_cr_hr_payroll.report_payroll_details'
+   _template = 'l10n_cr_hr_payroll.report_payslipdetails'
    _wrapped_report_class = hrPayrolldetailsReport
 
-"""#the parameters are the report name and module name 
-report_sxw.report_sxw( 'report.hr_payroll_payslip_details_report', 
-                       'hr.payslip',
-                       'addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako', 
-                        parser = hrPayrolldetailsReport)
-    
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:"""
