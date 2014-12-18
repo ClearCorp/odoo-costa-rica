@@ -1,0 +1,264 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_cr_hr_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-19 17:37+0000\n"
+"PO-Revision-Date: 2014-09-19 17:37+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Bi-monthly"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,first_limit:0
+#: field:res.company,first_limit:0
+msgid "First Limit"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.payslip,forced_period_id:0
+msgid "Force period"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: view:report.employee.by.periods:0
+msgid "Report employee by periods"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_config_settings
+msgid "hr.config.settings"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_job
+msgid "Job Description"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: view:payroll.report.for.month:0
+#: view:report.employee.by.periods:0
+msgid "Print"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: help:hr.employee,report_number_child:0
+msgid "Number of children to report for rent payment"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_employee
+msgid "Employee"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Semi-annually"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,amount_per_spouse:0
+#: field:res.company,amount_per_spouse:0
+msgid "Amount per spouse"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: view:hr.config.settings:0
+msgid "Rent Configuration"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,rent_company_id:0
+#: field:payroll.report.for.month,company_id:0
+#: field:report.employee.by.periods,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_salary_rule
+msgid "hr.salary.rule"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Monthly"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_payslip_run
+msgid "Payslip Batches"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: view:hr.payslip.run:0
+msgid "Schedule pay"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_payslip
+msgid "Pay Slip"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.actions.act_window,name:l10n_cr_hr_payroll.action_report_employee_by_periods_menu
+msgid "Action Report Employee by Periods"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Fortnightly"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:payroll.report.for.month,period_from:0
+#: field:report.employee.by.periods,period_from:0
+msgid "Start Period"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: view:payroll.report.for.month:0
+msgid "Payroll report for month"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.hr_payroll_report_for_month
+#: model:ir.model,name:l10n_cr_hr_payroll.model_payroll_report_for_month
+#: model:ir.ui.menu,name:l10n_cr_hr_payroll.menu_payroll_report_for_month
+msgid "Payroll Report for Month"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: view:payroll.report.for.month:0
+#: view:report.employee.by.periods:0
+msgid "General Options"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_contract
+msgid "Contract"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.hr_payroll_employee_by_periods_report
+#: model:ir.model,name:l10n_cr_hr_payroll.model_report_employee_by_periods
+#: model:ir.ui.menu,name:l10n_cr_hr_payroll.menu_report_employee_by_periods
+msgid "Report Employee by Periods"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Annually"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.hr_payroll_payslip_run_report
+msgid "Payroll Report"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.payslip.run,schedule_pay:0
+msgid "Scheduled Pay"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: constraint:hr.employee:0
+msgid "Error! The number of child to report must be greater or equal to zero."
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.employee,report_number_child:0
+msgid "Number of children to report"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:payroll.report.for.month,period_to:0
+#: field:report.employee.by.periods,period_to:0
+msgid "End Period"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.job,code:0
+msgid "Code"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,second_limit:0
+#: field:res.company,second_limit:0
+msgid "Second Limit"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,amount_per_child:0
+#: field:res.company,amount_per_child:0
+msgid "Amount per Child"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.payslip.run,period_id:0
+msgid "Force Period"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.employee,report_spouse:0
+msgid "Report Spouse"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Quarterly"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Bi-weekly"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.actions.act_window,name:l10n_cr_hr_payroll.action_payroll_report_for_month_menu_webkit
+msgid "Action Payroll Report for Month"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: view:payroll.report.for.month:0
+#: view:report.employee.by.periods:0
+msgid "Filters"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: help:hr.employee,report_spouse:0
+msgid "If this employee reports his spouse for rent payment"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: view:payroll.report.for.month:0
+#: view:report.employee.by.periods:0
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: view:payroll.report.for.month:0
+#: view:report.employee.by.periods:0
+msgid "or"
+msgstr ""
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Weekly"
+msgstr ""
+

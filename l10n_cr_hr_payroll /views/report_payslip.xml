@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="report_payslip">
+            <t t-call="report.html_container">
+                <t t-call="report.internal_layout">
+                    <div class="page">
+                        <div align="center">
+                            <t t-foreach="docs" t-as="o">
+                                <h3>
+                                    <span t-field="o.company_id.name" />
+                                </h3>
+                                <h3>COMPROBANTE DE PAGO DE SALARIO </h3>
+                                <h3>
+                                    Planilla de
+                                    <span t-field="o.employee_id" />
+                                    del
+                                    <span t-field="o.date_from" />
+                                    al
+                                    <span t-field="o.date_to" />
+                                </h3>
+                                <br />
+                                <br />
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <th>Nombre:</th>
+                                            <td>
+                                                <span t-field="o.employee_id" />
+                                                <br />
+                                            </td>
+                                        </td>
+                                     </tr>
+                                    <tr> 
+                                        <td>
+                                            <th>Cédula:</th>
+                                            <td>
+                                                <span
+                                                    t-field="o.employee_id.identification_id" />
+                                            </td>
+                                        </td>
+                                     </tr>
+                                    <tr> 
+                                        <td>
+                                            <th>Puesto:</th>
+                                            <td>
+                                                <span
+                                                    t-field="o.employee_id.job_id.name" />
+                                                <br />
+                                            </td>
+                                        </td>
+                                    </tr>
+                                    
+                                    
+                                    <tr>
+                                        <td>
+                                            <th>Referencia:</th>
+                                            <td>
+                                                <span t-field="o.number" />
+                                                <br />
+                                            </td>
+                                        </td>
+                                     </tr>
+                                    <tr> 
+                                        <td>
+                                            <th>Desde:</th>
+                                            <td>
+                                                <span t-field="o.date_from" />
+                                                <br />
+                                            </td>
+                                        </td>
+                                     </tr>
+                                    <tr> 
+                                        <td>
+                                            <th>Hasta:</th>
+                                            <td>
+                                                <span t-field="o.date_to" />
+                                                <br />
+                                            </td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <th>Estructura de salario:
+                                            </th>
+                                            <td>
+                                                <span t-field="o.struct_id.name" />
+                                                <br />
+                                            </td>
+                                        </td>
+                                    </tr>
+                                    <tr> 
+                                        <td>
+                                            <th>Cuenta bancaria:</th>
+                                            <td>
+                                                <span
+                                                    t-field="o.employee_id.bank_account_id.acc_number" />
+                                                <br />
+                                            </td>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                                <h4 align="left">Cantidad de horas</h4>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Código</th>
+                                            <th>Número de dias</th>
+                                            <th>Número de horas</th>
+                                        </tr>
+                                    </thead>
+                                    <t t-foreach="get_worked_lines(o.id)"
+                                        t-as="workdays">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span
+                                                        t-field="workdays.name" />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="workdays.code" />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="workdays.number_of_days" />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="workdays.number_of_hours" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </t>
+                                </table>
+                                <br/>
+                                <h4 align="left">Calculo de nomina</h4>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Código</th>
+                                            <th>Categoria</th>
+                                            <th>Base</th>
+                                            <th>Importe</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <t t-foreach="get_payslip_lines(o.id)"
+                                        t-as="payslipLine">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span
+                                                        t-field="payslipLine.name" />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="payslipLine.code" />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="payslipLine.category_id" />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="payslipLine.amount_percentage_base" />
+                                                </td>
+                                                  <td>
+                                                    <span
+                                                        t-field="payslipLine.amount" />
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-field="payslipLine.total" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </t>
+                                </table>
+                                <div align="left">
+                                <th>_________________________________________</th><br/>
+                                <th>Recibo y conforme: </th><span t-field="o.employee_id.name" /><br/>
+                                <th>Cédula:</th>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

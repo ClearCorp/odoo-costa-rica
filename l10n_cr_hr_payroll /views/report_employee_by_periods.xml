@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="report_employee_by_periods">
+            <t t-call="report.html_container">
+                <t t-call="report.internal_layout">
+                    <div class="page">
+                        <div align="center">
+                            <h3>REPORT EMPLOYEE BY PERIODS</h3>
+                            <h4>Payslips of periods:
+                            <span t-esc="data['form']['period_from']" /><th>  to </th> <span t-esc="data['form']['period_to']"/> 
+                            </h4>
+                            <br/>
+                            <br/>
+                             <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>ID card</th>
+                                        <th>Name</th>
+                                        <th>Bank account</th>
+                                        <th>Hrs.Nor</th>
+                                        <th>Hrs.Ext</th>
+                                        <th>Ingr.Normal</th>
+                                        <th>Ingr.Extra</th>
+                                        <th>Salary Gross</th>
+                                        <th>Deducc.CCSS/BP</th>
+                                        <th>Bonuses</th>
+                                        <th>Tax Rent</th>
+                                        <th>Salary Net</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="get_payslips_by_employee(data['form']['period_from'], data['form']['period_to'])" t-as="Epayslip"> 
+                                <tr>
+                                <td><span t-field="Epayslip.employee_id"/></td>
+                                <td><span t-field="Epayslip.employee_id.identification_id"/></td>
+                                <td><span t-field="Epayslip.employee_id.bank_account_id.acc_number"/></td>
+                                <t t-set="hn" t-value="get_hn(Epayslip)"/>
+                                <td><span t-esc="hn"/></td>
+                                <t t-set="he" t-value="get_he(Epayslip)"/>
+                                <td><span t-esc="he"/></td>
+                                <t t-set="basic" t-value="get_basic(Epayslip)"/>
+                                <td><span t-esc="basic"/></td>
+                                <t t-set="ext" t-value="get_ext(Epayslip)"/>
+                                <td><span t-esc="ext"/></td>
+                                <t t-set="gross" t-value="get_gross(Epayslip)"/>
+                                <td><span t-esc="gross"/></td>
+                                <t t-set="ccss" t-value="get_ccss(Epayslip)"/>
+                                <td><span t-esc="ccss"/></td>
+                                <t t-set="bonus" t-value="get_bon(Epayslip)"/>
+                                <td><span t-esc="bonus"/></td>
+                                <t t-set="rent" t-value="get_rent(Epayslip)"/>
+                                <td><span t-esc="rent"/></td>
+                                <t t-set="neto" t-value="get_net(Epayslip)"/>
+                                <td><span t-esc="neto"/></td>
+                                </tr>
+                                </t>
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,535 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_cr_hr_payroll
+# Ronald Rubí Chacón <ronald.rubi@clearcorp.co.cr>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-28 18:33+0000\n"
+"PO-Revision-Date: 2014-11-28 12:41-0600\n"
+"Last-Translator: Ronald Rubí Chacón <ronald.rubi@clearcorp.co.cr>\n"
+"Language-Team: Español; Castellano <>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 2.91.6\n"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:192
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:169
+msgid "APPROVED BY:"
+msgstr "APROBADO POR:"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.actions.act_window,name:l10n_cr_hr_payroll.action_payroll_report_for_month_menu_webkit
+msgid "Action Payroll Report for Month"
+msgstr "Generar Informe de nómina para el mes"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.actions.act_window,name:l10n_cr_hr_payroll.action_report_employee_by_periods_menu
+msgid "Action Report Employee by Periods"
+msgstr "Acción Informe de Empleado por períodos"
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+#: selection:hr.contract,schedule_pay:0
+msgid "Fortnightly"
+msgstr "Quincenal"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:106
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:106
+msgid "Amount"
+msgstr "Cantidad"
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,amount_per_child:0
+#: field:res.company,amount_per_child:0
+msgid "Amount per Child"
+msgstr "Monto por hijos"
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,amount_per_spouse:0
+#: field:res.company,amount_per_spouse:0
+msgid "Amount per spouse"
+msgstr "Monto por cónyugue"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:190
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:167
+msgid "BY:"
+msgstr "POR:"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:28
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:41
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:62
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:28
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:57
+msgid "Bank account"
+msgstr "Cuenta en la que se deposita el salario"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:105
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:105
+msgid "Base"
+msgstr "Base"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:48
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:69
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:165
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:64
+msgid "Bonuses"
+msgstr "Bonos"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:47
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:68
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:164
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:63
+msgid "CCSS/BP"
+msgstr "CCSS/BP"
+
+#. module: l10n_cr_hr_payroll
+#: view:payroll.report.for.month:l10n_cr_hr_payroll.payroll_report_for_month_view_webkit
+#: view:report.employee.by.periods:l10n_cr_hr_payroll.report_employee_by_periods_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:104
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:104
+msgid "Category"
+msgstr "Categoría"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:61
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:103
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:61
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:103
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,rent_company_id:0
+#: field:payroll.report.for.month,company_id:0
+#: field:report.employee.by.periods,company_id:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_contract
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: l10n_cr_hr_payroll
+#: field:payroll.report.for.month,create_uid:0
+#: field:report.employee.by.periods,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_cr_hr_payroll
+#: field:payroll.report.for.month,create_date:0
+#: field:report.employee.by.periods,create_date:0
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:80
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:80
+msgid "DONT EXIST EXTRA HOURS REGISTRED"
+msgstr "NO EXISTEN HORAS EXTRA REGISTRADAS"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:88
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:88
+msgid "DONT EXIST NORMAL HOURS REGISTRED"
+msgstr "No existen horas normales registradas"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:40
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:40
+msgid "Date from"
+msgstr "Fecha desde"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:44
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:44
+msgid "Date to"
+msgstr "Desde"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:47
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:68
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:164
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:63
+msgid "Deducc."
+msgstr "Deducc."
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_employee
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:107
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:138
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:132
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:151
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: l10n_cr_hr_payroll
+#: field:payroll.report.for.month,period_to:0
+#: field:report.employee.by.periods,period_to:0
+msgid "End Period"
+msgstr "Periodo de fin"
+
+#. module: l10n_cr_hr_payroll
+#: constraint:hr.employee:0
+msgid "Error! The number of child to report must be greater or equal to zero."
+msgstr "Error! El número de hijos a reportar debe ser mayor o igual a cero"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:43
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:64
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:160
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:59
+msgid "Ext"
+msgstr "Ext"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:45
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:66
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:162
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:61
+msgid "Extra"
+msgstr "Extra"
+
+#. module: l10n_cr_hr_payroll
+#: view:payroll.report.for.month:l10n_cr_hr_payroll.payroll_report_for_month_view_webkit
+#: view:report.employee.by.periods:l10n_cr_hr_payroll.report_employee_by_periods_view
+msgid "Filters"
+msgstr "Filtros"
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,first_limit:0 field:res.company,first_limit:0
+msgid "First Limit"
+msgstr "Primer Límite"
+
+#. module: l10n_cr_hr_payroll
+#: view:payroll.report.for.month:l10n_cr_hr_payroll.payroll_report_for_month_view_webkit
+#: view:report.employee.by.periods:l10n_cr_hr_payroll.report_employee_by_periods_view
+msgid "General Options"
+msgstr "Opciones Generales"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:46
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:67
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:163
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:62
+msgid "Gross"
+msgstr "Bruto"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:42
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:43
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:63
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:64
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:159
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:160
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:58
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:59
+msgid "Hrs."
+msgstr "Hrs."
+
+#. module: l10n_cr_hr_payroll
+#: field:payroll.report.for.month,id:0 field:report.employee.by.periods,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:24
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:24
+msgid "ID card"
+msgstr "Cédula"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:134
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:134
+msgid "ID card: "
+msgstr "Cédula: "
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:39
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:60
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:55
+msgid "Id card"
+msgstr "Cédula"
+
+#. module: l10n_cr_hr_payroll
+#: help:hr.employee,report_spouse:0
+msgid "If this employee reports his spouse for rent payment"
+msgstr "Si este empleado reporta su cónyuge para el pago de la renta"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:44
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:45
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:65
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:66
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:161
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:162
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:60
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:61
+msgid "Ingr."
+msgstr "Ingr."
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:32
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:32
+msgid "Job"
+msgstr "Puesto"
+
+#. module: l10n_cr_hr_payroll
+#: field:payroll.report.for.month,write_uid:0
+#: field:report.employee.by.periods,write_uid:0
+msgid "Last Updated by"
+msgstr "Última actualización realizada por"
+
+#. module: l10n_cr_hr_payroll
+#: field:payroll.report.for.month,write_date:0
+#: field:report.employee.by.periods,write_date:0
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:20
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:60
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:102
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:40
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:61
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:20
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:60
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:102
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:56
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:50
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:71
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:167
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:66
+msgid "Net"
+msgstr "Neto"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:42
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:63
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:159
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:58
+msgid "Nor"
+msgstr "Nor"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:44
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:65
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:161
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:60
+msgid "Normal"
+msgstr "Normal"
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.employee,report_number_child:0
+msgid "Number of children to report"
+msgstr "Número de hijos a reportar"
+
+#. module: l10n_cr_hr_payroll
+#: help:hr.employee,report_number_child:0
+msgid "Number of children to report for rent payment"
+msgstr "Número de hijos a reportar por el pago de la renta"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:62
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:62
+msgid "Number of days"
+msgstr "Número de días"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:63
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:63
+msgid "Number of hours"
+msgstr "Número de horas"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Nómina"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:31
+#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.hr_payroll_payslip_run_report
+msgid "Payroll Report"
+msgstr "Reporte de planilla"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.hr_payroll_report_for_month
+#: model:ir.model,name:l10n_cr_hr_payroll.model_payroll_report_for_month
+#: model:ir.ui.menu,name:l10n_cr_hr_payroll.menu_payroll_report_for_month
+msgid "Payroll Report for Month"
+msgstr "Informe de Nómina para el mes"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:21
+msgid "Payroll Report for Specific Periods"
+msgstr "Informe de Nómina para Periodos Específicos"
+
+#. module: l10n_cr_hr_payroll
+#: view:payroll.report.for.month:l10n_cr_hr_payroll.payroll_report_for_month_view_webkit
+msgid "Payroll report for month"
+msgstr "Informe de nómina para el mes"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_payslip_run
+msgid "Payslip Batches"
+msgstr "Lotes de Nóminas"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:20
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:22
+msgid "Payslips of periods:"
+msgstr "Nóminas de los períodos:"
+
+#. module: l10n_cr_hr_payroll
+#: view:payroll.report.for.month:l10n_cr_hr_payroll.payroll_report_for_month_view_webkit
+#: view:report.employee.by.periods:l10n_cr_hr_payroll.report_employee_by_periods_view
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:56
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:56
+msgid "Quantity of hours"
+msgstr "Cantidad de horas"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:191
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:168
+msgid "REVIEWED BY:"
+msgstr "REVISADO POR:"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:131
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:131
+msgid "Received and accepted: "
+msgstr "Recibido y aceptado:"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:36
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:36
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:49
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:70
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:166
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:65
+msgid "Rent"
+msgstr "Renta"
+
+#. module: l10n_cr_hr_payroll
+#: view:hr.config.settings:l10n_cr_hr_payroll.view_human_resources_configuration_inherit
+msgid "Rent Configuration"
+msgstr "Configuración de Renta"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:19
+#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.hr_payroll_employee_by_periods_report
+#: model:ir.model,name:l10n_cr_hr_payroll.model_report_employee_by_periods
+#: model:ir.ui.menu,name:l10n_cr_hr_payroll.menu_report_employee_by_periods
+msgid "Report Employee by Periods"
+msgstr "Informe de Empleado por períodos"
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.employee,report_spouse:0
+msgid "Report Spouse"
+msgstr "Reportar cónyugue"
+
+#. module: l10n_cr_hr_payroll
+#: view:report.employee.by.periods:l10n_cr_hr_payroll.report_employee_by_periods_view
+msgid "Report employee by periods"
+msgstr "Informe de empleado por períodos"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:46
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:50
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:67
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:71
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:163
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:167
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:62
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:66
+msgid "Salary"
+msgstr "Salario"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:98
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:98
+msgid "Salary Computation"
+msgstr "Cálculo de Salario"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:48
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:48
+msgid "Salary structure"
+msgstr "Estructura de salario"
+
+#. module: l10n_cr_hr_payroll
+#: field:hr.config.settings,second_limit:0 field:res.company,second_limit:0
+msgid "Second Limit"
+msgstr "Segundo Límite"
+
+#. module: l10n_cr_hr_payroll
+#: field:payroll.report.for.month,period_from:0
+#: field:report.employee.by.periods,period_from:0
+msgid "Start Period"
+msgstr "Periodo de inicio"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:106
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:173
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:150
+msgid "TOTAL"
+msgstr "TOTAL"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:49
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:70
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:166
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:65
+msgid "Tax"
+msgstr "Impuesto"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_details_report.mako:107
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:137
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_report.mako:107
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_payslip_run_report.mako:131
+msgid "Total"
+msgstr "Total"
+
+#. module: l10n_cr_hr_payroll
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako:20
+#: report:addons/l10n_cr_hr_payroll/report/hr_payroll_for_month_report.mako:22
+msgid "to"
+msgstr "a"
