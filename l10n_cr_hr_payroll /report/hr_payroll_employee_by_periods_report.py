@@ -20,18 +20,17 @@
 #
 ##############################################################################
 
-import pooler
+import time
 from openerp.report import report_sxw
+from openerp import models
 from openerp.tools.translate import _
 
 class ReportEmployeeByPeriods(report_sxw.rml_parse):
+    
     def __init__(self, cr, uid, name, context):
         super(ReportEmployeeByPeriods, self).__init__(cr, uid, name, context=context)
-        self.pool = pooler.get_pool(self.cr.dbname)
-        self.cursor = self.cr
         self.localcontext.update({
-            'cr' : cr,
-            'uid': uid,
+            'time': time,
             'get_period_by_id': self.get_period_by_id,
             'get_payslips_by_employee': self.get_payslips_by_employee,
             'get_hn': self.get_hn,
@@ -48,24 +47,20 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
             'get_retroactive':self.get_retroactive,
         })
     
-    def get_period_by_id(self, cr, uid, period_id):
+    def get_period_by_id(self, period_id):
         account_period_obj = self.pool.get('account.period')
-        period = account_period_obj.browse(cr, uid, [period_id])[0]
+        period = account_period_obj.browse(self.cr, self.uid, [period_id])[0]
         return period
-        
-    def get_payslips_by_employee(self, cr, uid, start_period, stop_period):
+
+    def get_payslips_by_employee(self,start_period, stop_period):
         hr_payslip_object = self.pool.get('hr.payslip')
         payslips_ids = []
         payslips = []
-            
-        payslips_ids = hr_payslip_object.search(cr, uid, [('period_id.date_start', '>=' , start_period.date_start), ('period_id.date_stop', '<=' , stop_period.date_stop), ('employee_id.user_id', '<=' , uid)])
-        
-        if len(payslips_ids) > 0:    
-            payslips = hr_payslip_object.browse(cr, uid, payslips_ids)
-        
+        payslips_ids=hr_payslip_object.search(self.cr,self.uid,[('date_from', '>=' ,start_period),('date_to', '<=' , stop_period),('employee_id.user_id', '<=' , self.uid)])
+        payslips = hr_payslip_object.browse(self.cr,self.uid,payslips_ids)
         return payslips
         
-    def get_hn(self, cr, uid, payslip):
+    def get_hn(self, payslip):
         code = 'HN'
         res = 0.00
         for line in payslip.worked_days_line_ids:
@@ -73,7 +68,7 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
                 res += line.number_of_hours
         return res
         
-    def get_he(self, cr, uid, payslip):
+    def get_he(self,payslip):
         code = 'HE'
         res = 0.00
         for line in payslip.worked_days_line_ids:
@@ -81,7 +76,7 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
                 res += line.number_of_hours        
         return res
     
-    def get_basic(self, cr, uid, payslip):
+    def get_basic(self,payslip):
         code = 'BASE'
         res = 0.00
         for line in payslip.line_ids:
@@ -89,7 +84,7 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
                 res += line.total
         return res
         
-    def get_ext(self, cr, uid, payslip):
+    def get_ext(self, payslip):
         code = 'EXT'
         code2 = 'EXT-FE'
         res = 0.00
@@ -101,7 +96,7 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
         res = res + self.get_retroactive(payslip)
         return res
         
-    def get_gross(self, cr, uid, payslip):
+    def get_gross(self, payslip):
         code = 'BRUTO'
         res = 0.00
         for line in payslip.line_ids:
@@ -109,7 +104,7 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
                 res += line.total
         return res
     
-    def get_ccss(self, cr, uid, payslip):
+    def get_ccss(self,payslip):
         code = 'CCSS-EMP'
         code2 = 'CCSS-EMP-PEN'
         code3 = 'Banco Popular-EMP'
@@ -129,7 +124,7 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
                 res += line.total
         return res
     
-    def get_bon(self, cr, uid, payslip):
+    def get_bon(self,payslip):
         code = 'BON'
         res = 0.00
         for line in payslip.line_ids:
@@ -137,7 +132,7 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
                 res += line.total
         return res
     
-    def get_net(self, cr, uid, payslip):
+    def get_net(self, payslip):
         code = 'NETO'
         res = 0.00
         for line in payslip.line_ids:
@@ -146,7 +141,7 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
         return res
 
 
-    def get_rent(self, cr, uid, payslip):
+    def get_rent(self,payslip):
         code = 'RENTA'
         res = 0.00
         for line in payslip.line_ids:
@@ -174,11 +169,17 @@ class ReportEmployeeByPeriods(report_sxw.rml_parse):
         res = 0
         res = self.get_RETS(payslip) + self.get_RETM(payslip)
         return res
+    
+class report_payroll_employee(models.AbstractModel):
+   _name = 'report.l10n_cr_hr_payroll.report_employee_by_periods'
+   _inherit = 'report.abstract_report'
+   _template = 'l10n_cr_hr_payroll.report_employee_by_periods'
+   _wrapped_report_class = ReportEmployeeByPeriods
 
-report_sxw.report_sxw(
-    'report.hr_payroll_employee_by_periods_report',
-    'hr.payslip',
-    'addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako',
-    parser=ReportEmployeeByPeriods)
+#report_sxw.report_sxw(
+ #   'report.hr_payroll_employee_by_periods_report',
+#    'hr.payslip',
+#    'addons/l10n_cr_hr_payroll/report/hr_payroll_employee_by_periods_report.mako',
+#    parser=ReportEmployeeByPeriods)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

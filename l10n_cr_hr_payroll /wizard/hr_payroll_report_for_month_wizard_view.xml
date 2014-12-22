@@ -2,11 +2,11 @@
 <openerp>
     <data>
 
-        <record id="report_employee_by_periods_view" model="ir.ui.view">
-            <field name="name">Report Employee by Periods</field>
-            <field name="model">report.employee.by.periods</field>
+        <record id="payroll_report_for_month_view" model="ir.ui.view">
+            <field name="name">Payroll Report for Month</field>
+            <field name="model">payroll.report.for.month</field>
             <field name="arch" type="xml">
-                <form string="Report employee by periods" version="7.0">
+                <form string="Payroll report for month" version="7.0">
                     <group string="General Options">
                         <field name="company_id" attrs="{'required':True}" />
                     </group>
@@ -17,7 +17,7 @@
                         </group>
                     </group>
                     <footer>
-                        <button name="action_validate" string="Print" type="object"/>
+                        <button name="print_report" string="Print" type="object"/>
                         or 
                         <button string="Cancel" class="oe_link" special="cancel" />
                     </footer>
@@ -25,13 +25,13 @@
             </field>
         </record>
 
-        <record id="action_report_employee_by_periods_menu" model="ir.actions.act_window">
-            <field name="name">Action Report Employee by Periods</field>
+        <record id="action_payroll_report_for_month_menu" model="ir.actions.act_window">
+            <field name="name">Action Payroll Report for Month</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">report.employee.by.periods</field>
+            <field name="res_model">payroll.report.for.month</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="report_employee_by_periods_view"/>
+            <field name="view_id" ref="payroll_report_for_month_view"/>
             <field name="target">new</field>
         </record>
         
