@@ -1272,16 +1272,31 @@ result = worked_days.AUS.number_of_hours * wage_hour + worked_days.AUS.number_of
             <field name="category_id" ref="hr_payroll_base_salary"/> 
             <field name="name">Salario Base - Jornal</field>
             <field name="code">BASE</field>
-            <field name="sequence">1</field>
+            <field name="sequence">100</field>
             <field name="appears_on_report">True</field>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
             <field name="amount_python_compute">
-                wage_hour = contract.wage 
-                if worked_days.HN:
-                    result = worked_days.HN.number_of_hours * wage_hour
-                else:
-                    result = 0
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# company: object of res.company. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+wage_hour = contract.wage
+if worked_days.HN:
+    result = worked_days.HN.number_of_hours * wage_hour
+else:
+    result = 0
            </field>
         </record>
 

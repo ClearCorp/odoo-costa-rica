@@ -10,10 +10,6 @@
             <field name="code">BON</field>
             <field name="type">other_inputs</field>
         </record>
-        <record id="data_input_value_3" model="hr.payroll.extended.input.value">
-            <field name="code">SOP</field>
-            <field name="type">other_inputs</field>
-        </record>
         <record id="data_input_value_4" model="hr.payroll.extended.input.value">
             <field name="code">FE</field>
             <field name="type">worked_days</field>
