@@ -1,9 +1,28 @@
 # -*- coding: utf-8 -*-
-# © 2016 ClearCorp
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Addons modules by CLEARCORP S.A.
+#    Copyright (C) 2009-TODAY CLEARCORP S.A. (<http://clearcorp.co.cr>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 from openerp.report import report_sxw
-from openerp import models
+from odoo import models, fields, api, _
+import odoo
 
 
 class PayslipRunReport(report_sxw.rml_parse):
@@ -13,15 +32,14 @@ class PayslipRunReport(report_sxw.rml_parse):
             'get_payslips_by_department': self._get_payslips_by_department,
             'get_worked_days_hours': self._get_worked_days_hours,
             'get_worked_days_hours_group': self._get_worked_days_hours_group,
-            'get_worked_hours': self._get_worked_hours,
-            'get_worked_hours_group': self._get_worked_hours_group,
             'get_line_total': self._get_line_total,
             'get_line_total_group': self._get_line_total_group,
         })
 
     def _get_payslips_by_department(self, payslip_run):
         dep_list = []
-        department_obj = self.pool.get('hr.department')
+        env = odoo.api.Environment(self.cr, self.uid, {})
+        department_obj = env['hr.department']
         # Create a list of departments
         for payslip in payslip_run.slip_ids:
             department_id = payslip.employee_id.department_id.id
@@ -33,8 +51,7 @@ class PayslipRunReport(report_sxw.rml_parse):
             for payslip in payslip_run.slip_ids:
                 if payslip.employee_id.department_id.id == department_id:
                     dep_emp.append(payslip)
-            department = department_obj.browse(
-                self.cr, self.uid, department_id)
+            department = department_obj.browse(department_id)
             res[department_id] = (department, dep_emp)
         return res
 
@@ -62,28 +79,6 @@ class PayslipRunReport(report_sxw.rml_parse):
                 else:
                     total += line.number_of_hours + \
                         line.number_of_days * 8.0
-        return total
-
-    def _get_worked_hours(self, payslip, code='HN'):
-        total = 0.00
-        for line in payslip.worked_days_line_ids:
-            if line.code == code:
-                if payslip.credit_note:
-                    # normal schedule in Costa Rica
-                    total -= line.number_of_hours
-                else:
-                    total += line.number_of_hours
-        return total
-
-    def _get_worked_hours_group(self, payslip, code=['HE', 'HEF', 'FE']):
-        total = 0.00
-        for line in payslip.worked_days_line_ids:
-            if line.code in code:
-                if payslip.credit_note:
-                    # normal schedule in Costa Rica
-                    total -= line.number_of_hours
-                else:
-                    total += line.number_of_hours
         return total
 
     def _get_line_total(self, payslip, code='BASE'):

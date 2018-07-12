@@ -20,4 +20,15 @@
 #
 ##############################################################################
 
-import res_partner
+from openerp.tools.translate import _
+from odoo import models, fields, api, _
+import odoo.addons.decimal_precision as dp
+
+class ResCompany(models.Model):
+    _inherit = 'res.company'
+
+    rent_company_id= fields.Many2one('res.company', string='Company', required=True)
+    first_limit= fields.Float('First Limit', digits=dp.get_precision('Payroll'),default=0.0)
+    second_limit=fields.Float('Second Limit', digits=dp.get_precision('Payroll'),default=0.0) 
+    amount_per_child= fields.Float('Amount per Child', digits=dp.get_precision('Payroll'),default=0.0)
+    amount_per_spouse= fields.Float('Amount per spouse', digits=dp.get_precision('Payroll'),default=0.0)

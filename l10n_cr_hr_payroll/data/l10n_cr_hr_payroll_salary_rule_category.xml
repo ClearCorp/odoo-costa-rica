@@ -113,5 +113,6 @@
             <field name="code">HEX</field>
             <field name="note">Categoría utilizada para pagos horas extras después del salario Ordinario (Horas extras).</field>
         </record>
+        
     </data>
 </openerp>

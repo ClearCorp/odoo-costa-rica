@@ -4,7 +4,7 @@
          so users can freely customize/delete them -->
     <data noupdate="1">
         <!--Email template -->
-        <record id="mail_template_payslip" model="mail.template">
+        <record id="email_template_payslip" model="mail.template">
             <field name="name">Payslip - Send by Email</field>
             <field name="email_from">${(object.write_uid.partner_id.email or '')|safe}</field>
             <field name="subject">${object.name|safe}</field>

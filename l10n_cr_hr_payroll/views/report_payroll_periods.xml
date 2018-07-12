@@ -19,6 +19,7 @@
                         <t t-set="total_rent" t-value="0" />
                         <t t-set="total_net" t-value="0" />
                         <t t-set="total_paid" t-value="0" />
+                        <t t-set="company" t-value="get_company(data['company'])" />
                         <br/>
                         <br/>
                         <t t-foreach="get_payslips_by_struct(data['period_from'], data['period_to'])" t-as="structSlip">
@@ -75,61 +76,61 @@
                                                 <t t-set="nrm_hrs" t-value="get_worked_days_hours(payslips, code='HN')" />
                                                 <t t-set="subtotal_nrm_hrs" t-value="subtotal_nrm_hrs+nrm_hrs" />
                                                 <t t-set="total_nrm_hrs" t-value="total_nrm_hrs+nrm_hrs" />
-                                                <span t-esc="formatLang(nrm_hrs, dp='Account')" />
+                                                <span t-esc="nrm_hrs"/>
                                             </td>
                                             <td name="HE">
                                                 <t t-set="ext_hrs" t-value="get_worked_days_hours_group(payslips, code=['HE','HEF','FE'])" />
                                                 <t t-set="subtotal_ext_hrs" t-value="subtotal_ext_hrs+ext_hrs" />
                                                 <t t-set="total_ext_hrs" t-value="total_ext_hrs+ext_hrs" />
-                                                <span t-esc="formatLang(ext_hrs, dp='Account')" />
+                                                <span t-esc="ext_hrs"/>
                                             </td>
                                             <td name="BASE">
                                                 <t t-set="base" t-value="get_line_total(payslips, code='BASE')" />
                                                 <t t-set="subtotal_base" t-value="subtotal_base+base" />
                                                 <t t-set="total_base" t-value="total_base+base" />
-                                                <span t-esc="formatLang(base, dp='Account')" />
+                                                <span t-esc="base" t-options="{'widget': 'monetary','display_currency':employee.company_id.currency_id}"/>
                                             </td>
                                             <td name="EXT">
                                                 <t t-set="extra" t-value="get_line_total_group(payslips, code=['EXT','EXT-FE','FE'])" />
                                                 <t t-set="subtotal_extra" t-value="subtotal_extra+extra" />
                                                 <t t-set="total_extra" t-value="total_extra+extra" />
-                                                <span t-esc="formatLang(extra, dp='Account')" />
+                                                <span t-esc="extra" t-options="{'widget': 'monetary','display_currency':employee.company_id.currency_id}"/>
                                             </td>
                                             <td>
                                                 <t t-set="gross" t-value="get_line_total(payslips, code='BRUTO')" />
                                                 <t t-set="subtotal_gross" t-value="subtotal_gross+gross" />
                                                 <t t-set="total_gross" t-value="total_gross+gross" />
-                                                <span t-esc="formatLang(gross, dp='Account')" />
+                                                <span t-esc="gross" t-options="{'widget': 'monetary','display_currency':employee.company_id.currency_id}"/>
                                             </td>
                                             <td>
                                                 <t t-set="deduct" t-value="get_line_total_group(payslips, code=['CSO'])" />
                                                 <t t-set="subtotal_deduct" t-value="subtotal_deduct+deduct" />
                                                 <t t-set="total_deduct" t-value="total_deduct+deduct" />
-                                                <span t-esc="formatLang(deduct, dp='Account')" />
+                                                <span t-esc="deduct" t-options="{'widget': 'monetary','display_currency':employee.company_id.currency_id}"/>
                                             </td>
                                             <td>
                                                 <t t-set="bonuses" t-value="get_line_total(payslips, code='BON')" />
                                                 <t t-set="subtotal_bonuses" t-value="subtotal_bonuses+bonuses" />
                                                 <t t-set="total_bonuses" t-value="total_bonuses+bonuses" />
-                                                <span t-esc="formatLang(bonuses, dp='Account')" />
+                                                <span t-esc="bonuses" t-options="{'widget': 'monetary','display_currency':employee.company_id.currency_id}"/>
                                             </td>
                                             <td>
                                                 <t t-set="rent" t-value="get_line_total(payslips, code='RENTA')" />
                                                 <t t-set="subtotal_rent" t-value="subtotal_rent+rent" />
                                                 <t t-set="total_rent" t-value="total_rent+rent" />
-                                                <span t-esc="formatLang(rent, dp='Account')" />
+                                                <span t-esc="rent" t-options="{'widget': 'monetary','display_currency':employee.company_id.currency_id}"/>
                                             </td>
                                             <td>
                                                 <t t-set="net" t-value="get_line_total(payslips, code='NETO')" />
                                                 <t t-set="subtotal_net" t-value="subtotal_net+net" />
                                                 <t t-set="total_net" t-value="total_net+net" />
-                                                <span t-esc="formatLang(net, dp='Account')" />
+                                                <span t-esc="net" t-options="{'widget': 'monetary','display_currency':employee.company_id.currency_id}"/>
                                             </td>
                                             <td>
                                                 <t t-set="paid" t-value="get_line_total(payslips, code='DEVENGADO')" />
                                                 <t t-set="subtotal_paid" t-value="subtotal_paid+paid" />
                                                 <t t-set="total_paid" t-value="total_paid+paid" />
-                                                <span t-esc="formatLang(paid, dp='Account')" />
+                                                <span t-esc="paid" t-options="{'widget': 'monetary','display_currency':employee.company_id.currency_id}"/>
                                             </td>
                                         </tr>
                                     </t>
@@ -144,34 +145,34 @@
                                             <p> </p>
                                         </th>
                                         <th>
-                                            <span t-esc="formatLang(subtotal_nrm_hrs, dp='Account')" />
+                                            <span t-esc="subtotal_nrm_hrs"/>
                                         </th>
                                         <th>
-                                            <span t-esc="formatLang(subtotal_ext_hrs, dp='Account')" />
+                                            <span t-esc="subtotal_ext_hrs"/>
                                         </th>
                                         <th>
-                                            <span t-esc="formatLang(subtotal_base, dp='Account')" />
+                                            <span t-esc="subtotal_base" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                         </th>
                                         <th>
-                                            <span t-esc="formatLang(subtotal_extra, dp='Account')" />
+                                            <span t-esc="subtotal_extra" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                         </th>
                                         <th>
-                                            <span t-esc="formatLang(subtotal_gross, dp='Account')" />
+                                            <span t-esc="subtotal_gross" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                         </th>
                                         <th>
-                                            <span t-esc="formatLang(subtotal_deduct, dp='Account')" />
+                                            <span t-esc="subtotal_deduct" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                         </th>
                                         <th>
-                                            <span t-esc="formatLang(subtotal_bonuses, dp='Account')" />
+                                            <span t-esc="subtotal_bonuses" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                         </th>
                                         <th>
-                                            <span t-esc="formatLang(subtotal_rent, dp='Account')" />
+                                            <span t-esc="subtotal_rent" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                         </th>
                                         <th>
-                                            <span t-esc="formatLang(subtotal_net, dp='Account')" />
+                                            <span t-esc="subtotal_net" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                         </th>
                                         <th>
-                                            <span t-esc="formatLang(subtotal_paid, dp='Account')" />
+                                            <span t-esc="subtotal_paid" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                         </th>
                                     </tr>
                                 </tbody>
@@ -202,34 +203,34 @@
                                 <tr style="page-break-inside:avoid; page-break-after:avoid;">
                                     <th>Total</th>
                                     <th>
-                                        <span t-esc="formatLang(total_nrm_hrs, dp='Account')" />
+                                        <span t-esc="total_nrm_hrs"/>
                                     </th>
                                     <th>
-                                        <span t-esc="formatLang(total_ext_hrs, dp='Account')" />
+                                        <span t-esc="total_ext_hrs"/>
                                     </th>
                                     <th>
-                                        <span t-esc="formatLang(total_base, dp='Account')" />
+                                        <span t-esc="total_base" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                     </th>
                                     <th>
-                                        <span t-esc="formatLang(total_extra, dp='Account')" />
+                                        <span t-esc="total_extra" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                     </th>
                                     <th>
-                                        <span t-esc="formatLang(total_gross, dp='Account')" />
+                                        <span t-esc="total_gross" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                     </th>
                                     <th>
-                                        <span t-esc="formatLang(total_deduct, dp='Account')" />
+                                        <span t-esc="total_deduct" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                     </th>
                                     <th>
-                                        <span t-esc="formatLang(total_bonuses, dp='Account')" />
+                                        <span t-esc="total_bonuses" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                     </th>
                                     <th>
-                                        <span t-esc="formatLang(total_rent, dp='Account')" />
+                                        <span t-esc="total_rent" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                     </th>
                                     <th>
-                                        <span t-esc="formatLang(total_net, dp='Account')" />
+                                        <span t-esc="total_net" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                     </th>
                                     <th>
-                                        <span t-esc="formatLang(total_paid, dp='Account')" />
+                                        <span t-esc="total_paid" t-options="{'widget': 'monetary','display_currency':company.currency_id}"/>
                                     </th>
                                 </tr>
                             </tbody>

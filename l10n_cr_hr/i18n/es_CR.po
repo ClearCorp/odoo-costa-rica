@@ -1,0 +1,33 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_cr_hr
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-16 22:52+0000\n"
+"PO-Revision-Date: 2014-10-16 22:52+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_cr_hr
+#: model:ir.model,name:l10n_cr_hr.model_hr_employee
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: l10n_cr_hr
+#: code:addons/l10n_cr_hr/hr_employee.py:34
+#, python-format
+msgid " (Copy)"
+msgstr " (Copia)"
+
+#. module: l10n_cr_hr
+#: sql_constraint:hr.employee:0
+msgid "The Nº Identification already exist for other employee"
+msgstr "El Nº Identifiación ya existe "
+
