@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <!-- HR SALARY RULE CATEGORIES-->
+        <record id="hr_payroll_base_salary" model="hr.salary.rule.category">
+            <field name="name">Base</field>
+            <field name="code">BASE</field>
+            <field name="note">Categoría destinada al salario base únicamente.</field>
+        </record>
+        
+        <record id="hr_payroll_aditional_pay_salary" model="hr.salary.rule.category">
+            <field name="name">Pagos Adicionales</field>
+            <field name="code">SOP</field>
+            <field name="note">Las reglas que se encuentren en esta categoría, sumaran al total del salario bruto.</field>
+        </record>
+        
+        <record id="hr_payroll_gross_salary" model="hr.salary.rule.category">
+            <field name="name">Bruto</field>
+            <field name="code">BRUTO</field>
+            <field name="note">Categoría destinada al salario bruto únicamente</field>
+        </record>
+        
+        <record id="hr_payroll_deduction_salary" model="hr.salary.rule.category">
+            <field name="name">Deducción</field>
+            <field name="code">DED</field>
+            <field name="note">Las reglas que se encuentren en esta categoría, afectarán el total de salario neto.</field>
+        </record>
+        
+        <record id="hr_payroll_net_salary" model="hr.salary.rule.category">
+            <field name="name">Salario Neto</field>
+            <field name="code">NETO</field>
+            <field name="note">Categoría destinada al salario neto únicamente</field>
+        </record>
+        
+        <record id="hr_payroll_bon_salary" model="hr.salary.rule.category">
+            <field name="name">Bonificaciones</field>
+            <field name="code">BON</field>
+        </record>
+        
+        <record id="hr_payroll_head_salary" model="hr.salary.rule.category">
+            <field name="name">Cargas Patronales</field>
+            <field name="code">PATRON</field>
+        </record>
+        
+        <record id="hr_payroll_deduction_salary" model="hr.salary.rule.category">
+            <field name="name">Deduccion</field>
+            <field name="code">DED</field>
+            <field name="note">Estas deducciones afectarán directamente al salario neto</field>
+        </record>
+        
+        <record id="hr_payroll_absence_salary" model="hr.salary.rule.category">
+            <field name="name">Deducciones por ausencias</field>
+            <field name="code">DPA</field>
+            <field name="note">Estas deducciones afectarán directamente al salario bruto</field>
+        </record>
+        
+        <record id="hr_payroll_provisions_salary" model="hr.salary.rule.category">
+            <field name="name">Provisiones</field>
+            <field name="code">PROV</field>
+        </record>
+        
+        <record id="hr_payroll_contract_salary" model="hr.salary.rule.category">
+            <field name="name">Contrato</field>
+            <field name="code">CONTRATO</field>
+        </record>
+        
+        <record id="hr_payroll_plus_salary_salary" model="hr.salary.rule.category">
+            <field name="name">Pluses Salariales</field>
+            <field name="code">PSA</field>
+        </record>
+        
+        <record id="hr_payroll_savings_loan_salary" model="hr.salary.rule.category">
+            <field name="name">Ahorro y Préstamo</field>
+            <field name="code">AYP</field>
+        </record>
+        
+        <record id="hr_payroll_accrued_salary" model="hr.salary.rule.category">
+            <field name="name">Devengado</field>
+            <field name="code">DEVENGADO</field>
+        </record>
+        
+        <record id="hr_payroll_head_loan_salary" model="hr.salary.rule.category">
+            <field name="name">Cargas Patronales Ahorro y Préstamo</field>
+            <field name="code">AYPPATRON</field>
+        </record>
+        
+        <record id="hr_payroll_retentions_salary" model="hr.salary.rule.category">
+            <field name="name">Otras retenciones</field>
+            <field name="code">ORET</field>
+            <field name="note">Categoría utilizada para retenciones sobre el salario neto (ahorros, préstamos, etc.)</field>
+        </record>
+        
+        <record id="hr_payroll_retentions_salary" model="hr.salary.rule.category">
+            <field name="name">Otras retenciones</field>
+            <field name="code">ORET</field>
+            <field name="note">Categoría utilizada para retenciones sobre el salario neto (ahorros, préstamos, etc.)</field>
+        </record>
+        
+        <record id="hr_payroll_retentions_salary" model="hr.salary.rule.category">
+            <field name="name">Otras retenciones</field>
+            <field name="code">ORET</field>
+            <field name="note">Categoría utilizada para retenciones sobre el salario neto (ahorros, préstamos, etc.)</field>
+        </record>
+        
+        <record id="hr_payroll_other_pay_salary" model="hr.salary.rule.category">
+            <field name="name">Otros pagos</field>
+            <field name="code">OPAG</field>
+            <field name="note">Categoría utilizada para pagos adicionales después del salario neto (reintegros y otros ingresos exentos de toda deducción).</field>
+        </record>
+        
+        <record id="hr_payroll_extra_hours_salary" model="hr.salary.rule.category">
+            <field name="name">Horas extras</field>
+            <field name="code">HEX</field>
+            <field name="note">Categoría utilizada para pagos horas extras después del salario Ordinario (Horas extras).</field>
+        </record>
+        
+    </data>
+</openerp>

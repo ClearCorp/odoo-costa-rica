@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_human_resources_configuration_inherit" model="ir.ui.view">
+            <field name="name">view.human.resources.configuration.inherit</field>
+            <field name="model">hr.payroll.config.settings</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payroll_configuration"/>
+            <field name="priority" eval="16"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group" position="after">
+                    <group name="rent_group">
+                        <label for="id" string="Rent Configuration"/>
+                        <div>
+                            <div name="first_limit">
+                                <label for="first_limit"/>
+                                <field name="first_limit" class="oe_inline"/>
+                            </div>
+                            <div name="second_limit">
+                                <label for="second_limit"/>
+                                <field name="second_limit" class="oe_inline"/>
+                            </div>
+                            <div name="amount_per_child">
+                                <label for="amount_per_child"/>
+                                <field name="amount_per_child" class="oe_inline"/>
+                            </div>
+                            <div name="amount_per_spouse">
+                                <label for="amount_per_spouse"/>
+                                <field name="amount_per_spouse" class="oe_inline"/>
+                            </div>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

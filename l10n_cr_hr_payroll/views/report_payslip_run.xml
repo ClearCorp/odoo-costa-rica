@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="report_payslip_run">
+            <t t-call="report.html_container">
+                <t t-call="report.internal_layout">
+                    <div class="page">
+                        <div align="center">
+                            <t t-foreach="docs" t-as="batch"> 
+                                <h3>Payslip Batches</h3>
+                                <h3>
+                                    <span t-field="batch.name" />
+                                </h3>
+                                <h3>from <span t-field="batch.date_start" /> to <span t-field="batch.date_end" /></h3>
+                                <t t-set="data_dict" t-value="get_payslips_by_department(batch)" />
+                                <t t-set="total_nrm_hrs" t-value="0" />
+                                <t t-set="total_ext_hrs" t-value="0" />
+                                <t t-set="total_base" t-value="0" />
+                                <t t-set="total_extra" t-value="0" />
+                                <t t-set="total_gross" t-value="0" />
+                                <t t-set="total_deduct" t-value="0" />
+                                <t t-set="total_bonuses" t-value="0" />
+                                <t t-set="total_rent" t-value="0" />
+                                <t t-set="total_net" t-value="0" />
+                                <t t-set="total_paid" t-value="0" />
+                                <t t-foreach="data_dict.keys()" t-as="department_id">
+                                    <t t-set="department_data" t-value="data_dict[department_id]" />
+                                    <t t-set="department" t-value="department_data[0]" />
+                                    <t t-set="payslips" t-value="department_data[1]" />
+                                    <h4 align="left"> Department: <span t-field="department.name" /></h4>
+                                    <table name="department" class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Card</th>
+                                                <th>Name</th>
+                                                <th>Bank Account</th>
+                                                <th>Nrm Hrs</th>
+                                                <th>Ext Hrs</th>
+                                                <th>Base</th>
+                                                <th>Extra</th>
+                                                <th>Gross</th>
+                                                <th>Deduct.CCSS/BP</th>
+                                                <th>Bonuses</th>
+                                                <th>Rent</th>
+                                                <th>Net</th>
+                                                <th>Paid</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="page-break-inside: avoid;" t-foreach="payslips" t-as="payslip">
+                                                <td name="identification">
+                                                    <span t-field="payslip.employee_id.identification_id" />
+                                                </td>
+                                                <td name="employee">
+                                                    <span t-field="payslip.employee_id" />
+                                                </td>
+                                                <td name="bank_account">
+                                                    <t t-if="payslip.employee_id.bank_account_id" >
+                                                        <span t-field="payslip.employee_id.bank_account_id.acc_number" />
+                                                    </t>
+                                                </td>
+                                                <td name="HN">
+                                                    <t t-set="nrm_hrs" t-value="get_worked_days_hours(payslip, code='HN')" />
+                                                    <t t-set="total_nrm_hrs" t-value="total_nrm_hrs+nrm_hrs" />
+                                                    <span t-esc="nrm_hrs"/>
+                                                </td>
+                                                <td name="HE">
+                                                    <t t-set="ext_hrs" t-value="get_worked_days_hours_group(payslip, code=['HE','HEF','FE'])" />
+                                                    <t t-set="total_ext_hrs" t-value="total_ext_hrs+ext_hrs" />
+                                                    <span t-esc="ext_hrs"/>
+                                                </td>
+                                                <td name="BASE">
+                                                    <t t-set="base" t-value="get_line_total(payslip, code='BASE')" />
+                                                    <t t-set="total_base" t-value="total_base+base" />
+                                                    <span t-esc="base" t-options="{'widget': 'monetary','display_currency':department.company_id.currency_id}"/>
+                                                </td>
+                                                <td name="EXT">
+                                                    <t t-set="extra" t-value="get_line_total_group(payslip, code=['EXT','EXT-FE','FE'])" />
+                                                    <t t-set="total_extra" t-value="total_extra+extra" />
+                                                    <span t-esc="extra" t-options="{'widget': 'monetary','display_currency':department.company_id.currency_id}"/>
+                                                </td>
+                                                <td>
+                                                    <t t-set="gross" t-value="get_line_total(payslip, code='BRUTO')" />
+                                                    <t t-set="total_gross" t-value="total_gross+gross" />
+                                                    <span t-esc="gross" t-options="{'widget': 'monetary','display_currency':department.company_id.currency_id}"/>
+                                                </td>
+                                                <td>
+                                                    <t t-set="deduct" t-value="get_line_total_group(payslip, code=['CSO'])" />
+                                                    <t t-set="total_deduct" t-value="total_deduct+deduct" />
+                                                    <span t-esc="deduct" t-options="{'widget': 'monetary','display_currency':department.company_id.currency_id}"/>
+                                                </td>
+                                                <td>
+                                                    <t t-set="bonuses" t-value="get_line_total(payslip, code='BON')" />
+                                                    <t t-set="total_bonuses" t-value="total_bonuses+bonuses" />
+                                                    <span t-esc="bonuses" t-options="{'widget': 'monetary','display_currency':department.company_id.currency_id}"/>
+                                                </td>
+                                                <td>
+                                                    <t t-set="rent" t-value="get_line_total(payslip, code='RENTA')" />
+                                                    <t t-set="total_rent" t-value="total_rent+rent" />
+                                                    <span t-esc="rent" t-options="{'widget': 'monetary','display_currency':department.company_id.currency_id}"/>
+                                                </td>
+                                                <td>
+                                                    <t t-set="net" t-value="get_line_total(payslip, code='NETO')" />
+                                                    <t t-set="total_net" t-value="total_net+net" />
+                                                    <span t-esc="net" t-options="{'widget': 'monetary','display_currency':department.company_id.currency_id}"/>
+                                                </td>
+                                                <td>
+                                                    <t t-set="paid" t-value="get_line_total(payslip, code='DEVENGADO')" />
+                                                    <t t-set="total_paid" t-value="total_paid+paid" />
+                                                    <span t-esc="paid" t-options="{'widget': 'monetary','display_currency':department.company_id.currency_id}"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table> 
+                                </t>
+                                <br/>
+                                <br/>
+                                <table name="total" class="table table-condensed" style="page-break-inside:avoid; page-break-after:avoid;">
+                                    <div align="center">
+                                        <h3>General Total</h3>
+                                    </div>
+                                    <thead>
+                                        <tr style="page-break-inside:avoid; page-break-after:avoid;">
+                                            <th> </th>
+                                            <th>Nrm Hrs</th>
+                                            <th>Ext Hrs</th>
+                                            <th>Base</th>
+                                            <th>Extra</th>
+                                            <th>Gross</th>
+                                            <th>Deduct.CCSS/BP</th>
+                                            <th>Bonuses</th>
+                                            <th>Rent</th>
+                                            <th>Net</th>
+                                            <th>Paid</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="page-break-inside:avoid; page-break-after:avoid;">
+                                            <th>Total</th>
+                                            <th>
+                                                <span t-esc="total_nrm_hrs"/>
+                                            </th>
+                                            <th>
+                                                <span t-esc="total_ext_hrs"/>
+                                            </th>
+                                            <th>
+                                                <span t-esc="total_base" t-options="{'widget': 'monetary','display_currency':batch.create_uid.company_id.currency_id}"/>
+                                            </th>
+                                            <th>
+                                                <span t-esc="total_extra" t-options="{'widget': 'monetary','display_currency':batch.create_uid.company_id.currency_id}"/>
+                                            </th>
+                                            <th>
+                                                <span t-esc="total_gross" t-options="{'widget': 'monetary','display_currency':batch.create_uid.company_id.currency_id}"/>
+                                            </th>
+                                            <th>
+                                                <span t-esc="total_deduct" t-options="{'widget': 'monetary','display_currency':batch.create_uid.company_id.currency_id}"/>
+                                            </th>
+                                            <th>
+                                                <span t-esc="total_bonuses" t-options="{'widget': 'monetary','display_currency':batch.create_uid.company_id.currency_id}"/>
+                                            </th>
+                                            <th>
+                                                <span t-esc="total_rent" t-options="{'widget': 'monetary','display_currency':batch.create_uid.company_id.currency_id}"/>
+                                            </th>
+                                            <th>
+                                                <span t-esc="total_net" t-options="{'widget': 'monetary','display_currency':batch.create_uid.company_id.currency_id}"/>
+                                            </th>
+                                            <th>
+                                                <span t-esc="total_paid" t-options="{'widget': 'monetary','display_currency':batch.create_uid.company_id.currency_id}"/>
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+     </data>
+ </openerp>
