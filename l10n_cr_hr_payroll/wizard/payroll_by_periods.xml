@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <record id="view_payroll_by_periods_form" model="ir.ui.view">
+            <field name="name">Payroll Report</field>
+            <field name="model">l10n.cr.hr.payroll.by.periods</field>
+            <field name="arch" type="xml">
+                <form string="Payroll by Periods">
+                    <group string="General Options">
+                        <field name="company_id" attrs="{'required':True}" />
+                    </group>
+                    <group string="Filters">
+                        <group>
+                            <field name="filter" required="True"/>
+                            <field name="format" required="True" />
+                        </group>
+                        <group>
+                            <field name="date_from"
+                                attrs="{'required': [('filter', '=', 'date')], 'invisible': [('filter', '!=', 'date')]}"/>
+                            <field name="date_to"
+                                attrs="{'required': [('filter', '=', 'date')], 'invisible': [('filter', '!=', 'date')]}"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print"
+                            type="object" class="oe_highlight" /> or
+                        <button string="Cancel" class="oe_link"
+                            special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_payroll_by_periods" model="ir.actions.act_window">
+            <field name="name">Payroll Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n.cr.hr.payroll.by.periods</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_payroll_by_periods_form" />
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

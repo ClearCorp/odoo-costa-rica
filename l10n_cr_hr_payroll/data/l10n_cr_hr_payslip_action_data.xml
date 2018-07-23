@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<openerp>
+    <!-- Mail template is done in a NOUPDATE block
+         so users can freely customize/delete them -->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_payslip" model="mail.template">
+            <field name="name">Payslip - Send by Email</field>
+            <field name="email_from">${(object.write_uid.partner_id.email or '')|safe}</field>
+            <field name="subject">${object.name|safe}</field>
+            <field name="email_to">${object.employee_id.personal_email}</field>
+            <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="hr_payroll.action_report_payslip"/>
+            <field name="report_name">${object.name or ''}</field>
+            <field name="user_signature" eval="True"/>
+            <field name="lang">${object.write_uid.lang}</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>Collaborator ${object.employee_id.name},</p>
+    <p>Attached payslip.</p>
+    <p>If you have any question, do not hesitate to contact me.</p>
+</div>
+            ]]></field>
+        </record>
+    </data>
+</openerp>

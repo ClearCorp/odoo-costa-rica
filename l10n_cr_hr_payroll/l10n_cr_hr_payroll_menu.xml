@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem id="menu_payroll_periods" name="Payroll Report"
+            parent="hr_payroll.menu_hr_payroll_root" action="action_payroll_by_periods"
+            groups="hr.group_hr_manager" sequence="50"/>
+        <menuitem id="menu_payroll_periods_employee" name="Employee Payroll Report"
+            parent="hr_payroll.menu_hr_payroll_root" action="action_payroll_by_periods_employee" sequence="50"/>
+    </data>
+</openerp>

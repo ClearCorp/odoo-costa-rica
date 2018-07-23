@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+        <record id="view_l10n_cr_hr_holidays_employee_form" model="ir.ui.view">
+            <field name="name">view.l10n.cr.hr.holidays.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="priority" eval="100"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/div" position="after">
+                    <label for="leaves_per_period"/>
+                    <div>
+                        <field name="leaves_per_period" class="oe_inline"/> days
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
