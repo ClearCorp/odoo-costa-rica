@@ -59,34 +59,34 @@
                                                 <span t-esc="payslip.name" />
                                             </td>
                                             <td name="HN">
-                                                <span t-esc="formatLang(get_worked_days_hours(payslip, code='HN'), dp='Account')" />
+                                                <span t-esc="get_worked_days_hours(payslip, code='HN')"/>
                                             </td>
                                             <td name="HE">
-                                                <span t-esc="formatLang(get_worked_days_hours_group(payslip, code=['HE','HEF','FE']), dp='Account')" />
+                                                <span t-esc="get_worked_days_hours_group(payslip, code=['HE','HEF','FE'])"/>
                                             </td>
                                             <td name="BASE">
-                                                <span t-esc="formatLang(get_line_total(payslip, code='BASE'), dp='Account')" />
+                                                <span t-esc="get_line_total(payslip, code='BASE')" t-options="{'widget': 'monetary','display_currency':payslip.company_id.currency_id}"/>
                                             </td>
                                             <td name="EXT">
-                                                <span t-esc="formatLang(get_line_total_group(payslip, code=['EXT','EXT-FE','FE']), dp='Account')" />
+                                                <span t-esc="get_line_total_group(payslip, code=['EXT','EXT-FE','FE'])" t-options="{'widget': 'monetary','display_currency':payslip.company_id.currency_id}"/>
                                             </td>
                                             <td>
-                                                <span t-esc="formatLang(get_line_total(payslip, code='BRUTO'), dp='Account')" />
+                                                <span t-esc="get_line_total(payslip, code='BRUTO')" t-options="{'widget': 'monetary','display_currency':payslip.company_id.currency_id}"/>
                                             </td>
                                             <td>
-                                                <span t-esc="formatLang(get_line_total_group(payslip, code=['CSO']), dp='Account')" />
+                                                <span t-esc="get_line_total_group(payslip, code=['CSO'])" t-options="{'widget': 'monetary','display_currency':payslip.company_id.currency_id}"/>
                                             </td>
                                             <td>
-                                                <span t-esc="formatLang(get_line_total(payslip, code='BON'), dp='Account')" />
+                                                <span t-esc="get_line_total(payslip, code='BON')" t-options="{'widget': 'monetary','display_currency':payslip.company_id.currency_id}"/>
                                             </td>
                                             <td>
-                                                <span t-esc="formatLang(get_line_total(payslip, code='RENTA'), dp='Account')" />
+                                                <span t-esc="get_line_total(payslip, code='RENTA')" t-options="{'widget': 'monetary','display_currency':payslip.company_id.currency_id}"/>
                                             </td>
                                             <td>
-                                                <span t-esc="formatLang(get_line_total(payslip, code='NETO'), dp='Account')" />
+                                                <span t-esc="get_line_total(payslip, code='NETO')" t-options="{'widget': 'monetary','display_currency':payslip.company_id.currency_id}"/>
                                             </td>
                                             <td>
-                                                <span t-esc="formatLang(get_line_total(payslip, code='DEVENGADO'), dp='Account')" />
+                                                <span t-esc="get_line_total(payslip, code='DEVENGADO')" t-options="{'widget': 'monetary','display_currency':payslip.company_id.currency_id}"/>
                                             </td>
                                         </tr>
                                     </t>

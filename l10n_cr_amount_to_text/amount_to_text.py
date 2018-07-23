@@ -1,6 +1,24 @@
 # -*- coding: utf-8 -*-
-# © 2016 ClearCorp
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Addons modules by CLEARCORP S.A.
+#    Copyright (C) 2009-TODAY CLEARCORP S.A. (<http://clearcorp.co.cr>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 import logging
 
@@ -54,15 +72,15 @@ HUNDREDS = (
     'NOVECIENTOS ',
 )
 
-
 # TODO: Remove currency param
-def number_to_text_es(number_in, currency, join_dec=' Y ',
-                      separator=',', decimal_point='.'):
+def number_to_text_es(number_in, currency, join_dec=' Y ', separator=',', decimal_point='.'):
     converted = ''
-    if currency is False or currency is None:
+    if currency == False:
+        currency = ''
+    if currency == None:
         currency = ''
 
-    # Check type and convert to str
+    #Check type and convert to str
     if type(number_in) != 'str':
         number = str(number_in)
     else:
@@ -72,8 +90,7 @@ def number_to_text_es(number_in, currency, join_dec=' Y ',
     try:
         number = number.replace(separator, '')
     except ValueError:
-        _logger.info("An error occurred while replacing the "
-                     "separator an error may occur.")
+        _logger.info("An error occurred while replacing the separator an error may occur.")
 
     # Get the integer and decimal part of the numbers
     try:
@@ -85,53 +102,51 @@ def number_to_text_es(number_in, currency, join_dec=' Y ',
 
     number = number_int.zfill(9)
     millions = number[:3]
-    thousands = number[3:6]
+    thoudsands = number[3:6]
     hundreds = number[6:]
 
-    if millions:
-        if millions == '001':
+    if(millions):
+        if(millions == '001'):
             converted += 'UN MILLON '
-        elif int(millions) > 0:
-            converted += '%sMILLONES ' % _convert_number(millions)
+        elif(int(millions) > 0):
+            converted += '%sMILLONES ' % _convertNumber(millions)
 
-    if thousands:
-        if thousands == '001':
+    if(thoudsands):
+        if(thoudsands == '001'):
             converted += 'MIL '
-        elif int(thousands) > 0:
-            converted += '%sMIL ' % _convert_number(thousands)
+        elif(int(thoudsands) > 0):
+            converted += '%sMIL ' % _convertNumber(thoudsands)
 
-    if hundreds:
-        if hundreds == '001':
+    if(hundreds):
+        if(hundreds == '001'):
             converted += 'UN '
-        elif int(hundreds) > 0:
-            converted += '%s ' % _convert_number(hundreds)
+        elif(int(hundreds) > 0):
+            converted += '%s ' % _convertNumber(hundreds)
 
     if number_dec == "":
-        number_dec = "00"
-    if len(number_dec) < 2:
-        number_dec += '0'
+        number_dec = "00" 
+    if (len(number_dec) < 2 ):
+        number_dec+='0'
 
     # TODO: Check currency inclusion
-    has_decimal = float(number_dec) != 0 and join_dec + number_dec +\
-        "/100" or ' EXACTOS'
-    converted += currency + has_decimal
+    has_decimal = float(number_dec) != 0 and join_dec + number_dec + "/100" or ' EXACTOS'
+    converted += currency +  has_decimal
 
     return converted
 
-
-def _convert_number(n):
+def _convertNumber(n):
     output = ''
 
-    if n == '100':
+    if(n == '100'):
         output = "CIEN "
-    elif n[0] != '0':
+    elif(n[0] != '0'):
         output = HUNDREDS[int(n[0])-1]
 
     k = int(n[1:])
-    if k <= 20:
+    if(k <= 20):
         output += UNITS[k]
     else:
-        if (k > 30) & (n[2] != '0'):
+        if((k > 30) & (n[2] != '0')):
             output += '%sY %s' % (TENS[int(n[1])-2], UNITS[int(n[2])])
         else:
             output += '%s%s' % (TENS[int(n[1])-2], UNITS[int(n[2])])

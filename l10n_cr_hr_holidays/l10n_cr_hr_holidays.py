@@ -19,5 +19,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import tools,models, fields, api,_
 
-import res_partner
+class hr_employee(models.Model):
+    _inherit="hr.employee"
+    
+    def add_legal_leaves_per_period(self):
+        employees = self.search([])
+        for employee_obj in employees:
+            sum = employee_obj.remaining_leaves + employee_obj.leaves_per_period
+            employee_obj.write({'remaining_leaves': sum})
+    
+    leaves_per_period= fields.Float(string='Legal Leaves per Period',
+                                    help='Total number of legal leaves to be added to this employee per period.')

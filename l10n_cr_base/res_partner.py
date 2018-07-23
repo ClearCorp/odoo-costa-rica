@@ -20,4 +20,17 @@
 #
 ##############################################################################
 
-import res_partner
+from odoo import models, fields, api
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+    
+    _sql_constraints = [
+        ('name_reference_unique',
+        'UNIQUE(ref,name)',
+        'Already exist a reference associated with the name')
+                        ]
+    
+    
+    
+    

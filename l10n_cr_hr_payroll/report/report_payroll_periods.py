@@ -1,36 +1,58 @@
 # -*- coding: utf-8 -*-
-# © 2016 ClearCorp
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Addons modules by CLEARCORP S.A.
+#    Copyright (C) 2009-TODAY CLEARCORP S.A. (<http://clearcorp.co.cr>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 from openerp.report import report_sxw
-from openerp import models
+from odoo import models, fields, api, _
+import odoo
 
 
 class PayrollReportByPeriods(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context):
         super(PayrollReportByPeriods, self).__init__(
-            cr, uid, name, context=context)
+                cr, uid, name, context=context)
         self.localcontext.update({
             'get_payslips_by_struct': self._get_payslips_by_struct,
             'get_payslips_by_employee': self._get_payslips_by_employee,
             'get_worked_days_hours': self._get_worked_days_hours,
             'get_worked_days_hours_group': self._get_worked_days_hours_group,
-            'get_worked_hours': self._get_worked_hours,
-            'get_worked_hours_group': self._get_worked_hours_group,
             'get_line_total': self._get_line_total,
             'get_line_total_group': self._get_line_total_group,
+            'get_company':self._get_company,
         })
 
+    def _get_company(self, company_id):
+        env = odoo.api.Environment(self.cr, self.uid, {})
+        company_obj = env['res.company']
+        companies = []
+        companies = company_obj.search([('id', '=', company_id)])[0]
+        return companies
+
     def _get_payslips_by_period(self, start_period, stop_period):
-        payslip_obj = self.pool.get('hr.payslip')
+        env = odoo.api.Environment(self.cr, self.uid, {})
+        payslip_obj = env['hr.payslip']
         payslips = []
-        payslips_ids = payslip_obj.search(
-            self.cr, self.uid,
-            [('date_from', '>=', start_period),
+        payslips= payslip_obj.search([('date_from', '>=', start_period),
              ('date_to', '<=', stop_period)])
-        if len(payslips_ids) > 0:
-            payslips = payslip_obj.browse(self.cr, self.uid, payslips_ids)
         return payslips
 
     def _get_payslips_by_struct(self, start_period, stop_period):
@@ -58,7 +80,8 @@ class PayrollReportByPeriods(report_sxw.rml_parse):
 
     def _get_payslips_by_employee(self, all_payslips):
         employee_list = []
-        employee_obj = self.pool.get('hr.employee')
+        env = odoo.api.Environment(self.cr, self.uid, {})
+        employee_obj = env['hr.employee']
         # Create a list of employees
         for payslip in all_payslips:
             employee_id = payslip.employee_id.id
@@ -71,7 +94,7 @@ class PayrollReportByPeriods(report_sxw.rml_parse):
             for payslip in all_payslips:
                 if payslip.employee_id.id == employee_id:
                     employee_payslips.append(payslip)
-            employee = employee_obj.browse(self.cr, self.uid, employee_id)
+            employee = employee_obj.browse(employee_id)
             res[employee_id] = (employee, employee_payslips)
         return res
 
@@ -103,30 +126,6 @@ class PayrollReportByPeriods(report_sxw.rml_parse):
                             line.number_of_days * 8.0
         return total
 
-    def _get_worked_hours(self, payslips, code='HN'):
-        total = 0.00
-        for payslip in payslips:
-            for line in payslip.worked_days_line_ids:
-                if line.code == code:
-                    if payslip.credit_note:
-                        # normal schedule in Costa Rica
-                        total -= line.number_of_hours
-                    else:
-                        total += line.number_of_hours
-        return total
-
-    def _get_worked_hours_group(self, payslips, code=['HE', 'HEF', 'FE']):
-        total = 0.00
-        for payslip in payslips:
-            for line in payslip.worked_days_line_ids:
-                if line.code in code:
-                    if payslip.credit_note:
-                        # normal schedule in Costa Rica
-                        total -= line.number_of_hours
-                    else:
-                        total += line.number_of_hours
-        return total
-
     def _get_line_total(self, payslips, code='BASE'):
         total = 0.00
         for payslip in payslips:
@@ -155,3 +154,5 @@ class report_payroll_periods(models.AbstractModel):
     _inherit = 'report.abstract_report'
     _template = 'l10n_cr_hr_payroll.report_payroll_periods'
     _wrapped_report_class = PayrollReportByPeriods
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

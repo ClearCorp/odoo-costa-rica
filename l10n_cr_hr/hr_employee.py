@@ -20,4 +20,23 @@
 #
 ##############################################################################
 
-import res_partner
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
+from openerp.tools.translate import _
+
+class HREmployee(models.Model):
+    _inherit = 'hr.employee'
+    @api.multi
+    def copy(self, default=None):
+        if default is None:
+            default = {}
+        if default.get('identification_id'):
+            default['identification_id'] = False
+        return super(HREmployee, self).copy(default)
+
+    _sql_constraints = [
+        ('identification_unique',
+        'UNIQUE(identification_id)',
+        'The Nº Identification already exist for other employee')
+                        ]
+

@@ -430,11 +430,57 @@ result = worked_days.HEF.number_of_hours * wage_hour * 2 + worked_days.HEF.numbe
            </field>
         </record>
 
+        <record id="hr_payroll_rules_incapacity_monthly" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Incapacidad - Mensual</field>
+            <field name="code">INC</field>
+            <field name="sequence">56</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# company: object of res.company. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.INC
+            </field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# company: object of res.company. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.INC.amount
+           </field>
+        </record>
+
         <record id="hr_payroll_rules_absence_deduction_monthly" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll_absence_salary"/>
             <field name="name">Rebajo por Ausencias-1.0 - Mensual</field>
             <field name="code">Ausencias</field>
-            <field name="sequence">53</field>
+            <field name="sequence">110</field>
             <field name="appears_on_report">True</field>
             <field name="condition_select">python</field>
             <field name="condition_python">
@@ -629,6 +675,52 @@ result = worked_days.HEF</field>
 wage_day = contract.wage / 30
 wage_hour = wage_day / 8
 result = worked_days.HEF.number_of_hours * wage_hour * 2 + worked_days.HEF.number_of_days * wage_day * 2
+           </field>
+        </record>
+
+        <record id="hr_payroll_rules_incapacity_fortnightly" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Incapacidad - Quincenal</field>
+            <field name="code">INC</field>
+            <field name="sequence">56</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# company: object of res.company. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.INC
+            </field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# company: object of res.company. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.INC.amount
            </field>
         </record>
 
@@ -834,6 +926,52 @@ wage_hour = wage_day / 8
 result = worked_days.HEF.number_of_hours * wage_hour * 2 + worked_days.HEF.number_of_days * wage_day * 2
            </field>
         </record>
+
+        <record id="hr_payroll_rules_incapacity_biweekly" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Incapacidad - Bisemanal</field>
+            <field name="code">INC</field>
+            <field name="sequence">56</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# company: object of res.company. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.INC
+            </field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# company: object of res.company. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.INC.amount
+           </field>
+        </record>
         
         <record id="hr_payroll_rules_absence_deduction_biweekly" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll_absence_salary"/>
@@ -1035,7 +1173,53 @@ wage_hour = wage_day / 8
 result = worked_days.HEF.number_of_hours * wage_hour * 2 + worked_days.HEF.number_of_days * wage_day * 2
            </field>
         </record>
-        
+
+        <record id="hr_payroll_rules_incapacity_weekly" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Incapacidad - Semanal</field>
+            <field name="code">INC</field>
+            <field name="sequence">56</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# company: object of res.company. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.INC
+            </field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# company: object of res.company. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.INC.amount
+           </field>
+        </record>
+
         <record id="hr_payroll_rules_absence_deduction_weekly" model="hr.salary.rule">
             <field name="category_id" ref="hr_payroll_absence_salary"/>
             <field name="name">Rebajo por Ausencias-1.0 - Semanal</field>
@@ -1238,7 +1422,55 @@ wage_hour = contract.wage
 result = worked_days.HE.number_of_hours * wage_hour * 2
            </field>
         </record>
-        
+
+        <record id="hr_payroll_rules_incapacity_per_hour" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_aditional_pay_salary"/>
+            <field name="name">Incapacidad - Jornal</field>
+            <field name="code">INC</field>
+            <field name="sequence">56</field>
+            <field name="appears_on_report">True</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# company: object of res.company. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.INC
+            </field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+# company: object of res.company. It is a browse record
+# hr_salary_rule: object for call hr_salary_rule functions
+# cr: cursor 
+# uid: uid
+
+# Note: returned value have to be set in the variable 'result'
+result = inputs.INC.amount
+           </field>
+        </record>
+
+       
+
         <!-- Structures -->
         <!-- Monthly -->
         <record id="data_structure_monthly" model="hr.payroll.structure">
@@ -1261,6 +1493,7 @@ result = worked_days.HE.number_of_hours * wage_hour * 2
                                           (4, ref('hr_payroll_rules_extra_hour_1_5_monthly')),
                                           (4, ref('hr_payroll_rules_holiday_monthly')),
                                           (4, ref('hr_payroll_rules_extra_hour_holiday_monthly')),
+                                          (4, ref('hr_payroll_rules_incapacity_monthly')),
                                           (4, ref('hr_payroll_rules_absence_deduction_monthly')),]"/>
         </record>
 
@@ -1285,6 +1518,7 @@ result = worked_days.HE.number_of_hours * wage_hour * 2
                                           (4, ref('hr_payroll_rules_extra_hour_1_5_fortnightly')),
                                           (4, ref('hr_payroll_rules_holiday_fortnightly')),
                                           (4, ref('hr_payroll_rules_extra_hour_holiday_fortnightly')),
+                                          (4, ref('hr_payroll_rules_incapacity_fortnightly')),
                                           (4, ref('hr_payroll_rules_absence_deduction_fortnightly')),]"/>
         </record>
 
@@ -1309,6 +1543,7 @@ result = worked_days.HE.number_of_hours * wage_hour * 2
                                           (4, ref('hr_payroll_rules_extra_hour_1_5_biweekly')),
                                           (4, ref('hr_payroll_rules_holiday_biweekly')),
                                           (4, ref('hr_payroll_rules_extra_hour_holiday_biweekly')),
+                                          (4, ref('hr_payroll_rules_incapacity_biweekly')),
                                           (4, ref('hr_payroll_rules_absence_deduction_biweekly')),]"/>
         </record>
 
@@ -1333,6 +1568,7 @@ result = worked_days.HE.number_of_hours * wage_hour * 2
                                           (4, ref('hr_payroll_rules_extra_hour_1_5_weekly')),
                                           (4, ref('hr_payroll_rules_holiday_weekly')),
                                           (4, ref('hr_payroll_rules_extra_hour_holiday_weekly')),
+                                          (4, ref('hr_payroll_rules_incapacity_weekly')),
                                           (4, ref('hr_payroll_rules_absence_deduction_weekly')),]"/>
         </record>
 
@@ -1356,7 +1592,8 @@ result = worked_days.HE.number_of_hours * wage_hour * 2
                                           (4, ref('hr_payroll_rules_base_per_hour')),
                                           (4, ref('hr_payroll_rules_extra_hour_1_5_per_hour')),
                                           (4, ref('hr_payroll_rules_holiday_per_hour')),
-                                          (4, ref('hr_payroll_rules_extra_hour_holiday_per_hour')),]"/>
+                                          (4, ref('hr_payroll_rules_extra_hour_holiday_per_hour')),
+                                          (4, ref('hr_payroll_rules_incapacity_per_hour')), ]"/>
         </record>
     </data>
 </openerp>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<openerp>
+    <data>
+        <record model="ir.cron" id="cronjob_legal_leaves_per_period">
+            <field name='name'>Add legal leaves per period</field>
+            <field name='interval_number'>1</field>
+            <field name='interval_type'>months</field>
+            <field name="numbercall">-1</field>
+            <field name="active">True</field>
+            <field name="doall" eval="True" />
+            <field name="model">hr.employee</field>
+            <field name="function">add_legal_leaves_per_period</field>
+            <field name="args">()</field>
+        </record>
+    </data>
+</openerp>

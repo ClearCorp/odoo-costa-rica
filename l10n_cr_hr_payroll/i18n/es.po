@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0e\n"
+"Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-18 16:22+0000\n"
-"PO-Revision-Date: 2016-10-18 16:22+0000\n"
+"POT-Creation-Date: 2018-04-20 22:57+0000\n"
+"PO-Revision-Date: 2018-04-20 22:57+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_cr_hr_payroll
-#: model:mail.template,body_html:l10n_cr_hr_payroll.mail_template_payslip
+#: model:mail.template,body_html:l10n_cr_hr_payroll.email_template_payslip
 msgid "\n"
 "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
 "\n"
@@ -35,19 +35,25 @@ msgstr "\n"
 "            "
 
 #. module: l10n_cr_hr_payroll
-#: model:mail.template,report_name:l10n_cr_hr_payroll.mail_template_payslip
+#: model:mail.template,report_name:l10n_cr_hr_payroll.email_template_payslip
 msgid "${object.name or ''}"
 msgstr "${object.name or ''}"
 
 #. module: l10n_cr_hr_payroll
-#: model:mail.template,subject:l10n_cr_hr_payroll.mail_template_payslip
+#: model:mail.template,subject:l10n_cr_hr_payroll.email_template_payslip
 msgid "${object.name|safe}"
 msgstr "${object.name|safe}"
 
 #. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payslip_message_needaction
-msgid "Action Needed"
-msgstr "Necesaria acción"
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee_header
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_header
+msgid "<span>Payroll Report</span>"
+msgstr "<span>Reporte Nómina</span>"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls_header
+msgid "<span>Payslip Batches</span>"
+msgstr "<span>Lotes de Nóminas</span>"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payroll_config_settings_amount_per_child
@@ -56,16 +62,24 @@ msgid "Amount per Child"
 msgstr "Monto por hijos"
 
 #. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payroll_config_settings_amount_per_wife
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_res_company_amount_per_wife
-msgid "Amount per wife"
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payroll_config_settings_amount_per_spouse
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_res_company_amount_per_spouse
+msgid "Amount per spouse"
 msgstr "Monto por cónyugue"
 
 #. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Annually"
+msgstr "Anualmente"
+
+#. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Bank Account"
-msgstr "Cuenta Bancaria"
+msgstr "Cuenta bancaria"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
@@ -75,14 +89,30 @@ msgstr "Cuenta bancaria"
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Base"
 msgstr "Base"
 
 #. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Bi-monthly"
+msgstr "Bi-semanal"
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Bi-weekly"
+msgstr "Bi-semanal"
+
+#. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Bonuses"
 msgstr "Bonificaciones"
 
@@ -93,9 +123,9 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: l10n_cr_hr_payroll
-#: model:mail.message.subtype,name:l10n_cr_hr_payroll.mt_payslip_cancel
-msgid "Cancelled"
-msgstr "Cancelado"
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_job_code
+msgid "Code"
+msgstr "Código"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model,name:l10n_cr_hr_payroll.model_res_company
@@ -103,16 +133,12 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payroll_config_settings_rent_company_id
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payroll_config_settings_company_id
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_company_id
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_employee_company_id
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_res_company_rent_company_id
 msgid "Company"
 msgstr "Compañía"
-
-#. module: l10n_cr_hr_payroll
-#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_contract
-msgid "Contract"
-msgstr "Contrato"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_create_uid
@@ -140,12 +166,16 @@ msgstr "Fecha del último mensaje publicado en el registro."
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Deduct.CCSS/BP"
-msgstr "Deducc.CCSS/BP"
+msgstr "Deduct.CCSS/BP"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Department:"
 msgstr "Departamento:"
 
@@ -154,9 +184,12 @@ msgstr "Departamento:"
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_employee_display_name
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payroll_periods_display_name
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payroll_periods_employee_display_name
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payroll_xls_display_name
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payroll_xls_employee_display_name
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payslip_run_display_name
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payslip_run_xls_display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Display Name"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model,name:l10n_cr_hr_payroll.model_hr_employee
@@ -164,9 +197,19 @@ msgid "Employee"
 msgstr "Empleado"
 
 #. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_contract
+msgid "Employee Contract"
+msgstr "Contrato Empleado"
+
+#. module: l10n_cr_hr_payroll
 #: model:ir.ui.menu,name:l10n_cr_hr_payroll.menu_payroll_periods_employee
 msgid "Employee Payroll Report"
 msgstr "Reporte de nómina empleado"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.action_payroll_xls_employee_report
+msgid "Employee Payroll Report XLS"
+msgstr "Reporte de nómina empleado XLS"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_date_to
@@ -175,30 +218,28 @@ msgid "End Date"
 msgstr "Fecha final"
 
 #. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_employee_period_to
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_period_to
-msgid "End Period"
-msgstr "Periodo final"
-
-#. module: l10n_cr_hr_payroll
-#: code:addons/l10n_cr_hr_payroll/models/hr_employee.py:18
+#: code:addons/l10n_cr_hr_payroll/hr_employee.py:34
 #, python-format
-msgid "Error! The number of child to report must be greater\n"
-"                     or equal to zero."
-msgstr "Error! El número de hijos para reportar debe ser mayor\n"
-"                     o igual a cero."
+msgid "Error! The number of child to report must be greater or equal to zero."
+msgstr "Error! El número de hijos reportados debe ser mayor o igual a cero."
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Ext Hrs"
 msgstr "Hrs Ext"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Extra"
 msgstr "Extra"
 
@@ -215,15 +256,10 @@ msgid "Filters"
 msgstr "Filtros"
 
 #. module: l10n_cr_hr_payroll
-#: model:mail.message.subtype,name:l10n_cr_hr_payroll.mt_payslip_done
-msgid "Finished"
-msgstr "Terminado"
-
-#. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payroll_config_settings_first_limit
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_res_company_first_limit
 msgid "First Limit"
-msgstr "Primer límite"
+msgstr "Primer Límite"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payslip_message_follower_ids
@@ -231,20 +267,22 @@ msgid "Followers"
 msgstr "Seguidores"
 
 #. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payslip_message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Seguidores (Canales)"
-
-#. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payslip_message_partner_ids
-msgid "Followers (Partners)"
-msgstr "Seguidores (Empresas)"
-
-#. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_employee_format
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_format
 msgid "Format"
 msgstr "Formato"
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Fortnightly"
+msgstr "Quincenal"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee_header
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_header
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
+msgid "From"
+msgstr "Desde"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.view_payroll_by_periods_employee_form
@@ -254,14 +292,19 @@ msgstr "Opciones generales"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "General Total"
 msgstr "Total general"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Gross"
 msgstr "Bruto"
 
@@ -270,18 +313,24 @@ msgstr "Bruto"
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_id
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payroll_periods_employee_id
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payroll_periods_id
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payroll_xls_employee_id
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payroll_xls_id
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payslip_run_id
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payslip_run_xls_id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "ID Card"
 msgstr "ID"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 msgid "ID card"
 msgstr "ID"
 
@@ -291,19 +340,19 @@ msgid "If checked new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
 
 #. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,help:l10n_cr_hr_payroll.field_hr_payslip_message_needaction
-msgid "If checked, new messages require your attention."
-msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
-
-#. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,help:l10n_cr_hr_payroll.field_hr_employee_report_wife
-msgid "If this employee reports his wife for rent payment"
+#: model:ir.model.fields,help:l10n_cr_hr_payroll.field_hr_employee_report_spouse
+msgid "If this employee reports his spouse for rent payment"
 msgstr "Si este empleado reporta su cónyuge para el pago de la renta"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payslip_message_is_follower
 msgid "Is Follower"
 msgstr "Es un seguidor"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_job
+msgid "Job Position"
+msgstr "Cargo"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payslip_message_last_post
@@ -315,9 +364,12 @@ msgstr "Fecha del último mensaje"
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_employee___last_update
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payroll_periods___last_update
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payroll_periods_employee___last_update
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payroll_xls___last_update
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payroll_xls_employee___last_update
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payslip_run___last_update
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_report_l10n_cr_hr_payroll_report_payslip_run_xls___last_update
 msgid "Last Modified on"
-msgstr "Última Modifiación en"
+msgstr "Última modificación en"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_employee_write_uid
@@ -337,30 +389,39 @@ msgid "Messages"
 msgstr "Mensajes"
 
 #. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Monthly"
+msgstr "Mensual"
+
+#. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Name"
 msgstr "Nombre"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Net"
 msgstr "Neto"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Nrm Hrs"
 msgstr "Hrs Nor"
-
-#. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payslip_message_needaction_counter
-msgid "Number of Actions"
-msgstr "Número de acciones"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_employee_report_number_child
@@ -373,16 +434,6 @@ msgid "Number of children to report for rent payment"
 msgstr "Número de hijos a reportar por el pago de la renta"
 
 #. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,help:l10n_cr_hr_payroll.field_hr_payslip_message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Número de mensajes que requieren una acción"
-
-#. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,help:l10n_cr_hr_payroll.field_hr_payslip_message_unread_counter
-msgid "Number of unread messages"
-msgstr "Número de mensajes no leidos"
-
-#. module: l10n_cr_hr_payroll
 #: selection:l10n.cr.hr.payroll.by.periods,format:0
 #: selection:l10n.cr.hr.payroll.by.periods.employee,format:0
 msgid "PDF"
@@ -391,7 +442,10 @@ msgstr "PDF"
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Paid"
 msgstr "Pagado"
 
@@ -414,6 +468,11 @@ msgid "Payroll Report Employee"
 msgstr "Reporte nómina empleado"
 
 #. module: l10n_cr_hr_payroll
+#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.action_payroll_xls_report
+msgid "Payroll Report XLS"
+msgstr "Reporte nómina XLS"
+
+#. module: l10n_cr_hr_payroll
 #: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.payroll_periods
 msgid "Payroll Report by Periods"
 msgstr "Reporte de nómina por periodos"
@@ -424,6 +483,11 @@ msgid "Payroll Report by Periods Employee"
 msgstr "Reporte de nomina por periodos empleado"
 
 #. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_payroll_report_for_month
+msgid "Payroll Report for Month"
+msgstr "Informe de Nómina para el mes"
+
+#. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.view_payroll_by_periods_form
@@ -432,46 +496,30 @@ msgstr "Nómina por periodos"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 msgid "Payslip"
 msgstr "Nómina"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.payslip_run_report
-#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_payslip_run
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
 msgid "Payslip Batches"
 msgstr "Lotes de nómina"
 
 #. module: l10n_cr_hr_payroll
-#: model:mail.message.subtype,description:l10n_cr_hr_payroll.mt_payslip_cancel
-msgid "Payslip cancelled"
-msgstr "Nómina cancelada"
+#: model:ir.actions.report.xml,name:l10n_cr_hr_payroll.action_payslip_run_xls_report
+msgid "Payslip Batches XLS"
+msgstr "Lotes de nómina XLS"
 
 #. module: l10n_cr_hr_payroll
-#: model:mail.message.subtype,description:l10n_cr_hr_payroll.mt_payslip_draft
-msgid "Payslip set to draft"
-msgstr "Nómina en borrador"
-
-#. module: l10n_cr_hr_payroll
-#: model:mail.message.subtype,description:l10n_cr_hr_payroll.mt_payslip_done
-msgid "Payslip successfully finished"
-msgstr "Nómina finalizada con éxito"
-
-#. module: l10n_cr_hr_payroll
-#: model:mail.message.subtype,description:l10n_cr_hr_payroll.mt_payslip_verify
-msgid "Payslip validated"
-msgstr "Nómina validada"
-
-#. module: l10n_cr_hr_payroll
-#: selection:l10n.cr.hr.payroll.by.periods,filter:0
-#: selection:l10n.cr.hr.payroll.by.periods.employee,filter:0
-msgid "Period"
-msgstr "Período"
+#: model:ir.model,name:l10n_cr_hr_payroll.model_hr_payslip_run
+msgid "Payslip Run"
+msgstr "Lote de Nómina"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_employee_personal_email
 msgid "Personal Email"
-msgstr "Email personal"
+msgstr "Email Personal"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.view_payroll_by_periods_employee_form
@@ -480,15 +528,23 @@ msgid "Print"
 msgstr "Imprimir"
 
 #. module: l10n_cr_hr_payroll
-#: code:addons/l10n_cr_hr_payroll/models/hr_salary_rule.py:142
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Quarterly"
+msgstr "Trimestral"
+
+#. module: l10n_cr_hr_payroll
+#: code:addons/l10n_cr_hr_payroll/hr_salary_rule_inherit.py:152
 #, python-format
 msgid "Refund: "
-msgstr "Reembolso: "
+msgstr "Reembolso"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Rent"
 msgstr "Renta"
 
@@ -498,9 +554,14 @@ msgid "Rent Configuration"
 msgstr "Configuración de Renta"
 
 #. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_employee_report_wife
-msgid "Report Wife"
-msgstr "Report Wife"
+#: model:ir.model,name:l10n_cr_hr_payroll.model_report_employee_by_periods
+msgid "Report Employee by Periods"
+msgstr "Informe de Empleado por períodos"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_employee_report_spouse
+msgid "Report Spouse"
+msgstr "Reportar cónyugue"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.view_payroll_by_periods_employee_form
@@ -508,20 +569,25 @@ msgid "Report employee by periods"
 msgstr "Reporte empleado por periodos"
 
 #. module: l10n_cr_hr_payroll
+#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payslip_run_schedule_pay
+msgid "Scheduled Pay"
+msgstr "Pago Planificado"
+
+#. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payroll_config_settings_second_limit
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_res_company_second_limit
 msgid "Second Limit"
-msgstr "Segundo límite"
+msgstr "Segundo Límite"
+
+#. module: l10n_cr_hr_payroll
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Semi-annually"
+msgstr "Semestral"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.hr_payslip_view_form2_inherit
 msgid "Send by Email"
-msgstr "Enviar por correo electrónico"
-
-#. module: l10n_cr_hr_payroll
-#: model:mail.message.subtype,name:l10n_cr_hr_payroll.mt_payslip_draft
-msgid "Set to draft"
-msgstr "Establecer en borrador"
+msgstr "Enviar por Email"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_date_from
@@ -530,20 +596,26 @@ msgid "Start Date"
 msgstr "Fecha inicial"
 
 #. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_employee_period_from
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_l10n_cr_hr_payroll_by_periods_period_from
-msgid "Start Period"
-msgstr "Periodo inicial"
-
-#. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods_employee
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 msgid "Structure:"
 msgstr "Estructura"
 
 #. module: l10n_cr_hr_payroll
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee_header
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_header
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
+msgid "To"
+msgstr "A"
+
+#. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_xls_employee
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run
+#: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payslip_run_xls
 msgid "Total"
 msgstr "Total"
 
@@ -553,14 +625,9 @@ msgid "Unread Messages"
 msgstr "Mensajes sin leer"
 
 #. module: l10n_cr_hr_payroll
-#: model:ir.model.fields,field_description:l10n_cr_hr_payroll.field_hr_payslip_message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Contador de mensajes no leidos"
-
-#. module: l10n_cr_hr_payroll
-#: model:mail.message.subtype,name:l10n_cr_hr_payroll.mt_payslip_verify
-msgid "Validated"
-msgstr "Validado"
+#: selection:hr.payslip.run,schedule_pay:0
+msgid "Weekly"
+msgstr "Semanal"
 
 #. module: l10n_cr_hr_payroll
 #: selection:l10n.cr.hr.payroll.by.periods,format:0
@@ -602,9 +669,24 @@ msgid "report.l10n_cr_hr_payroll.report_payroll_periods_employee"
 msgstr "report.l10n_cr_hr_payroll.report_payroll_periods_employee"
 
 #. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_report_l10n_cr_hr_payroll_report_payroll_xls
+msgid "report.l10n_cr_hr_payroll.report_payroll_xls"
+msgstr "report.l10n_cr_hr_payroll.report_payroll_xls"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_report_l10n_cr_hr_payroll_report_payroll_xls_employee
+msgid "report.l10n_cr_hr_payroll.report_payroll_xls_employee"
+msgstr "report.l10n_cr_hr_payroll.report_payroll_xls_employee"
+
+#. module: l10n_cr_hr_payroll
 #: model:ir.model,name:l10n_cr_hr_payroll.model_report_l10n_cr_hr_payroll_report_payslip_run
 msgid "report.l10n_cr_hr_payroll.report_payslip_run"
 msgstr "report.l10n_cr_hr_payroll.report_payslip_run"
+
+#. module: l10n_cr_hr_payroll
+#: model:ir.model,name:l10n_cr_hr_payroll.model_report_l10n_cr_hr_payroll_report_payslip_run_xls
+msgid "report.l10n_cr_hr_payroll.report_payslip_run_xls"
+msgstr "report.l10n_cr_hr_payroll.report_payslip_run_xls"
 
 #. module: l10n_cr_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cr_hr_payroll.report_payroll_periods

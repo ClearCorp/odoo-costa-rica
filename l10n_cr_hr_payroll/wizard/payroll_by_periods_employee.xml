@@ -15,12 +15,6 @@
                             <field name="format" required="True" />
                         </group>
                         <group>
-                            <field name="period_from" 
-                                attrs="{'required': [('filter', '=', 'period')], 'invisible': [('filter', '!=', 'period')]}"
-                                domain="[('company_id', '=', company_id)]" />
-                            <field name="period_to"
-                                attrs="{'required': [('filter', '=', 'period')], 'invisible': [('filter', '!=', 'period')]}"
-                                domain="[('company_id', '=', company_id)]" />
                             <field name="date_from"
                                 attrs="{'required': [('filter', '=', 'date')], 'invisible': [('filter', '!=', 'date')]}"/>
                             <field name="date_to"
