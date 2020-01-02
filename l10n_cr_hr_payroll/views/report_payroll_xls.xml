@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<openerp>
+<odoo>
     <data>
         <template id="report_payroll_xls_header">
             <table>
@@ -51,23 +51,30 @@
                     <t t-set="total_ext_hrs" t-value="0" />
                     <t t-set="total_base" t-value="0" />
                     <t t-set="total_extra" t-value="0" />
+                    <t t-set="total_extra_feriados" t-value="0" />
+                    <t t-set="total_rebajo" t-value="0" />
+                    <t t-set="total_otros_rebajos" t-value="0" />
                     <t t-set="total_gross" t-value="0" />
                     <t t-set="total_deduct" t-value="0" />
                     <t t-set="total_bonuses" t-value="0" />
                     <t t-set="total_rent" t-value="0" />
                     <t t-set="total_net" t-value="0" />
                     <t t-set="total_paid" t-value="0" />
-                    <t t-foreach="get_payslips_by_struct(data['period_from'], data['period_to'])" t-as="structSlip">
+                    <t t-set="allPayslip" t-value="get_payslips_by_struct(data['period_from'], data['period_to'])" />
+                    <t t-foreach="allPayslip" t-as="structSlip">
                         <t t-set="subtotal_nrm_hrs" t-value="0" />
                         <t t-set="subtotal_ext_hrs" t-value="0" />
                         <t t-set="subtotal_base" t-value="0" />
                         <t t-set="subtotal_extra" t-value="0" />
+                        <t t-set="subtotal_extra_feriados" t-value="0" />
+                        <t t-set="subtotal_rebajo" t-value="0" />
+                        <t t-set="subtotal_otros_rebajos" t-value="0" />
                         <t t-set="subtotal_gross" t-value="0" />
                         <t t-set="subtotal_deduct" t-value="0" />
                         <t t-set="subtotal_bonuses" t-value="0" />
                         <t t-set="subtotal_rent" t-value="0" />
-                        <t t-set="subtotal_net" t-value="0" />
                         <t t-set="subtotal_paid" t-value="0" />
+                        <t t-set="subtotal_net" t-value="0" />
                         <table>
                             <tbody>
                                 <tr>
@@ -86,11 +93,13 @@
                                     <th easyfx="font: bold on; align: horiz center; border: bottom medium">Ext Hrs</th>
                                     <th easyfx="font: bold on; align: horiz center; border: bottom medium">Base</th>
                                     <th easyfx="font: bold on; align: horiz center; border: bottom medium">Extra</th>
+                                    <th easyfx="font: bold on; align: horiz center; border: bottom medium">Extra Feriado</th>
+                                    <th easyfx="font: bold on; align: horiz center; border: bottom medium">Rebajo</th>
+                                    <th easyfx="font: bold on; align: horiz center; border: bottom medium">Otros Rebajos</th>
                                     <th easyfx="font: bold on; align: horiz center; border: bottom medium">Gross</th>
                                     <th easyfx="font: bold on; align: horiz center; border: bottom medium">Deduct.CCSS/BP</th>
                                     <th easyfx="font: bold on; align: horiz center; border: bottom medium">Bonuses</th>
                                     <th easyfx="font: bold on; align: horiz center; border: bottom medium">Rent</th>
-                                    <th easyfx="font: bold on; align: horiz center; border: bottom medium">Net</th>
                                     <th easyfx="font: bold on; align: horiz center; border: bottom medium">Paid</th>
                                 </tr>
                             </thead>
@@ -119,7 +128,7 @@
                                             <span t-esc="formatLang(nrm_hrs, dp='Account')" />
                                         </td>
                                         <td name="HE">
-                                            <t t-set="ext_hrs" t-value="get_worked_days_hours_group(payslips, code=['HE','HEF','FE'])" />
+                                            <t t-set="ext_hrs" t-value="get_worked_days_hours_group(payslips, code=['HE','HEF','FE','EXT-FE','EXT'])" />
                                             <t t-set="subtotal_ext_hrs" t-value="subtotal_ext_hrs+ext_hrs" />
                                             <t t-set="total_ext_hrs" t-value="total_ext_hrs+ext_hrs" />
                                             <span t-esc="formatLang(ext_hrs, dp='Account')" />
@@ -131,10 +140,28 @@
                                             <span t-esc="formatLang(base, dp='Account')" />
                                         </td>
                                         <td name="EXT">
-                                            <t t-set="extra" t-value="get_line_total_group(payslips, code=['EXT','EXT-FE','FE'])" />
+                                            <t t-set="extra" t-value="get_line_total_group(payslips, code=['EXT'])" />
                                             <t t-set="subtotal_extra" t-value="subtotal_extra+extra" />
                                             <t t-set="total_extra" t-value="total_extra+extra" />
                                             <span t-esc="formatLang(extra, dp='Account')" />
+                                        </td>
+                                        <td name="EXT">
+                                            <t t-set="extra_feriados" t-value="get_line_total_group(payslips, code=['EXT-FE','FE'])" />
+                                            <t t-set="subtotal_extra_feriados" t-value="subtotal_extra_feriados+extra_feriados" />
+                                            <t t-set="total_extra_feriados" t-value="total_extra_feriados+extra_feriados" />
+                                            <span t-esc="formatLang(extra_feriados, dp='Account')" />
+                                        </td>
+                                        <td name="HR">
+                                            <t t-set="rebajo" t-value="get_line_total_group(payslips, code=['HR'])" />
+                                            <t t-set="subtotal_rebajo" t-value="subtotal_rebajo+rebajo" />
+                                            <t t-set="total_rebajo" t-value="total_rebajo+rebajo" />
+                                            <span t-esc="formatLang(rebajo, dp='Account')" />
+                                        </td>
+                                        <td name="ORET">
+                                            <t t-set="otros_rebajos" t-value="get_line_total_group(payslips, code=['OTRASDED'])" />
+                                            <t t-set="subtotal_otros_rebajos" t-value="subtotal_otros_rebajos+otros_rebajos" />
+                                            <t t-set="total_otros_rebajos" t-value="total_otros_rebajos+otros_rebajos" />
+                                            <span t-esc="formatLang(otros_rebajos, dp='Account')" />
                                         </td>
                                         <td>
                                             <t t-set="gross" t-value="get_line_total(payslips, code='BRUTO')" />
@@ -166,12 +193,6 @@
                                             <t t-set="total_net" t-value="total_net+net" />
                                             <span t-esc="formatLang(net, dp='Account')" />
                                         </td>
-                                        <td>
-                                            <t t-set="paid" t-value="get_line_total(payslips, code='DEVENGADO')" />
-                                            <t t-set="subtotal_paid" t-value="subtotal_paid+paid" />
-                                            <t t-set="total_paid" t-value="total_paid+paid" />
-                                            <span t-esc="formatLang(paid, dp='Account')" />
-                                        </td>
                                     </tr>
                                 </t>
                                 <tr>
@@ -189,6 +210,15 @@
                                         <span t-esc="formatLang(subtotal_extra, dp='Account')" />
                                     </td>
                                     <td easyfx="font: bold on">
+                                        <span t-esc="formatLang(subtotal_extra_feriados, dp='Account')" />
+                                    </td>
+                                    <td easyfx="font: bold on">
+                                         <span t-esc="formatLang(subtotal_rebajo, dp='Account')" />
+                                    </td>
+                                    <td easyfx="font: bold on">
+                                        <span t-esc="formatLang(subtotal_otros_rebajos, dp='Account')" />
+                                    </td>
+                                    <td easyfx="font: bold on">
                                         <span t-esc="formatLang(subtotal_gross, dp='Account')" />
                                     </td>
                                     <td easyfx="font: bold on">
@@ -202,9 +232,6 @@
                                     </td>
                                     <td easyfx="font: bold on">
                                         <span t-esc="formatLang(subtotal_net, dp='Account')" />
-                                    </td>
-                                    <td easyfx="font: bold on">
-                                        <span t-esc="formatLang(subtotal_paid, dp='Account')" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -220,56 +247,74 @@
                             </tr>
                             <tr>
                                 <th easyfx="font: bold on; align: horiz center; border: bottom medium"></th>
+                                <th easyfx="font: bold on; align: horiz center; border: bottom medium"></th>
+                                <th easyfx="font: bold on; align: horiz center; border: bottom medium"></th>
                                 <th easyfx="font: bold on; align: horiz center; border: bottom medium">Nrm Hrs</th>
                                 <th easyfx="font: bold on; align: horiz center; border: bottom medium">Ext Hrs</th>
                                 <th easyfx="font: bold on; align: horiz center; border: bottom medium">Base</th>
                                 <th easyfx="font: bold on; align: horiz center; border: bottom medium">Extra</th>
+                                <th easyfx="font: bold on; align: horiz center; border: bottom medium">Extra Feriado</th>
+                                <th easyfx="font: bold on; align: horiz center; border: bottom medium">Rebajo</th>
+                                <th easyfx="font: bold on; align: horiz center; border: bottom medium">Otros Rebajos</th>
                                 <th easyfx="font: bold on; align: horiz center; border: bottom medium">Gross</th>
                                 <th easyfx="font: bold on; align: horiz center; border: bottom medium">Deduct.CCSS/BP</th>
                                 <th easyfx="font: bold on; align: horiz center; border: bottom medium">Bonuses</th>
                                 <th easyfx="font: bold on; align: horiz center; border: bottom medium">Rent</th>
-                                <th easyfx="font: bold on; align: horiz center; border: bottom medium">Net</th>
                                 <th easyfx="font: bold on; align: horiz center; border: bottom medium">Paid</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td easyfx="font: bold on; align: horiz right">Total</td>
-                                <td>
-                                    <span t-esc="formatLang(total_nrm_hrs, dp='Account')" />
-                                </td>
-                                <td>
-                                    <span t-esc="formatLang(total_ext_hrs, dp='Account')" />
-                                </td>
-                                <td>
-                                    <span t-esc="formatLang(total_base, dp='Account')" />
-                                </td>
-                                <td>
-                                    <span t-esc="formatLang(total_extra, dp='Account')" />
-                                </td>
-                                <td>
-                                    <span t-esc="formatLang(total_gross, dp='Account')" />
-                                </td>
-                                <td>
-                                    <span t-esc="formatLang(total_deduct, dp='Account')" />
-                                </td>
-                                <td>
-                                    <span t-esc="formatLang(total_bonuses, dp='Account')" />
-                                </td>
-                                <td>
-                                    <span t-esc="formatLang(total_rent, dp='Account')" />
-                                </td>
-                                <td>
-                                    <span t-esc="formatLang(total_net, dp='Account')" />
-                                </td>
-                                <td>
-                                    <span t-esc="formatLang(total_paid, dp='Account')" />
-                                </td>
-                            </tr>
+                            <t t-foreach="get_totales(allPayslip)" t-as="total">
+                                <tr>
+                                    <td easyfx="font: bold on; align: horiz right">
+                                        <span t-esc="total['title']"/>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <span t-esc="formatLang(total['total_nrm_hrs'], dp='Account')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="formatLang(total['total_ext_hrs'], dp='Account')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="formatLang(total['total_base'], dp='Account')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="formatLang(total['total_extra'], dp='Account')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="formatLang(total['total_extra_feriados'], dp='Account')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="formatLang(total['total_rebajo'], dp='Account')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="formatLang(total['total_rebajo'], dp='Account')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="formatLang(total['total_gross'], dp='Account')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="formatLang(total['total_deduct'], dp='Account')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="formatLang(total['total_bonuses'], dp='Account')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="formatLang(total['total_rent'], dp='Account')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="formatLang(total['total_net'], dp='Account')" />
+                                    </td>
+                                </tr>
+                            </t>
                         </tbody>
                     </table>
                 </div>
             </div>
         </template>
     </data>
-</openerp>
+</odoo>

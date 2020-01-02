@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+
+        <menuitem id="menu_payroll_reports_parent" name="Reports"
+            parent="hr_payroll.menu_hr_payroll_root" groups="hr.group_hr_manager" />
+
         <menuitem id="menu_payroll_periods" name="Payroll Report"
-            parent="hr_payroll.menu_hr_payroll_root" action="action_payroll_by_periods"
-            groups="base.group_hr_manager" />
+            parent="menu_payroll_reports_parent" action="action_payroll_by_periods"
+            groups="hr.group_hr_manager" />
         <menuitem id="menu_payroll_periods_employee" name="Employee Payroll Report"
-            parent="hr_payroll.menu_hr_payroll_root" action="action_payroll_by_periods_employee" />
+            parent="menu_payroll_reports_parent" action="action_payroll_by_periods_employee" />
     </data>
 </openerp>

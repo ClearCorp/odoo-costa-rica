@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <openerp>
-    <data noupdate="0">
-        <delete id="hr_payroll.property_rule_employee_payslip" model="ir.rule" />
-    </data>
     <data noupdate="1">
         <record id="rule_employee_multicompany" model="ir.rule">
             <field name="name">Employee Multicompany</field>
@@ -57,7 +54,7 @@
             <field name="perm_create" eval="True"/>
             <field name="perm_unlink" eval="True"/>
             <field name="domain_force">[(1, '=', 1)]</field>
-            <field name="groups" eval="[(4, ref('base.group_hr_manager'))]" />
+            <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]" />
         </record>
 
         <record id="rule_payslip_run_multicompany" model="ir.rule">

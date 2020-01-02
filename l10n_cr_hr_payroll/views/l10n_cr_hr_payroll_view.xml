@@ -41,7 +41,7 @@
             <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
             <field name="arch" type="xml">
                 <data>
-                    <button name="cancel_sheet" position="after">
+                    <button name="action_payslip_cancel" position="after">
                         <button name="action_payslip_send" string="Send by Email" type="object" states="done" class="oe_highlight"/>
                     </button>
                     <xpath expr="//form/sheet" position="after">

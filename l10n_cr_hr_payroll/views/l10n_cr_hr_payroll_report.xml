@@ -9,7 +9,6 @@
             model="ir.actions.report.xml">
             <field name="paperformat_id" ref="paperformat_us_landscape" />
         </record>
-        <!-- 
         <report id="action_payroll_xls_report"
             model="hr.payslip"
             string="Payroll Report XLS"
@@ -17,7 +16,6 @@
             name="l10n_cr_hr_payroll.report_payroll_xls"
             file="l10n_cr_hr_payroll.report_payroll_xls"
             menu="False"/>
-        -->
         <report id="payroll_periods_employee"
             model="hr.payslip" string="Payroll Report by Periods Employee"
             report_type="qweb-pdf" name="l10n_cr_hr_payroll.report_payroll_periods_employee"
@@ -26,7 +24,6 @@
             model="ir.actions.report.xml">
             <field name="paperformat_id" ref="paperformat_us_landscape" />
         </record>
-        <!--  
         <report id="action_payroll_xls_employee_report"
             model="hr.payslip"
             string="Employee Payroll Report XLS"
@@ -34,7 +31,6 @@
             name="l10n_cr_hr_payroll.report_payroll_xls_employee"
             file="l10n_cr_hr_payroll.report_payroll_xls_employee"
             menu="False"/>
-        -->
         <report id="payslip_run_report" model="hr.payslip.run"
             string="Payslip Batches" report_type="qweb-pdf"
             name="l10n_cr_hr_payroll.report_payslip_run" file="l10n_cr_hr_payroll.report_payslip_run"
@@ -42,13 +38,13 @@
         <record id="payslip_run_report" model="ir.actions.report.xml">
             <field name="paperformat_id" ref="paperformat_us_landscape" />
         </record>
-        <!--
+
         <report id="action_payslip_run_xls_report"
             model="hr.payslip.run"
             string="Payslip Batches XLS"
             report_type="qweb-xls"
             name="l10n_cr_hr_payroll.report_payslip_run_xls"
-            file="l10n_cr_hr_payroll.report_payslip_run_xls"/>
-        -->
+            file="l10n_cr_hr_payroll.report_payslip_run_xls" menu="True" />
+
     </data>
 </openerp>

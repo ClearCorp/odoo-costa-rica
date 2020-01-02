@@ -4,7 +4,7 @@
 
 {
     'name': 'Payroll Localization - Costa Rica',
-    'version': '9.0.1.0',
+    'version': '10.0',
     'category': 'Localization',
     'sequence': 38,
     'author': 'ClearCorp',
@@ -14,7 +14,8 @@
     'application': True,
     'depends': [
         'hr_payroll_extended',
-        # 'report_xls_template',
+        'report_xls_template',
+        'hr_payroll_multicurrency'
     ],
     'data': [
         'data/l10n_cr_hr_payslip_action_data.xml',
@@ -28,12 +29,11 @@
         'wizard/payroll_by_periods.xml',
         'wizard/payroll_by_periods_employee.xml',
         'views/report_payroll_periods.xml',
-        # 'views/report_payroll_xls.xml',
+        'views/report_payroll_xls.xml',
         'views/report_payroll_periods_employee.xml',
-        # 'views/report_payroll_xls_employee.xml',
+        'views/report_payroll_xls_employee.xml',
         'views/report_payslip_run.xml',
-        # 'views/report_payslip_run_xls.xml',
-        'views/report_payslip.xml',
+        'views/report_payslip_run_xls.xml',
         'views/l10n_cr_hr_payroll_report.xml',
         'views/l10n_cr_hr_payroll_menu.xml',
         'views/hr_config_settings.xml',

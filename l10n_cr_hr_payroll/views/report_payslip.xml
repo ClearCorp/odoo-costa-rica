@@ -2,26 +2,6 @@
 <openerp>
     <data>
     <!-- hr_payroll.report_payslip -->
-        <record id="inherit_report_payslip" model="ir.ui.view">
-            <field name="name">inherit.report.payslip</field>
-            <field name="inherit_id" ref="hr_payroll.report_payslip"/>
-            <field name="priority" eval="50"/>
-            <field name="type">qweb</field>
-            <field name="arch" type="xml">
-            
-            <xpath expr="//t/t/t/div/table/tbody/tr[@t-foreach='get_payslip_lines(o.line_ids)']" position="replace">
-                    <tr t-foreach="get_payslip_lines(o.line_ids)" t-as="p">
-                        <div t-if="p.salary_rule_id.appears_on_report">
-                            <td><span t-field="p.code"/></td>
-                            <td><span t-field="p.name"/></td>
-                            <td><span t-field="p.quantity"/></td>
-                            <td><span t-esc="formatLang(p.amount, currency_obj=o.company_id.currency_id)"/></td>
-                            <td><span t-esc="formatLang(p.total, currency_obj=o.company_id.currency_id)"/></td>
-                        </div>
-                    </tr>
-                </xpath>
-            
-            </field>
-        </record> 
+
     </data>
 </openerp>

@@ -2,11 +2,11 @@
 # © 2016 ClearCorp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.tools.translate import _
-from openerp.osv import osv
+from odoo.tools.translate import _
+from odoo import models
 
 
-class hrRulesalary(osv.Model):
+class hrRulesalary(models.Model):
 
     _inherit = 'hr.salary.rule'
 
@@ -52,27 +52,25 @@ result = contract.wage * 0.10''',
 result = rules.NET > categories.NET * 0.10''',
     }
 
-    def satisfy_condition(self, cr, uid, rule_id, localdict, context=None):
+    def satisfy_condition(self, rule_id, localdict):
         """In this method we add a new BrowsableObject from hr.config settings.
         This is for use rent configuration for each company and compute the
         rent amount in a standard way."""
 
 #        Get user's company and hr.config.settings associated to the company
-        company_obj = self.pool.get('res.users').browse(
-            cr, uid, uid, context=context).company_id
+        company_obj = self.env.user.company_id
 
 #       Update localdict with new variable
         localdict.update({'company': company_obj})
 #       object from hr salary rule to use in python code
-        hr_salary_rule_obj = self.pool.get('hr.salary.rule')
+        hr_salary_rule_obj = self.env['hr.salary.rule']
         localdict.update({'hr_salary_rule': hr_salary_rule_obj})
 
 #       add cr, uid at dictionary as a variables in python code
-        localdict.update({'cr': cr})
-        localdict.update({'uid': uid})
+        localdict.update({'cr': self._cr})
+        localdict.update({'uid': self._uid})
 
-        result = super(hrRulesalary, self).satisfy_condition(
-            cr, uid, rule_id, localdict, context=context)
+        result = super(hrRulesalary, self).satisfy_condition(rule_id, localdict)
         return result
 
     def compute_rent_employee(self, company, employee, SBT):
@@ -117,7 +115,7 @@ result = rules.NET > categories.NET * 0.10''',
 #     It receive company, a parameter and it is a res.company object, but also,
 #     it can be declare inside in function
 # =============================================================================
-    def compute_total_rent(self, cr, uid, company, inputs, employee,
+    def compute_total_rent(self, company, inputs, employee,
                            categories, payslip):
         """
             This function computes, based on previous gross salary and future
@@ -125,30 +123,30 @@ result = rules.NET > categories.NET * 0.10''',
             "dynamic" way to compute amount rent for each payslip
         """
         """Objects"""
-        payslip_obj = self.pool.get('hr.payslip')
+        payslip_obj = self.env['hr.payslip']
         """
             If the payslip is a refund, we need to use the same amount
             calculated above
         """
         if payslip.credit_note:
             original_name = payslip.name.replace(_('Refund: '), '')
-            original_payslip_id = payslip_obj.search(cr, uid, [
+            original_payslip_id = payslip_obj.search([
                 ('name', '=', original_name),
                 ('employee_id', '=', employee.id),
                 ('date_to', '=', payslip.date_to),
                 ('date_from', '=', payslip.date_from)])[0]
-            original_payslip = payslip_obj.browse(cr, uid, original_payslip_id)
+            original_payslip = payslip_obj.browse(original_payslip_id)
             for line in original_payslip.line_ids:
                 if line.code == 'RENTA':
                     return line.total
             return 0.0
 
         """"Get total payments"""
-        future_payments = payslip_obj.qty_future_payments(cr, uid, payslip)
+        future_payments = payslip_obj.qty_future_payments(payslip)
         actual_payment = 1
 
         """Update payments amount"""
-        SBA = payslip_obj.get_SBA(cr, uid, employee, payslip)
+        SBA = payslip_obj.get_SBA(employee, payslip)
         SBP = categories.BRUTO
         SBF = categories.BASE * future_payments
         SBT = SBA + SBP + SBF
@@ -157,16 +155,16 @@ result = rules.NET > categories.NET * 0.10''',
 #       Rent for a complete month
         rent_empl_total = self.compute_rent_employee(company, employee, SBT)
 #       Rent already paid
-        total_paid_rent = payslip_obj.get_previous_rent(cr, uid, employee,
+        total_paid_rent = payslip_obj.get_previous_rent(employee,
                                                         payslip)
         total_curr_rent = (rent_empl_total - total_paid_rent) /\
             (future_payments + actual_payment)
         return total_curr_rent
 
-    def python_expresion_rent(self, cr, uid, company, inputs, employee,
+    def python_expresion_rent(self, company, inputs, employee,
                               categories, payslip):
         """Function that evaluated if compute rent applies to salary rule"""
-        total = self.compute_total_rent(cr, uid, company, inputs, employee,
+        total = self.compute_total_rent(company, inputs, employee,
                                         categories, payslip)
         if total != 0.0:
             return True
