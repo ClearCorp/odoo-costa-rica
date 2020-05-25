@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_l10n_mx_edi_payslip" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.l10n.mx.edi.payslip</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_payroll.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='hr_payroll_localization']" position="inside">
+                <div class="col-xs-12 o_setting_box" title="The parameters to configure the Rents.">
+                    <div class="o_setting_left_pane"/>
+                    <div class="o_setting_right_pane">
+                        <span class="o_form_label">Rent Configuration</span>
+                        <div class="text-muted">
+                            Configure data to rents.
+                        </div>
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <div name="first_limit">
+                                    <label for="first_limit"/>
+                                    <field name="first_limit" class="oe_inline"/>
+                                </div>
+                                <div name="second_limit">
+                                    <label for="second_limit"/>
+                                    <field name="second_limit" class="oe_inline"/>
+                                </div>
+                                <div name="amount_per_child">
+                                    <label for="amount_per_child"/>
+                                    <field name="amount_per_child" class="oe_inline"/>
+                                </div>
+                                <div name="amount_per_spouse">
+                                    <label for="amount_per_spouse"/>
+                                    <field name="amount_per_spouse" class="oe_inline"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

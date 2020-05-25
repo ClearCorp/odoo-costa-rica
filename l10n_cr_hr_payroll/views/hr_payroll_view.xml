@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<openerp>
+<odoo>
     <data>
         <!--Employee - Spouse-->
         <record id="view_employee_form_inherit" model="ir.ui.view">
@@ -10,7 +10,7 @@
             <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
                 <data>
-                    <xpath expr="//page[@name='personal_information']/group/group[2]/field[@name='address_home_id']" position="after">
+                    <xpath expr="//field[@name='address_home_id']" position="after">
                         <field name="personal_email"/>
                     </xpath>
                 </data>
@@ -45,4 +45,4 @@
             </field>
         </record>
     </data>
-</openerp>
+</odoo>
